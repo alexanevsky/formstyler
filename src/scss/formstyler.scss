@@ -1,0 +1,1013 @@
+/*
+ * jQuery FormStyler v3.0.0
+ * https://github.com/Alexanevsky/formstyler
+ *
+ * Copyright 2020 Alexanevsky (https://lashchevsky.me)
+ * Copyright 2012-2017 Dimox (http://dimox.name)
+ *
+ * Released under the MIT license.
+ *
+ * Date: 2020-05-20
+ *
+ */
+
+@import 'variables';
+
+@if $resetcss == true {
+    .formstyler-checkbox,
+    .formstyler-checkblock,
+    .formstyler-switchbox,
+    .formstyler-switchblock,
+    .formstyler-radio,
+    .formstyler-radioblock,
+    .formstyler-number,
+    .formstyler-file,
+    .formstyler-select {
+        &,
+        & * {
+            box-sizing: border-box;
+        }
+    }
+}
+
+
+// > Checkbox
+.formstyler-checkbox {
+    position: relative;
+    display: block;
+    float: left;
+    width: $font-height-text;
+    height: $font-height-text;
+    margin: 0 $margin 0 0;
+    border: $border-width solid $border-color;
+    border-radius: $border-radius;
+    background-color: $bg;
+    box-shadow: $boxshadow-checkbox;
+    transition: border-color $transition-duration $transition-timing, box-shadow $transition-duration $transition-timing, background $transition-duration $transition-timing;
+    cursor: pointer;
+    overflow: hidden;
+    user-select: none;
+
+    input {
+        position: absolute;
+        z-index: -1;
+        margin: 0;
+        padding: 0;
+        opacity: 0;
+    }
+    .formstyler-checkbox-dot,
+    .formstyler-checkbox-icon,
+    .formstyler-checkbox-image {
+        position: absolute;
+        opacity: 0;
+        transition: opacity $transition-duration $transition-timing;
+    }
+    .formstyler-checkbox-dot,
+    .formstyler-checkbox-image {
+        top: ($font-height-text - $border-width*2 - $font-height-text/2)/2;
+        left: ($font-height-text - $border-width*2 - $font-height-text/2)/2;
+        width: $font-height-text / 2;
+        height: $font-height-text / 2;
+    }
+    .formstyler-checkbox-dot {
+        background: $text-color-active;
+
+        @if $border-radius > ($font-height-text - $border-width * 2) / 1.5 / 2 == true {
+            border-radius: 50%;
+        } @else {
+            border-radius: $border-radius;
+        }
+    }
+    .formstyler-checkbox-icon {
+        top: 0;
+        left: 0;
+        width: $font-height-text - $border-width*2;
+        height: $font-height-text - $border-width*2;
+        line-height: $font-height-text - $border-width*2;
+        text-align: center;
+        font-size: ceil(($font-height-text - $border-width * 2) / 1.5);
+        color: $text-color-active;
+    }
+    &.formstyler-colored {
+        .formstyler-checkbox-dot {
+            background: $color-positive;
+        }
+        .formstyler-checkbox-icon {
+            color: $color-positive;
+        }
+    }
+    &:hover,
+    &.formstyler-hovered {
+        &:not(.formstyler-disabled):not(.formstyler-focused) {
+            border-color: $border-color-hover;
+        }
+    }
+    &.formstyler-focused {
+        border-color: $border-color-active;
+        box-shadow: $boxshadow-checkbox-active;
+    }
+    &.formstyler-disabled {
+        border-color: $border-color-disabled;
+        background: $bg-disabled;
+        cursor: not-allowed;
+
+        .formstyler-checkbox-dot {
+            background: $text-color-disabled;
+        }
+        .formstyler-checkbox-icon {
+            color: $text-color-disabled;
+        }
+    }
+    &.formstyler-checked {
+        .formstyler-checkbox-dot,
+        .formstyler-checkbox-icon,
+        .formstyler-checkbox-image {
+            opacity: 1;
+        }
+    }
+}
+.formstyler-checkblock {
+    position: relative;
+    padding-left: $font-height-text + $margin;
+
+    .formstyler-checkbox {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+    }
+    .formstyler-label {
+        margin: 0;
+        cursor: pointer;
+    }
+    &.formstyler-disabled {
+        .formstyler-label {
+            color: $text-color-disabled;
+            cursor: not-allowed;
+        }
+    }
+}
+
+
+// > Switchbox
+.formstyler-switchbox {
+    position: relative;
+    display: block;
+    float: left;
+    width: ceil($font-height-text * 1.5);
+    height: $font-height-text;
+    margin: 0 $margin 0 0;
+    border: $border-width solid $border-color;
+    border-radius: $border-radius-switch;
+    background-color: $bg;
+    box-shadow: $boxshadow-checkbox;
+    transition: border-color $transition-duration $transition-timing, box-shadow $transition-duration $transition-timing, background $transition-duration $transition-timing;
+    cursor: pointer;
+    overflow: hidden;
+    user-select: none;
+
+    input {
+        position: absolute;
+        z-index: -1;
+        margin: 0;
+        padding: 0;
+        opacity: 0;
+    }
+    .formstyler-switchbox-dot {
+        position: absolute;
+        top: ceil(($font-height-text - $border-width * 2 - ($font-height-text - $border-width * 2) / 1.5) / 2);
+        left: ceil(($font-height-text - $border-width * 2 - floor(($font-height-text - $border-width * 2) / 1.5)) / 2 + floor(($font-height-text - $border-width * 2) / 1.5));
+        width: floor(($font-height-text - $border-width * 2) / 1.5);
+        height: floor(($font-height-text - $border-width * 2) / 1.5);
+        background: $text-color-placeholder;
+        transition: background $transition-duration $transition-timing, left $transition-duration $transition-timing, right $transition-duration $transition-timing, opacity $transition-duration $transition-timing;
+
+        @if $border-radius-switch > floor(($font-height-text - $border-width * 2) / 1.5 / 2) == true {
+            border-radius: 50%;
+        } @else {
+            border-radius: $border-radius-switch;
+        }
+    }
+    &.formstyler-colored {
+        .formstyler-switchbox-dot {
+            background: $color-negative;
+        }
+    }
+    &.formstyler-checked {
+        .formstyler-switchbox-dot {
+            left: ceil(($font-height-text - $border-width * 2 - floor(($font-height-text - $border-width * 2) / 1.5)) / 2);
+            background: $text-color-active;
+        }
+        &.formstyler-colored {
+            .formstyler-switchbox-dot {
+                background: $color-positive;
+            }
+        }
+    }
+    &:hover,
+    &.formstyler-hovered {
+        &:not(.formstyler-disabled):not(.formstyler-focused) {
+            border-color: $border-color-hover;
+        }
+    }
+    &.formstyler-focused {
+        border-color: $border-color-active;
+        box-shadow: $boxshadow-checkbox-active;
+    }
+    &.formstyler-disabled {
+        border-color: $border-color-disabled;
+        background: $bg-disabled;
+        cursor: not-allowed;
+
+        .formstyler-switchbox-dot {
+            opacity: 0;
+        }
+        &.formstyler-checked {
+            .formstyler-switchbox-dot {
+                background: $text-color-disabled;
+                opacity: 1;
+            }
+        }
+    }
+}
+.formstyler-switchblock {
+    position: relative;
+    padding-left: ceil($font-height-text * 1.5) + $margin;
+
+    .formstyler-switchbox {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+    }
+    .formstyler-label {
+        margin: 0;
+        cursor: pointer;
+    }
+    &.formstyler-disabled {
+        .formstyler-label {
+            color: $text-color-disabled;
+            cursor: not-allowed;
+        }
+    }
+}
+
+
+// > Radio
+.formstyler-radio {
+    position: relative;
+    float: left;
+    display: block;
+    width: $font-height-text;
+    height: $font-height-text;
+    margin: 0 $margin 0 0;
+    border: $border-width solid $border-color;
+    border-radius: 50%;
+    background-color: $bg;
+    box-shadow: $boxshadow-checkbox;
+    transition: border-color $transition-duration $transition-timing, box-shadow $transition-duration $transition-timing, background $transition-duration $transition-timing;
+    cursor: pointer;
+    overflow: hidden;
+    user-select: none;
+
+    input {
+        position: absolute;
+        z-index: -1;
+        margin: 0;
+        padding: 0;
+        opacity: 0;
+    }
+    .formstyler-radio-dot {
+        position: absolute;
+        top: ($font-height-text - $border-width*2 - $font-height-text/2)/2;
+        left: ($font-height-text - $border-width*2 - $font-height-text/2)/2;
+        width: $font-height-text / 2;
+        height: $font-height-text / 2;
+        border-radius: 50%;
+        background: $text-color-active;
+        opacity: 0;
+        transition: opacity $transition-duration $transition-timing;
+    }
+    &:hover,
+    &.formstyler-hovered {
+        &:not(.formstyler-disabled):not(.formstyler-focused) {
+            border-color: $border-color-hover;
+        }
+    }
+    &.formstyler-focused {
+        border-color: $border-color-active;
+        box-shadow: $boxshadow-checkbox-active;
+    }
+    &.formstyler-disabled {
+        border-color: $border-color-disabled;
+        background: $bg-disabled;
+        cursor: not-allowed;
+
+        .formstyler-radio-dot {
+            background: $text-color-disabled;
+        }
+    }
+    &.formstyler-checked {
+        .formstyler-radio-dot {
+            opacity: 1;
+        }
+    }
+}
+.formstyler-radioblock {
+    position: relative;
+    padding-left: $font-height-text + $margin;
+
+    .formstyler-radio {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+    }
+    .formstyler-label {
+        margin: 0;
+        cursor: pointer;
+    }
+    &.formstyler-disabled {
+        .formstyler-label {
+            color: $text-color-disabled;
+            cursor: not-allowed;
+        }
+    }
+}
+
+
+// > Number
+.formstyler-number {
+    position: relative;
+    padding-right: $height / 2 + $margin;
+    transition: padding $transition-duration $transition-timing;
+
+    input {
+        width: 100%;
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+            margin: 0;
+            -webkit-appearance: none;
+        }
+    }
+    .formstyler-number-button {
+        position: absolute;
+        right: 0;
+        width: floor($height/2);
+        height: floor($height/2);
+        transition: opacity $transition-duration $transition-timing, visibility $transition-duration $transition-timing;
+        overflow: hidden;
+        cursor: pointer;
+
+        &.formstyler-number-plus {
+            top: 0;
+        }
+        &.formstyler-number-minus {
+            bottom: 0;
+        }
+        &.formstyler-number-button-icon {
+            line-height: floor($height/2);
+            text-align: center;
+            color: $text-color-active;
+            transition: color $transition-duration $transition-timing;
+
+            @if floor($height/2) > $font-size-text == true {
+                font-size: $font-size-text;
+            } @else {
+                font-size: floor($height/2);
+            }
+
+            &:hover {
+                color: $text-color-hover;
+            }
+        }
+        &.formstyler-number-button-image {
+            line-height: 0;
+        }
+        &.formstyler-number-button-angle {
+            &::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 0;
+                border-right: floor($font-height-text/2/1.5) solid transparent;
+                border-left: floor($font-height-text/2/1.5) solid transparent;
+                left: ($font-height-text/2 - floor($font-height-text/2/1.5))/2;
+                transition: border-color $transition-duration $transition-timing;
+            }
+            &.formstyler-number-plus {
+                &::after {
+                    bottom: ($font-height-text/2 - floor($font-height-text/2/1.5))/2;
+                    border-bottom: floor($font-height-text/2/1.5) solid $text-color-active;
+                }
+                &:hover {
+                    &::after {
+                        border-bottom-color: $text-color-hover;
+                    }
+                }
+            }
+            &.formstyler-number-minus {
+                &::after {
+                    top: ($font-height-text/2 - floor($font-height-text/2/1.5))/2;
+                    border-top: floor($font-height-text/2/1.5) solid $text-color-active;
+                }
+                &:hover {
+                    &::after {
+                        border-top-color: $text-color-hover;
+                    }
+                }
+            }
+        }
+        .formstyler-number-image {
+            @if floor($height/2) > $font-size-text == true {
+                width: $font-size-text;
+                height: $font-size-text;
+                margin-top: (floor($height/2) - $font-size-text) / 2;
+            } @else {
+                width: floor($height/2);
+                height: floor($height/2);
+            }
+        }
+        .formstyler-number-angle {
+            position: relative;
+            width: inherit;
+            height: inherit;
+        }
+    }
+    &.formstyler-colored {
+        .formstyler-number-button {
+            &.formstyler-number-button-icon {
+                &.formstyler-number-plus {
+                    color: $color-positive;
+                }
+                &.formstyler-number-minus {
+                    color: $color-negative;
+                }
+                &.formstyler-number-plus,
+                &.formstyler-number-minus {
+                    &:hover {
+                        color: $text-color-hover;
+                    }
+                }
+            }
+            &.formstyler-number-button-angle {
+                &.formstyler-number-plus {
+                    &::after {
+                        border-bottom-color: $color-positive;
+                    }
+                    &:hover {
+                        &::after {
+                            border-bottom-color: $text-color-hover;
+                        }
+                    }
+                }
+                &.formstyler-number-minus {
+                    &::after {
+                        border-top-color: $color-negative;
+                    }
+                    &:hover {
+                        &::after {
+                            border-top-color: $text-color-hover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.formstyler-disabled {
+        padding-right: 0;
+
+        .formstyler-number-button {
+            visibility: hidden;
+            opacity: 0;
+        }
+    }
+}
+
+
+// > File
+.formstyler-file {
+    position: relative;
+    display: block;
+    height: $height;
+    overflow: hidden;
+
+    input {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        opacity: 0;
+        font-size: 100px;
+        line-height: 1em;
+        cursor: pointer;
+    }
+    .formstyler-file-name {
+        position: relative;
+        display: block;
+        height: $height;
+        padding: ($height - $font-height-text - $border-width)/2 0;
+        border-bottom: $border-width solid $border-color;
+        font: #{$font-size-input}/#{$font-height-input} $font-family-input;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        transition: opacity $transition-duration $transition-timing, border-color $transition-duration $transition-timing;
+
+        .formstyler-file-name-image {
+            position: absolute;
+            width: $font-size-input;
+            height: $font-size-input;
+            top: ($height - $font-size-input - $border-width)/2;
+            left: 0;
+
+            & + .formstyler-file-name-value {
+                margin-left: $font-size-input + $margin;
+            }
+        }
+        .formstyler-file-name-icon {
+            margin-right: $margin;
+            color: $text-color-placeholder;
+        }
+    }
+    .formstyler-file-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: auto;
+        width: 150px;
+        height: $height;
+
+        & + .formstyler-file-name {
+            margin-right: 150px + $margin;
+        }
+        &.formstyler-iconed {
+            width: $height;
+            padding-left: 0;
+            padding-right: 0;
+            text-align: center;
+
+            & + .formstyler-file-name {
+            margin-right: $height + $margin;
+        }
+        }
+        &.formstyler-styled {
+            padding: ($height - $font-height-text)/2 0;
+            background: $text-color-active;
+            border-radius: $border-radius;
+            font: #{$font-size-text}/#{$font-height-text} $font-family-text;
+            text-align: center;
+            color: $bg;
+        }
+        /*.formstyler-file-button-span {
+            position: relative;
+            display: inline-block;
+        }*/
+        .formstyler-file-button-image {
+            position: absolute;
+            top: ($height - $font-size-text)/2;
+            left: ($height - $font-size-text)/2;
+            width: $font-size-text;
+            height: $font-size-text;
+        }
+        .formstyler-file-button-image,
+        .formstyler-file-button-icon {
+            & + .formstyler-file-button-value {
+                display: none;
+            }
+        }
+    }
+    &.formstyler-file-empty {
+        .formstyler-file-name {
+            opacity: 0;
+        }
+        .formstyler-file-button {
+            left: 0;
+            width: auto;
+
+            .formstyler-file-button-value {
+                display: inline-block;
+            }
+            .formstyler-file-button-image {
+                display: none;
+                /*position: absolute;
+                top: ($height - $font-size-text)/2;
+                left: - ($font-size-text + $margin);
+                margin: 0;*/
+            }
+            .formstyler-file-button-icon {
+                margin-right: $margin;
+            }
+        }
+    }
+    &:hover,
+    &.formstyler-hovered {
+        .formstyler-file-name {
+            border-bottom-color: $border-color-hover;
+        }
+    }
+    &.formstyler-focused {
+        .formstyler-file-name {
+            border-bottom-color: $border-color-active;
+        }
+    }
+    &.formstyler-disabled {
+        cursor: not-allowed;
+
+        input {
+            display: none;
+        }
+        .formstyler-file-button {
+            background: $border-color-disabled;
+            color: $text-color;
+            cursor: not-allowed;
+        }
+    }
+}
+
+
+// > Select
+.formstyler-select {
+    position: relative;
+    display: block;
+
+    select {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        opacity: 0;
+    }
+    .formstyler-select-box {
+        position: relative;
+        width: 100%;
+        height: $height;
+        padding-right: $height - $border-width * 2;
+        border: $border-width solid $border-color;
+        border-radius: $border-radius;
+        background-color: $bg;
+        box-shadow: $boxshadow-selectbox;
+        transition: border-color $transition-duration $transition-timing, box-shadow $transition-duration $transition-timing, background $transition-duration $transition-timing;
+        cursor: pointer;
+        overflow: hidden;
+        user-select: none;
+
+        .formstyler-select-text {
+            height: $height - $border-width * 2;
+            font: #{$font-size-text}/#{$font-height-text} $font-family-text;
+            padding: ($height - $border-width * 2 - $font-height-text)/2 $margin ($height - $border-width * 2 - $font-height-text)/2 $font-size-input;
+            color: $text-color;
+            user-select: none;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            transition: color $transition-duration $transition-timing;
+
+            &.formstyler-select-text-placeholder {
+                color: $text-color-placeholder;
+            }
+        }
+        .formstyler-select-trigger-angle {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: $height - $border-width * 2;
+            height: $height - $border-width * 2;
+            transition: transform $transition-duration $transition-timing;
+
+            &::before {
+                position: absolute;
+                z-index: 1;
+                content: '';
+                top: ($height - $border-width * 2 - $font-size-text)/2 + $font-size-text/4;
+                right: ($height - $border-width * 2 - $font-size-text)/2;
+                width: 0;
+                height: 0;
+                border-top: $font-size-text/2 solid $border-color;
+                border-right: $font-size-text/2 solid transparent;
+                border-left: $font-size-text/2 solid transparent;
+                transition: border-color $transition-duration $transition-timing;
+            }
+        }
+        .formstyler-select-trigger-icon,
+        .formstyler-select-trigger-image {
+            position: absolute;
+            top: ($height - $border-width*2 - $font-size-text) / 2;
+            right: ($height - $border-width*2 - $font-size-text) / 2;
+            width: $font-size-text;
+            height: $font-size-text;
+        }
+        .formstyler-select-trigger-icon {
+            font-size: $font-size-text;
+            line-height: $font-size-text;
+            color: $border-color;
+            transition: transform $transition-duration $transition-timing, color $transition-duration $transition-timing;
+        }
+        .formstyler-select-trigger-image {
+            transition: transform $transition-duration $transition-timing;
+        }
+        &:hover,
+        &.formstyler-hovered {
+            border-color: $border-color-hover;
+
+            .formstyler-select-trigger-angle {
+                &::before {
+                    border-top-color: $border-color-hover;
+                }
+            }
+            .formstyler-select-trigger-icon {
+                color: $border-color-hover;
+            }
+        }
+        &:active {
+            border-color: $border-color-active;
+
+            .formstyler-select-trigger-angle {
+                &::before {
+                    border-top-color: $border-color-active;
+                }
+            }
+            .formstyler-select-trigger-icon {
+                color: $border-color-active;
+            }
+        }
+    }
+    .formstyler-select-dropdown {
+        position: absolute;
+        left: 0;
+        @if $width-dropdown-full == true {
+            right: 0;
+            width: 100%;
+        } @else {
+            min-width: 100%;
+        }
+        margin: 0;
+        border: $border-width solid $border-color;
+        border-radius: $border-radius;
+        background-color: $bg;
+        transition: margin $transition-duration $transition-timing;
+    }
+    .formstyler-select-list {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border-bottom-left-radius: inherit;
+        border-bottom-right-radius: inherit;
+        overflow: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+
+        &:first-child {
+            border-top-left-radius: inherit;
+            border-top-right-radius: inherit;
+        }
+    }
+    .formstyler-select-toggle,
+    .formstyler-select-option,
+    .formstyler-select-optgroup {
+        margin: 0;
+        padding: round($margin/1.5) $font-size-input;
+        background-color: $bg;
+        font: #{$font-size-select}/#{$font-height-text} $font-family-text;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        list-style: none;
+    }
+    .formstyler-select-optgroup {
+        font-weight: bold;
+        cursor: default;
+    }
+    .formstyler-select-toggle {
+        font-weight: bold;
+        // border-bottom: 1px solid $border-color;
+        // color: $text-color-placeholder;
+    }
+    .formstyler-select-toggle,
+    .formstyler-select-option {
+        cursor: pointer;
+
+        &.formstyler-selected {
+            background-color: $bg-selectbox-active;
+            color: $text-color-active;
+        }
+        &:hover {
+            background-color: $bg-selectbox-hover;
+            color: $text-color-hover;
+        }
+    }
+    .formstyler-select-option {
+        &.formstyler-optgrouped {
+            padding-left: $font-size-input + $font-size-text * 1.5;
+        }
+        &.formstyler-select-option-placeholder {
+            color: $text-color-placeholder;
+        }
+        &.formstyler-disabled {
+            background-color: $bg;
+            color: $text-color-disabled;
+            cursor: not-allowed;
+        }
+    }
+    .formstyler-select-notfound {
+        margin: $margin;
+        font: #{$font-size-text}/#{$font-height-text} $font-family-text;
+        text-align: center;
+        color: $text-color-placeholder;
+    }
+    .formstyler-select-search {
+
+        &.formstyler-select-search-custom {
+            padding: $margin;
+
+            & + .formstyler-select-notfound {
+                margin-top: 0;
+            }
+        }
+        .formstyler-select-search-input {
+            display: block;
+            width: 100%;
+            height: $height;
+            border: none;
+            border-bottom: $border-width solid $border-color;
+            text-indent: $font-size-input;
+            padding: ($height - $border-width - $font-height-input)/2 0;
+            font: #{$font-size-input}/#{$font-height-input} $font-family-input;
+            box-shadow: $boxshadow-input;
+
+            &::placeholder {
+                color: $text-color-placeholder;
+            }
+        }
+    }
+    &.formstyler-select-pos-down {
+        .formstyler-select-dropdown {
+            margin-top: $margin;
+        }
+    }
+    &.formstyler-select-pos-up {
+        .formstyler-select-dropdown {
+            margin-bottom: $margin;
+        }
+    }
+    &.formstyler-focused,
+    &.formstyler-opened {
+        .formstyler-select-box {
+            border-color: $border-color-active;
+            box-shadow: $boxshadow-selectbox-active;
+
+            .formstyler-select-trigger-angle {
+                &::before {
+                    border-top-color: $border-color-active;
+                }
+            }
+            .formstyler-select-trigger-icon {
+                color: $border-color-active;
+            }
+        }
+    }
+    &.formstyler-opened {
+        .formstyler-select-box {
+            .formstyler-select-trigger-angle,
+            .formstyler-select-trigger-icon,
+            .formstyler-select-trigger-image {
+                transform: rotate(180deg);
+            }
+        }
+    }
+    &.formstyler-disabled {
+        .formstyler-select-box {
+            border-color: $border-color-disabled;
+            background-color: $bg-disabled;
+            cursor: not-allowed;
+
+            .formstyler-select-text {
+                color: $text-color-disabled;
+            }
+            .formstyler-select-trigger-angle {
+                &::before {
+                    border-top-color: $border-color-disabled;
+                }
+            }
+        }
+    }
+    &.formstyler-multiselect {
+        .formstyler-select-toggle,
+        .formstyler-select-option {
+            position: relative;
+            padding-left: ceil($font-size-input/1.5)*2 + $font-height-text/2;
+
+            .formstyler-select-check-dot,
+            .formstyler-select-check-icon,
+            .formstyler-select-check-image {
+                position: absolute;
+                top: (round($margin/1.5) * 2 + $font-height-text - $font-height-text/2) / 2;
+                left: ceil($font-size-input/1.5);
+                width: $font-height-text/2;
+                height: $font-height-text/2;
+                opacity: 0;
+                transition: opacity $transition-duration $transition-timing;
+            }
+            .formstyler-select-check-dot {
+                border-radius: $border-radius;
+                background-color: $color-active;
+            }
+            .formstyler-select-check-icon {
+                font-size: $font-height-text/2;
+                line-height: $font-height-text/2;
+                text-align: center;
+                color: $color-active;
+            }
+            &.formstyler-optgrouped {
+                padding-left: ceil($font-size-input/1.5)*2 + $font-height-text/2 + $font-size-text * 1.5;
+
+                .formstyler-select-check-dot,
+                .formstyler-select-check-icon,
+                .formstyler-select-check-image {
+                    left: ceil($font-size-input/1.5) + $font-size-text * 1.5;
+                }
+            }
+            &.formstyler-selected {
+                color: $text-color;
+
+                .formstyler-select-check-dot,
+                .formstyler-select-check-icon,
+                .formstyler-select-check-image {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    &.formstyler-colored {
+        .formstyler-select-toggle,
+        .formstyler-select-option {
+            .formstyler-select-check-dot {
+                background-color: $color-positive;
+            }
+            .formstyler-select-check-icon {
+                color: $color-positive;
+            }
+        }
+    }
+}
+
+
+// > Input & Textarea
+@if $build-input == true {
+    #{$input-selector},
+    #{$textarea-selector} {
+        box-sizing: border-box;
+        display: inline-block;
+        width: 100%;
+        border: $border-width solid $border-color;
+        border-radius: $border-radius;
+        font: #{$font-size-input}/#{$font-height-input} $font-family-input;
+        background-color: $bg;
+        color: $text-color;
+        box-shadow: $boxshadow-input;
+        outline: none;
+        transition: box-shadow $transition-duration $transition-timing, background-color $transition-duration $transition-timing, background-image $transition-duration $transition-timing, border-color $transition-duration $transition-timing, color $transition-duration $transition-timing;
+
+        &::placeholder {
+            color: $text-color-placeholder;
+        }
+        &:hover {
+            border-color: $border-color-hover;
+        }
+        &:focus {
+            border-color: $border-color-active;
+            box-shadow: $boxshadow-input-active;
+        }
+        &:disabled {
+            background: $bg-disabled;
+            border-color: $border-color-disabled;
+            color: $text-color-disabled;
+            cursor: not-allowed;
+
+            &:hover {
+                border-color: $border-color-disabled;
+            }
+        }
+    }
+    #{$input-selector} {
+        height: $height;
+        padding: ($height - $border-width*2 - $font-height-input)/2 0;
+        text-indent: $font-size-input;
+    }
+    #{$textarea-selector} {
+        min-height: $height;
+        padding: ($height - $border-width*2 - $font-height-input)/2 $font-size-input;
+        resize: vertical;
+    }
+}
+
+select[multiple] {
+    height: $height;
+}

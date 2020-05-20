@@ -1,71 +1,74 @@
-var gulp         = require('gulp'),
-		autoprefixer = require('gulp-autoprefixer'),
-		browserSync  = require('browser-sync').create(),
-		csscomb      = require('gulp-csscomb'),
-		header       = require('gulp-header'),
-		notify       = require('gulp-notify'),
-		plumber      = require('gulp-plumber'),
-		rename       = require('gulp-rename'),
-		stylus       = require('gulp-stylus'),
-		uglify       = require('gulp-uglify');
+/*
+ * TOC
+ *
+ * Init
+ * - Requires
+ * - Variables
+ * - Directories and files
+ * Tasks
+ * - Assets JS
+ * - Assets styles
+ * - Clean
+ * Default task
+ */
 
-gulp.task('default:dist', ['stylus:dist']);
-gulp.task('default:test', ['stylus:test', 'webserver:test']);
+// > Init
+// >> Requires
+var gulp =          require('gulp');
+var sass =          require('gulp-sass');
+var cssnano =       require('gulp-cssnano');
+var autoprefixer =  require('gulp-autoprefixer');
+var imagemin =      require('gulp-imagemin');
+var concat =        require('gulp-concat');
+var uglify =        require('gulp-uglify');
+var rename =        require('gulp-rename');
+var rimraf =        require('gulp-rimraf');
+var header =        require('gulp-header');
 
 var pkg = require('./package.json');
-var head = ['/* jQuery Form Styler v<%= pkg.version %> | (c) Dimox | https://github.com/Dimox/jQueryFormStyler */\n'];
-var path = {
-	test: '../test/',
-	dist: 'dist/',
-	src: {
-		js: 'dist/jquery.formstyler.js',
-		style: 'src/*.styl',
-	},
+
+// >> Variables
+var headerString = '/*! <%= pkg.name %> v<%= pkg.version %> (c) <%= pkg.author %> | <%= pkg.homepage %> */\n';
+
+// >> Directories and files
+var dist = './dist';
+
+var src = {
+    js:     './src/js/formstyler.js',
+    css:    './src/scss/formstyler.scss'
 };
 
-gulp.task('minify-js', function() {
-	gulp.src(path.src.js)
-		.pipe(uglify())
-		.pipe(header(head, {pkg}))
-		.pipe(rename({suffix: '.min'}))
-		.pipe(gulp.dest(path.dist));
+// > Tasks
+// >> Assets JS
+gulp.task('js', function() {
+    return gulp.src(src.js)
+        .pipe(gulp.dest(dist))
+        .pipe(uglify())
+        .pipe(header(headerString, {pkg}))
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(gulp.dest(dist));
 });
 
-gulp.task('stylus:dist', function() {
-	gulp.src(path.src.style)
-		.pipe(plumber({errorHandler: notify.onError("Ошибка: <%= error.message %>")}))
-		.pipe(stylus())
-		.pipe(autoprefixer({
-			browsers: ['last 2 versions', 'ie 10', 'Safari 7']
-		}))
-		.pipe(csscomb())
-		.pipe(gulp.dest(path.dist))
-		.pipe(browserSync.stream())
-	;
+// >> Assets styles
+gulp.task('css', function() {
+    return gulp.src(src.css)
+        .pipe(sass())
+        .pipe(autoprefixer({ cascade: false }))
+        .pipe(concat('formstyler.css'))
+        .pipe(gulp.dest(dist))
+        .pipe(cssnano({
+            discardComments: { removeAll: true }
+        }))
+        .pipe(header(headerString, {pkg}))
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(gulp.dest(dist));
 });
 
-gulp.task('stylus:test', function() {
-	gulp.src(path.src.style)
-		.pipe(plumber({errorHandler: notify.onError("Ошибка: <%= error.message %>")}))
-		.pipe(stylus())
-		.pipe(autoprefixer({
-			browsers: ['last 2 versions', 'ie 10', 'Safari 7']
-		}))
-		.pipe(csscomb())
-		.pipe(gulp.dest(path.test))
-		.pipe(browserSync.stream())
-	;
+// >> Clean
+gulp.task('clean', function() {
+ return gulp.src(dist + '/*', { read: false })
+   .pipe(rimraf());
 });
 
-gulp.task('webserver:test', ['watch:test'], function() {
-	browserSync.init({
-		server: {
-			baseDir: path.test
-		},
-		scrollProportionally: false,
-	});
-});
-
-gulp.task('watch:test', function() {
-	browserSync.watch(path.src.style).on('change', function () { gulp.start('stylus:test'); });
-});
+// > Default task
+gulp.task('default', gulp.series('clean', 'js', 'css'));

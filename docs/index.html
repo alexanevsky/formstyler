@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" >
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>FormStyler &middot; Documentation</title>
+
+        <!-- Assets styles -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../dist/formstyler.min.css">
+
+        <style>
+            .form-group:last-child {
+                margin-bottom: 0;
+            }
+        </style>
+    </head>
+
+    <body class="bg-light py-4">
+
+        <!-- Container -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+
+                    <!-- Nav -->
+                    <div class="list-group shadow-sm" id="nav">
+                        <a class="list-group-item list-group-item-action" href="#tab-inputcheckbox"  id="tab-inputcheckbox-link"  data-toggle="tab" onclick="setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Input &middot; Checkbox</a>
+                        <a class="list-group-item list-group-item-action" href="#tab-inputradio"     id="tab-inputradio-link"     data-toggle="tab" onclick="setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Input &middot; Radio</a>
+                        <a class="list-group-item list-group-item-action" href="#tab-inputfile"      id="tab-inputfile-link"      data-toggle="tab" onclick="setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Input &middot; File</a>
+                        <a class="list-group-item list-group-item-action" href="#tab-inputnumber"    id="tab-inputnumber-link"    data-toggle="tab" onclick="setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Input &middot; Number</a>
+                        <a class="list-group-item list-group-item-action" href="#tab-select"         id="tab-select-link"         data-toggle="tab" onclick="setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Select</a>
+                        <a class="list-group-item list-group-item-action" href="#tab-selectmultiple" id="tab-selectmultiple-link" data-toggle="tab" onclick="setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Select &middot; Multiple</a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+
+                    <!-- Tabs -->
+                    <div class="card shadow-sm">
+                        <div class="card-body tab-content">
+
+                            <!-- Tab - Input Checkbox -->
+                            <div class="tab-pane fade" id="tab-inputcheckbox">
+                                <div class="form-group">
+                                    <input type="checkbox" name="switchbox-simple" id="switchbox-simple" data-switch="true" checked>
+                                    <label for="switchbox-simple">Switchbox</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" name="switchbox-colored" id="switchbox-colored" data-switch="true" data-colored="true" checked>
+                                    <label for="switchbox-colored">Colored switchbox</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" name="switchbox-disabled" id="switchbox-disabled" data-switch="true" checked disabled>
+                                    <label for="switchbox-disabled">Disabled switchbox</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" name="checkbox-simple" id="checkbox-simple" checked>
+                                    <label for="checkbox-simple">Simple checkbox</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" name="checkbox-colored" id="checkbox-colored" data-colored="true" checked>
+                                    <label for="checkbox-colored">Colored checkbox</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" name="checkbox-icon" id="checkbox-icon" data-icon="fa fa-check" checked>
+                                    <label for="checkbox-icon">Checkbox with Font Awesome icon</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" name="checkbox-icon-colored" id="checkbox-icon-colored" data-icon="fa fa-check" data-colored="true" checked>
+                                    <label for="checkbox-icon-colored">Colored checkbox with Font Awesome icon</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" name="checkbox-disabled" id="checkbox-disabled" checked disabled>
+                                    <label for="checkbox-disabled">Disabled checkbox</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" name="checkbox-icon-disabled" id="checkbox-icon-disabled" data-icon="fa fa-check" data-colored="true" checked disabled>
+                                    <label for="checkbox-icon-disabled">Disabled checkbox with Font Awesome icon</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" name="checkbox-longlabel" id="checkbox-longlabel">
+                                    <label for="checkbox-longlabel">Checkbox with very long label - its looks beautiful! <em>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur quae vel, laudantium voluptatem a incidunt reprehenderit sunt, ea culpa odio laborum minima recusandae ut, dolores! Neque autem, blanditiis aliquid alias.</em></label>
+                                </div>
+                            </div>
+
+                            <!-- Tab - Input Radio -->
+                            <div class="tab-pane fade" id="tab-inputradio">
+                                <div class="form-group">
+                                    <input type="radio" name="radio" id="radio-simple-1" checked>
+                                    <label for="radio-simple-1">Simple radio button</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="radio" name="radio" id="radio-simple-2">
+                                    <label for="radio-simple-2">Simple radio button</label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="radio" name="radio" id="radio-disabled" disabled>
+                                    <label for="radio-disabled">Disabled radio button</label>
+                                </div>
+                            </div>
+
+                            <!-- Tab - Input File -->
+                            <div class="tab-pane fade" id="tab-inputfile">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-5 col-form-label">
+                                            <label class="form-text text-muted" for="file-simple">Simple file uploader:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <input type="file" name="file-simple" id="file-simple">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-5 col-form-label">
+                                            <label class="form-text text-muted" for="file-multiple">Multiple file uploader:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <input type="file" name="file-multiple" id="file-multiple" data-browse="Browse a files" data-browse-empty="Browse a files" multiple>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-5 col-form-label">
+                                            <label class="form-text text-muted" for="file-icon">File uploader with cons:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <input type="file" name="file-icon" id="file-icon" data-icon-file="fa fa-file" data-icon-upload="fa fa-file">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-5 col-form-label">
+                                            <label class="form-text text-muted" for="file-placeholder">File uploader with custom placeholders:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <input type="file" name="file-placeholder" id="file-placeholder" data-placeholder="Lorem ipsum dolor" data-browse="MEOW!" data-browse-empty="Click ME!">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab - Input Number -->
+                            <div class="tab-pane fade" id="tab-inputnumber">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-5 col-form-label">
+                                            <label class="form-text text-muted" for="number-simple">Simple input number:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <input type="number" class="form-control" name="number-simple" id="number-simple">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-5 col-form-label">
+                                            <label class="form-text text-muted" for="number-colored">Colored input number:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <input type="number" class="form-control" name="number-colored" id="number-colored" data-colored="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-5 col-form-label">
+                                            <label class="form-text text-muted" for="number-disabled">Disabled input number:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <input type="number" class="form-control" name="number-disabled" id="number-disabled" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab - Select -->
+                            <div class="tab-pane fade" id="tab-select">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-5 col-form-label">
+                                            <label class="form-text text-muted" for="select-simple">Simple select:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <select name="select-simple" id="select-simple">
+                                                <option value="">Nothing selected</option>
+                                                <option value="1">Lorem</option>
+                                                <option value="2">Ipsum dolor sit</option>
+                                                <option value="3">Amet</option>
+                                                <option value="4">Consectetur adipisicing elit</option>
+                                                <option value="5">Possimus sunt dolores</option>
+                                                <option value="6">Lorem ipsum dolor sit amet consectetur adipisicing elit saepe distinctio eligendi modi totam voluptatibus iusto labore nam suscipit dolorem fugit aliquid illum ducimus commodi rem maxime adipisci</option>
+                                                <option value="7">Dolorum</option>
+                                                <option value="8">Veniam ea saepe incidunt</option>
+                                                <option value="9">Quibusdam</option>
+                                                <option value="10">Animi</option>
+                                                <option value="11">Praesentium</option>
+                                                <option value="12">Tempora iste unde dicta eaqu</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-5 col-form-label">
+                                            <label class="form-text text-muted" for="select-search">Select with search:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <select name="select-search" id="select-search" data-search-limit="1" data-search-class="form-control form-control-sm">
+                                                <option value="">Nothing selected</option>
+                                                <option value="1">Lorem</option>
+                                                <option value="2">Ipsum dolor sit</option>
+                                                <option value="3">Amet</option>
+                                                <option value="4">Consectetur adipisicing elit</option>
+                                                <option value="5">Possimus sunt dolores</option>
+                                                <option value="6">Lorem ipsum dolor sit amet consectetur adipisicing elit saepe distinctio eligendi modi totam voluptatibus iusto labore nam suscipit dolorem fugit aliquid illum ducimus commodi rem maxime adipisci</option>
+                                                <option value="7">Dolorum</option>
+                                                <option value="8">Veniam ea saepe incidunt</option>
+                                                <option value="9">Quibusdam</option>
+                                                <option value="10">Animi</option>
+                                                <option value="11">Praesentium</option>
+                                                <option value="12">Tempora iste unde dicta eaqu</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-5 col-form-label">
+                                            <label class="form-text text-muted" for="select-icon">Select with icon:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <select name="select-icon" id="select-icon" data-icon="fa fa-chevron-down">
+                                                <option value="">Nothing selected</option>
+                                                <option value="1">Lorem</option>
+                                                <option value="2">Ipsum dolor sit</option>
+                                                <option value="3">Amet</option>
+                                                <option value="4">Consectetur adipisicing elit</option>
+                                                <option value="5">Possimus sunt dolores</option>
+                                                <option value="6">Lorem ipsum dolor sit amet consectetur adipisicing elit saepe distinctio eligendi modi totam voluptatibus iusto labore nam suscipit dolorem fugit aliquid illum ducimus commodi rem maxime adipisci</option>
+                                                <option value="7">Dolorum</option>
+                                                <option value="8">Veniam ea saepe incidunt</option>
+                                                <option value="9">Quibusdam</option>
+                                                <option value="10">Animi</option>
+                                                <option value="11">Praesentium</option>
+                                                <option value="12">Tempora iste unde dicta eaqu</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-5 col-form-label">
+                                            <label class="form-text text-muted" for="select-disabled">Disabled select:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <select name="select-disabled" id="select-disabled" data-icon="fa fa-times" disabled>
+                                                <option value="1" selected>Lorem ipsum dolor</option>
+                                                <option value="2">Dolor</option>
+                                                <option value="3">Amet</option>
+                                                <option value="4">Consectetur adipisicing elit</option>
+                                                <option value="5">Possimus sunt dolores</option>
+                                                <option value="6">Lorem ipsum dolor sit amet consectetur adipisicing elit saepe distinctio eligendi modi totam voluptatibus iusto labore nam suscipit dolorem fugit aliquid illum ducimus commodi rem maxime adipisci</option>
+                                                <option value="7">Dolorum</option>
+                                                <option value="8">Veniam ea saepe incidunt</option>
+                                                <option value="9">Quibusdam</option>
+                                                <option value="10">Animi</option>
+                                                <option value="11">Praesentium</option>
+                                                <option value="12">Tempora iste unde dicta eaqu</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab - Select Multiple -->
+                            <div class="tab-pane fade" id="tab-selectmultiple">
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-5 col-form-label">
+                                            <label class="form-text text-muted" for="multiple-simple">Simple select:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <select name="multiple-simple" id="multiple-simple" multiple>
+                                                <option value="1">Lorem</option>
+                                                <option value="2">Ipsum dolor sit</option>
+                                                <option value="3">Amet</option>
+                                                <option value="4">Consectetur adipisicing elit</option>
+                                                <option value="5">Possimus sunt dolores</option>
+                                                <option value="6">Lorem ipsum dolor sit amet consectetur adipisicing elit saepe distinctio eligendi modi totam voluptatibus iusto labore nam suscipit dolorem fugit aliquid illum ducimus commodi rem maxime adipisci</option>
+                                                <option value="7">Dolorum</option>
+                                                <option value="8">Veniam ea saepe incidunt</option>
+                                                <option value="9">Quibusdam</option>
+                                                <option value="10">Animi</option>
+                                                <option value="11">Praesentium</option>
+                                                <option value="12">Tempora iste unde dicta eaqu</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-5 col-form-label">
+                                            <label class="form-text text-muted" for="multiple-search">Select with search:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <select name="multiple-search" id="multiple-search" data-search-limit="1" data-search-class="form-control form-control-sm" multiple>
+                                                <option value="1">Lorem</option>
+                                                <option value="2">Ipsum dolor sit</option>
+                                                <option value="3">Amet</option>
+                                                <option value="4">Consectetur adipisicing elit</option>
+                                                <option value="5">Possimus sunt dolores</option>
+                                                <option value="6">Lorem ipsum dolor sit amet consectetur adipisicing elit saepe distinctio eligendi modi totam voluptatibus iusto labore nam suscipit dolorem fugit aliquid illum ducimus commodi rem maxime adipisci</option>
+                                                <option value="7">Dolorum</option>
+                                                <option value="8">Veniam ea saepe incidunt</option>
+                                                <option value="9">Quibusdam</option>
+                                                <option value="10">Animi</option>
+                                                <option value="11">Praesentium</option>
+                                                <option value="12">Tempora iste unde dicta eaqu</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-5 col-form-label">
+                                            <label class="form-text text-muted" for="multiple-icon">Select with icons:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <select name="multiple-icon" id="multiple-icon" data-icon="fa fa-chevron-down" data-check-icon="fa fa-check" multiple>
+                                                <option value="1">Lorem</option>
+                                                <option value="2">Ipsum dolor sit</option>
+                                                <option value="3">Amet</option>
+                                                <option value="4">Consectetur adipisicing elit</option>
+                                                <option value="5">Possimus sunt dolores</option>
+                                                <option value="6">Lorem ipsum dolor sit amet consectetur adipisicing elit saepe distinctio eligendi modi totam voluptatibus iusto labore nam suscipit dolorem fugit aliquid illum ducimus commodi rem maxime adipisci</option>
+                                                <option value="7">Dolorum</option>
+                                                <option value="8">Veniam ea saepe incidunt</option>
+                                                <option value="9">Quibusdam</option>
+                                                <option value="10">Animi</option>
+                                                <option value="11">Praesentium</option>
+                                                <option value="12">Tempora iste unde dicta eaqu</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-5 col-form-label">
+                                            <label class="form-text text-muted" for="multiple-disabled">Disabled select:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <select name="multiple-disabled" id="multiple-disabled" data-icon="fa fa-times" disabled multiple>
+                                                <option value="1" selected>Lorem ipsum</option>
+                                                <option value="2" selected>Dolor</option>
+                                                <option value="3">Amet</option>
+                                                <option value="4">Consectetur adipisicing elit</option>
+                                                <option value="5">Possimus sunt dolores</option>
+                                                <option value="6">Lorem ipsum dolor sit amet consectetur adipisicing elit saepe distinctio eligendi modi totam voluptatibus iusto labore nam suscipit dolorem fugit aliquid illum ducimus commodi rem maxime adipisci</option>
+                                                <option value="7">Dolorum</option>
+                                                <option value="8">Veniam ea saepe incidunt</option>
+                                                <option value="9">Quibusdam</option>
+                                                <option value="10">Animi</option>
+                                                <option value="11">Praesentium</option>
+                                                <option value="12">Tempora iste unde dicta eaqu</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Assets JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+        <script src="../dist/formstyler.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#nav').find('a:first').tab('show');
+
+                $('input, select').formstyler({
+                    selectSearch: true
+                });
+            });
+        </script>
+    </body>
+</html>
