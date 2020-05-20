@@ -6,9 +6,6 @@
   "directories": {
     "doc": "docs"
   },
-  "dependencies": {
-    "gulp-header": "^2.0.9"
-  },
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
