@@ -1,32 +1,14 @@
 {
-  "name": "alexanevsky/formstyler",
+  "name": "@alexanevsky/formstyler",
   "version": "3.0.0",
   "description": "jQuery plugin for HTML forms: inputs and selects (include multiple selects)",
-  "homepage": "https://github.com/alexanevsky/formstyler",
   "main": "dist/formstyler.min.js",
-  "style": "dist/formstyler.min.css",
-  "author": "Alexanevsky",
-  "keywords": [
-    "jquery",
-    "form",
-    "styler",
-    "alexanevsky",
-    "dimox"
-  ],
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alexanevsky/formstyler.git"
-  },
-  "bugs": {
-    "url": "https://github.com/alexanevsky/formstyler/issues"
-  },
   "directories": {
     "doc": "docs"
   },
-  "browserslist": [
-    "last 2 versions"
-  ],
+  "dependencies": {
+    "gulp-header": "^2.0.9"
+  },
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
@@ -39,5 +21,30 @@
     "gulp-rimraf": "^1.0.0",
     "gulp-sass": "^4.1.0",
     "gulp-uglify": "^3.0.2"
-  }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexanevsky/formstyler.git"
+  },
+  "keywords": [
+    "jquery",
+    "form",
+    "styler",
+    "alexanevsky",
+    "dimox",
+    "input",
+    "select"
+  ],
+  "author": "Alexanevsky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexanevsky/formstyler/issues"
+  },
+  "homepage": "https://github.com/alexanevsky/formstyler#readme",
+  "browserslist": [
+    "last 2 versions"
+  ]
 }
