@@ -18,7 +18,6 @@ var gulp =          require('gulp');
 var sass =          require('gulp-sass');
 var cssnano =       require('gulp-cssnano');
 var autoprefixer =  require('gulp-autoprefixer');
-var imagemin =      require('gulp-imagemin');
 var concat =        require('gulp-concat');
 var uglify =        require('gulp-uglify');
 var rename =        require('gulp-rename');
