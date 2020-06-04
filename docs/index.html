@@ -11,12 +11,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../dist/formstyler.min.css">
-
-        <style>
-            .form-group:last-child {
-                margin-bottom: 0;
-            }
-        </style>
+        <link rel="stylesheet" href="./assets/docs.css">
     </head>
 
     <body class="bg-light py-4">
@@ -27,13 +22,17 @@
                 <div class="col-md-3">
 
                     <!-- Nav -->
-                    <div class="list-group shadow-sm" id="nav">
+                    <div class="list-group shadow-sm mb-3" id="nav">
                         <a class="list-group-item list-group-item-action" href="#tab-inputcheckbox"  id="tab-inputcheckbox-link"  data-toggle="tab" onclick="setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Input &middot; Checkbox</a>
                         <a class="list-group-item list-group-item-action" href="#tab-inputradio"     id="tab-inputradio-link"     data-toggle="tab" onclick="setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Input &middot; Radio</a>
                         <a class="list-group-item list-group-item-action" href="#tab-inputfile"      id="tab-inputfile-link"      data-toggle="tab" onclick="setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Input &middot; File</a>
                         <a class="list-group-item list-group-item-action" href="#tab-inputnumber"    id="tab-inputnumber-link"    data-toggle="tab" onclick="setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Input &middot; Number</a>
                         <a class="list-group-item list-group-item-action" href="#tab-select"         id="tab-select-link"         data-toggle="tab" onclick="setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Select</a>
                         <a class="list-group-item list-group-item-action" href="#tab-selectmultiple" id="tab-selectmultiple-link" data-toggle="tab" onclick="setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Select &middot; Multiple</a>
+                    </div>
+
+                    <div class="text-center mb-4">
+                        <a class="btn btn-sm btn-dark" href="#" onclick="$('select, input').trigger('refresh');">Refresh</a>
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -188,10 +187,10 @@
                                             <label class="form-text text-muted" for="select-simple">Simple select:</label>
                                         </div>
                                         <div class="col-md-7">
-                                            <select name="select-simple" id="select-simple">
+                                            <select name="select-simple" id="select-simple" data-search-limit="1">
                                                 <option value="">Nothing selected</option>
                                                 <option value="1">Lorem</option>
-                                                <option value="2">Ipsum dolor sit</option>
+                                                <option value="2" data-html="<b>Ipsum</b> <i>dolor</i> <s>sit</s>">Ipsum dolor sit</option>
                                                 <option value="3">Amet</option>
                                                 <option value="4">Consectetur adipisicing elit</option>
                                                 <option value="5">Possimus sunt dolores</option>
@@ -390,14 +389,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
         <script src="../dist/formstyler.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('#nav').find('a:first').tab('show');
-
-                $('input, select').formstyler({
-                    selectSearch: true
-                });
-            });
-        </script>
+        <script src="./assets/docs.js"></script>
     </body>
 </html>

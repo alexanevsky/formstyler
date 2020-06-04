@@ -1,5 +1,5 @@
 /*
- * jQuery FormStyler v3.0.0
+ * jQuery FormStyler v3.1.0
  * https://github.com/Alexanevsky/formstyler
  *
  * Copyright 2020 Alexanevsky (https://lashchevsky.me)
@@ -7,8 +7,7 @@
  *
  * Released under the MIT license.
  *
- * Date: 2020-05-20
- *
+ * Date: 2020-06-04
  */
 
 ;(function(factory) {
@@ -881,7 +880,12 @@
 
                             liAttrs.unshift('class="' + liClasses.join(' ') + '"');
 
-                            li = '<li ' + liAttrs.join(' ') + '>' + checkDot + $op.html() + '</li>';
+                            if ($op.data('html')) {
+                                li = '<li ' + liAttrs.join(' ') + ' data-text="'+$op.text()+'">' + checkDot + $op.data('html') + '</li>';
+                            } else {
+                                li = '<li ' + liAttrs.join(' ') + '>' + checkDot + $op.text() + '</li>';
+                            }
+
 
                             if (liOptgroup != '')
                                 li = liOptgroup + li;

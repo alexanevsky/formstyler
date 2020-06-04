@@ -9,6 +9,7 @@
  * - Assets JS
  * - Assets styles
  * - Clean
+ * - Watch
  * Default task
  */
 
@@ -33,8 +34,8 @@ var headerString = '/*! <%= pkg.name %> v<%= pkg.version %> (c) <%= pkg.author %
 var dist = './dist';
 
 var src = {
-    js:     './src/js/formstyler.js',
-    css:    './src/scss/formstyler.scss'
+    js:     './src/js/**/formstyler.js',
+    css:    './src/scss/**/formstyler.scss'
 };
 
 // > Tasks
@@ -67,6 +68,12 @@ gulp.task('css', function() {
 gulp.task('clean', function() {
  return gulp.src(dist + '/*', { read: false })
    .pipe(rimraf());
+});
+
+// >> Watch
+gulp.task('watch', function() {
+    gulp.watch(src.js, gulp.series('js'));
+    gulp.watch(src.css, gulp.series('css'));
 });
 
 // > Default task
