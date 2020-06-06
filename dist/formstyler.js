@@ -1,5 +1,5 @@
 /*
- * jQuery FormStyler v3.1.0
+ * jQuery FormStyler v3.1.1
  * https://github.com/Alexanevsky/formstyler
  *
  * Copyright 2020 Alexanevsky (https://lashchevsky.me)
@@ -7,7 +7,7 @@
  *
  * Released under the MIT license.
  *
- * Date: 2020-06-04
+ * Date: 2020-06-06
  */
 
 ;(function(factory) {
@@ -30,6 +30,8 @@
     var defaults = {
         idSuffix: '-formstyler',
         locale: 'en',
+
+        small: false,
 
         // Checkbox Defaults
         checkboxImage: '',
@@ -183,7 +185,8 @@
             colored: 'formstyler-colored',
             styled: 'formstyler-styled',
             iconed: 'formstyler-iconed',
-            selected: 'formstyler-selected'
+            selected: 'formstyler-selected',
+            small: 'formstyler-small'
         }
     };
 
@@ -954,6 +957,12 @@
                         else
                             searchClass = classnames.select.search;
 
+                        if (opt.small === true && $el.data('small') !== 'true' && $el.data('small') !== true) {
+                            $select.addClass(classnames.status.small);
+                        } else if ($el.data('small') === 'true' || $el.data('small') === true) {
+                            $select.addClass(classnames.status.small);
+                        }
+
                         if (selectSearchLimit !== false && selectSearchLimit <= $option.length) searchHTML =
                             '<div class="'+searchClass+'"><input type="text" class="'+searchInputClass+'" autocomplete="off" placeholder="' + selectSearchPlaceholder + '"></div>' +
                             '<div class="'+classnames.select.searchNotfound+'">' + selectSearchNotFound + '</div>';
@@ -1354,6 +1363,12 @@
 
                         if ($el.data('colored') === true || (opt.multiselectColored == true && $el.data('colored') !== false))
                             $select.addClass(classnames.status.colored);
+
+                        if (opt.small === true && $el.data('small') !== 'true' && $el.data('small') !== true) {
+                            $select.addClass(classnames.status.small);
+                        } else if ($el.data('small') === 'true' || $el.data('small') === true) {
+                            $select.addClass(classnames.status.small);
+                        }
 
                         var selectZIndex = $select.css('z-index');
                         selectZIndex = (selectZIndex > 0 ) ? selectZIndex : 1;

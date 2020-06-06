@@ -1,5 +1,5 @@
 /*
- * jQuery FormStyler v3.1.0
+ * jQuery FormStyler v3.1.1
  * https://github.com/Alexanevsky/formstyler
  *
  * Copyright 2020 Alexanevsky (https://lashchevsky.me)
@@ -7,7 +7,7 @@
  *
  * Released under the MIT license.
  *
- * Date: 2020-06-04
+ * Date: 2020-06-06
  */
 
 @import 'variables';
@@ -659,8 +659,8 @@
 
         .formstyler-select-text {
             height: $height - $border-width * 2;
-            font: #{$font-size-text}/#{$font-height-text} $font-family-text;
-            padding: ($height - $border-width * 2 - $font-height-text)/2 $margin ($height - $border-width * 2 - $font-height-text)/2 $font-size-input;
+            font: #{$font-size-input}/#{$font-height-input} $font-family-input;
+            padding: ($height - $border-width * 2 - $font-height-input)/2 $margin ($height - $border-width * 2 - $font-height-input)/2 $font-size-input;
             color: $text-color;
             user-select: none;
             white-space: nowrap;
@@ -684,27 +684,27 @@
                 position: absolute;
                 z-index: 1;
                 content: '';
-                top: ($height - $border-width * 2 - $font-size-text)/2 + $font-size-text/4;
-                right: ($height - $border-width * 2 - $font-size-text)/2;
+                top: ($height - $border-width * 2 - $font-size-input)/2 + $font-size-input/4;
+                right: ($height - $border-width * 2 - $font-size-input)/2;
                 width: 0;
                 height: 0;
-                border-top: $font-size-text/2 solid $border-color;
-                border-right: $font-size-text/2 solid transparent;
-                border-left: $font-size-text/2 solid transparent;
+                border-top: $font-size-input/2 solid $border-color;
+                border-right: $font-size-input/2 solid transparent;
+                border-left: $font-size-input/2 solid transparent;
                 transition: border-color $transition-duration $transition-timing;
             }
         }
         .formstyler-select-trigger-icon,
         .formstyler-select-trigger-image {
             position: absolute;
-            top: ($height - $border-width*2 - $font-size-text) / 2;
-            right: ($height - $border-width*2 - $font-size-text) / 2;
-            width: $font-size-text;
-            height: $font-size-text;
+            top: ($height - $border-width*2 - $font-size-input) / 2;
+            right: ($height - $border-width*2 - $font-size-input) / 2;
+            width: $font-size-input;
+            height: $font-size-input;
         }
         .formstyler-select-trigger-icon {
-            font-size: $font-size-text;
-            line-height: $font-size-text;
+            font-size: $font-size-input;
+            line-height: $font-size-input;
             color: $border-color;
             transition: transform $transition-duration $transition-timing, color $transition-duration $transition-timing;
         }
@@ -817,7 +817,7 @@
     }
     .formstyler-select-notfound {
         margin: $margin;
-        font: #{$font-size-text}/#{$font-height-text} $font-family-text;
+        font: #{$font-size-input}/#{$font-height-input} $font-family-input;
         text-align: center;
         color: $text-color-placeholder;
     }
@@ -843,6 +843,42 @@
 
             &::placeholder {
                 color: $text-color-placeholder;
+            }
+        }
+    }
+    &.formstyler-small {
+        .formstyler-select-box {
+            height: $height-small;
+            padding-right: $height-small - $border-width * 2;
+
+            .formstyler-select-text {
+                height: $height-small - $border-width * 2;
+                font: #{$font-size-input-small}/#{$font-height-input} $font-family-input;
+                padding: ($height-small - $border-width * 2 - $font-height-input)/2 $margin ($height-small - $border-width * 2 - $font-height-input)/2 $font-size-input-small;
+            }
+            .formstyler-select-trigger-angle {
+                width: $height-small - $border-width * 2;
+                height: $height-small - $border-width * 2;
+
+                &::before {
+                    top: ($height-small - $border-width * 2 - $font-size-input-small)/2 + $font-size-input-small/4;
+                    right: ($height-small - $border-width * 2 - $font-size-input-small)/2;
+                    border-top: $font-size-input-small/2 solid $border-color;
+                    border-right: $font-size-input-small/2 solid transparent;
+                    border-left: $font-size-input-small/2 solid transparent;
+                }
+            }
+            .formstyler-select-trigger-icon,
+            .formstyler-select-trigger-image {
+                position: absolute;
+                top: ($height-small - $border-width*2 - $font-size-input-small) / 2;
+                right: ($height-small - $border-width*2 - $font-size-input-small) / 2;
+                width: $font-size-input-small;
+                height: $font-size-input-small;
+            }
+            .formstyler-select-trigger-icon {
+                font-size: $font-size-input-small;
+                line-height: $font-size-input-small;
             }
         }
     }

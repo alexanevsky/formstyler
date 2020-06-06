@@ -6,6 +6,7 @@ $build-input:                   false; // If false, css styles for $input-select
 $resetcss:                      true; // Use box-sizing: border-box;
 
 $height:                        38px; // Height of UI elements: select, input
+$height-small:                  29px; // Height of small UI elements: select, input
 $width-dropdown-full:           true; // If true, width of select's dropdown will be same as selectbox
 $margin:                        8px; // Default padding of all UI elements: text in selectbox, labels from checkboxes etc.
 
@@ -14,7 +15,8 @@ $font-height-text:              24px; // Property line-height of text
 $font-family-text:              -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, 'Noto Sans', sans-serif; // Property font-family of text
 $font-size-select:              14px; // Property font-size of text in selects dropdown
 
-$font-size-input:               $font-size-text; // Property font-size of input and textarea
+$font-size-input:               15px; // Property font-size of input and textarea
+$font-size-input-small:         13px; // Property font-size of small input and textarea
 $font-height-input:             $font-height-text; // Property line-height of input and textarea
 $font-family-input:             $font-family-text; // Property font-family of input and textarea
 

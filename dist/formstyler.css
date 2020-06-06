@@ -1,5 +1,5 @@
 /*
- * jQuery FormStyler v3.1.0
+ * jQuery FormStyler v3.1.1
  * https://github.com/Alexanevsky/formstyler
  *
  * Copyright 2020 Alexanevsky (https://lashchevsky.me)
@@ -7,7 +7,7 @@
  *
  * Released under the MIT license.
  *
- * Date: 2020-06-04
+ * Date: 2020-06-06
  */
 .formstyler-checkbox,
 .formstyler-checkbox *,
@@ -370,7 +370,7 @@
     height: 38px;
     padding: 6.5px 0;
     border-bottom: 1px solid #ced4da;
-    font: 16px/24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    font: 15px/24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -378,12 +378,12 @@
     transition: opacity 0.15s linear, border-color 0.15s linear; }
     .formstyler-file .formstyler-file-name .formstyler-file-name-image {
       position: absolute;
-      width: 16px;
-      height: 16px;
-      top: 10.5px;
+      width: 15px;
+      height: 15px;
+      top: 11px;
       left: 0; }
       .formstyler-file .formstyler-file-name .formstyler-file-name-image + .formstyler-file-name-value {
-        margin-left: 24px; }
+        margin-left: 23px; }
     .formstyler-file .formstyler-file-name .formstyler-file-name-icon {
       margin-right: 8px;
       color: #6c757d; }
@@ -485,8 +485,8 @@
     user-select: none; }
     .formstyler-select .formstyler-select-box .formstyler-select-text {
       height: 36px;
-      font: 16px/24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-      padding: 6px 8px 6px 16px;
+      font: 15px/24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      padding: 6px 8px 6px 15px;
       color: #000;
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -513,25 +513,25 @@
         position: absolute;
         z-index: 1;
         content: '';
-        top: 14px;
-        right: 10px;
+        top: 14.25px;
+        right: 10.5px;
         width: 0;
         height: 0;
-        border-top: 8px solid #ced4da;
-        border-right: 8px solid transparent;
-        border-left: 8px solid transparent;
+        border-top: 7.5px solid #ced4da;
+        border-right: 7.5px solid transparent;
+        border-left: 7.5px solid transparent;
         -webkit-transition: border-color 0.15s linear;
         transition: border-color 0.15s linear; }
     .formstyler-select .formstyler-select-box .formstyler-select-trigger-icon,
     .formstyler-select .formstyler-select-box .formstyler-select-trigger-image {
       position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 16px;
-      height: 16px; }
+      top: 10.5px;
+      right: 10.5px;
+      width: 15px;
+      height: 15px; }
     .formstyler-select .formstyler-select-box .formstyler-select-trigger-icon {
-      font-size: 16px;
-      line-height: 16px;
+      font-size: 15px;
+      line-height: 15px;
       color: #ced4da;
       -webkit-transition: color 0.15s linear, -webkit-transform 0.15s linear;
       transition: color 0.15s linear, -webkit-transform 0.15s linear;
@@ -582,7 +582,7 @@
   .formstyler-select .formstyler-select-option,
   .formstyler-select .formstyler-select-optgroup {
     margin: 0;
-    padding: 5px 16px;
+    padding: 5px 15px;
     background-color: #fff;
     font: 14px/24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
     white-space: nowrap;
@@ -606,7 +606,7 @@
       background-color: #f8f9fa;
       color: #007bff; }
   .formstyler-select .formstyler-select-option.formstyler-optgrouped {
-    padding-left: 40px; }
+    padding-left: 39px; }
   .formstyler-select .formstyler-select-option.formstyler-select-option-placeholder {
     color: #6c757d; }
   .formstyler-select .formstyler-select-option.formstyler-disabled {
@@ -615,7 +615,7 @@
     cursor: not-allowed; }
   .formstyler-select .formstyler-select-notfound {
     margin: 8px;
-    font: 16px/24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    font: 15px/24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
     text-align: center;
     color: #6c757d; }
   .formstyler-select .formstyler-select-search.formstyler-select-search-custom {
@@ -628,9 +628,9 @@
     height: 38px;
     border: none;
     border-bottom: 1px solid #ced4da;
-    text-indent: 16px;
+    text-indent: 15px;
     padding: 6.5px 0;
-    font: 16px/24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    font: 15px/24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
     -webkit-box-shadow: none;
     box-shadow: none; }
     .formstyler-select .formstyler-select-search .formstyler-select-search-input::-webkit-input-placeholder {
@@ -643,6 +643,32 @@
       color: #6c757d; }
     .formstyler-select .formstyler-select-search .formstyler-select-search-input::placeholder {
       color: #6c757d; }
+  .formstyler-select.formstyler-small .formstyler-select-box {
+    height: 29px;
+    padding-right: 27px; }
+    .formstyler-select.formstyler-small .formstyler-select-box .formstyler-select-text {
+      height: 27px;
+      font: 13px/24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      padding: 1.5px 8px 1.5px 13px; }
+    .formstyler-select.formstyler-small .formstyler-select-box .formstyler-select-trigger-angle {
+      width: 27px;
+      height: 27px; }
+      .formstyler-select.formstyler-small .formstyler-select-box .formstyler-select-trigger-angle::before {
+        top: 10.25px;
+        right: 7px;
+        border-top: 6.5px solid #ced4da;
+        border-right: 6.5px solid transparent;
+        border-left: 6.5px solid transparent; }
+    .formstyler-select.formstyler-small .formstyler-select-box .formstyler-select-trigger-icon,
+    .formstyler-select.formstyler-small .formstyler-select-box .formstyler-select-trigger-image {
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      width: 13px;
+      height: 13px; }
+    .formstyler-select.formstyler-small .formstyler-select-box .formstyler-select-trigger-icon {
+      font-size: 13px;
+      line-height: 13px; }
   .formstyler-select.formstyler-select-pos-down .formstyler-select-dropdown {
     margin-top: 8px; }
   .formstyler-select.formstyler-select-pos-up .formstyler-select-dropdown {
@@ -671,7 +697,7 @@
   .formstyler-select.formstyler-multiselect .formstyler-select-toggle,
   .formstyler-select.formstyler-multiselect .formstyler-select-option {
     position: relative;
-    padding-left: 34px; }
+    padding-left: 32px; }
     .formstyler-select.formstyler-multiselect .formstyler-select-toggle .formstyler-select-check-dot,
     .formstyler-select.formstyler-multiselect .formstyler-select-toggle .formstyler-select-check-icon,
     .formstyler-select.formstyler-multiselect .formstyler-select-toggle .formstyler-select-check-image,
@@ -680,7 +706,7 @@
     .formstyler-select.formstyler-multiselect .formstyler-select-option .formstyler-select-check-image {
       position: absolute;
       top: 11px;
-      left: 11px;
+      left: 10px;
       width: 12px;
       height: 12px;
       opacity: 0;
@@ -698,14 +724,14 @@
       color: #007bff; }
     .formstyler-select.formstyler-multiselect .formstyler-select-toggle.formstyler-optgrouped,
     .formstyler-select.formstyler-multiselect .formstyler-select-option.formstyler-optgrouped {
-      padding-left: 58px; }
+      padding-left: 56px; }
       .formstyler-select.formstyler-multiselect .formstyler-select-toggle.formstyler-optgrouped .formstyler-select-check-dot,
       .formstyler-select.formstyler-multiselect .formstyler-select-toggle.formstyler-optgrouped .formstyler-select-check-icon,
       .formstyler-select.formstyler-multiselect .formstyler-select-toggle.formstyler-optgrouped .formstyler-select-check-image,
       .formstyler-select.formstyler-multiselect .formstyler-select-option.formstyler-optgrouped .formstyler-select-check-dot,
       .formstyler-select.formstyler-multiselect .formstyler-select-option.formstyler-optgrouped .formstyler-select-check-icon,
       .formstyler-select.formstyler-multiselect .formstyler-select-option.formstyler-optgrouped .formstyler-select-check-image {
-        left: 35px; }
+        left: 34px; }
     .formstyler-select.formstyler-multiselect .formstyler-select-toggle.formstyler-selected,
     .formstyler-select.formstyler-multiselect .formstyler-select-option.formstyler-selected {
       color: #000; }
