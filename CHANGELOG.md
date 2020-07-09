@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.0.0 <sup>2020-07-09</sup>
+- Code is awesome
+- Stylesheet is exelent
+- Very easy to customization
+
 ## 3.1.1 <sup>2020-06-06</sup>
 - Added support of small for select (used by data-small or option small)
 

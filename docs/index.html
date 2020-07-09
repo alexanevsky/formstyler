@@ -1,394 +1,1343 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8" >
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <title>FormStyler &middot; Documentation</title>
+    <title>FormStyler &middot; Documentation</title>
 
-        <!-- Assets styles -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="../dist/formstyler.min.css">
-        <link rel="stylesheet" href="./assets/docs.css">
-    </head>
+    <!-- Assets styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../dist/formstyler.min.css">
+    <link rel="stylesheet" href="./assets/docs.css">
+</head>
 
-    <body class="bg-light py-4">
+<body class="bg-light py-4">
 
-        <!-- Container -->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
+    <!-- Container -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
 
-                    <!-- Nav -->
-                    <div class="list-group shadow-sm mb-3" id="nav">
-                        <a class="list-group-item list-group-item-action" href="#tab-inputcheckbox"  id="tab-inputcheckbox-link"  data-toggle="tab" onclick="setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Input &middot; Checkbox</a>
-                        <a class="list-group-item list-group-item-action" href="#tab-inputradio"     id="tab-inputradio-link"     data-toggle="tab" onclick="setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Input &middot; Radio</a>
-                        <a class="list-group-item list-group-item-action" href="#tab-inputfile"      id="tab-inputfile-link"      data-toggle="tab" onclick="setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Input &middot; File</a>
-                        <a class="list-group-item list-group-item-action" href="#tab-inputnumber"    id="tab-inputnumber-link"    data-toggle="tab" onclick="setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Input &middot; Number</a>
-                        <a class="list-group-item list-group-item-action" href="#tab-select"         id="tab-select-link"         data-toggle="tab" onclick="setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Select</a>
-                        <a class="list-group-item list-group-item-action" href="#tab-selectmultiple" id="tab-selectmultiple-link" data-toggle="tab" onclick="setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Select &middot; Multiple</a>
-                    </div>
+                <!-- Nav -->
+                <div class="list-group shadow-sm mb-3" id="nav">
+                    <a class="list-group-item list-group-item-action" href="#tab-checkbox"      id="tab-checkbox-link"      data-toggle="tab" onclick="location.hash = $(this).attr('href'); setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Input &middot; Checkbox</a>
+                    <a class="list-group-item list-group-item-action" href="#tab-radio"         id="tab-radio-link"         data-toggle="tab" onclick="location.hash = $(this).attr('href'); setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Input &middot; Radio</a>
+                    <a class="list-group-item list-group-item-action" href="#tab-number"        id="tab-number-link"        data-toggle="tab" onclick="location.hash = $(this).attr('href'); setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Input &middot; Number</a>
+                    <a class="list-group-item list-group-item-action" href="#tab-file"          id="tab-file-link"          data-toggle="tab" onclick="location.hash = $(this).attr('href'); setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Input &middot; File</a>
+                    <a class="list-group-item list-group-item-action" href="#tab-select"        id="tab-select-link"        data-toggle="tab" onclick="location.hash = $(this).attr('href'); setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Select</a>
+                    <a class="list-group-item list-group-item-action" href="#tab-multiselect"   id="tab-multiselect-link"   data-toggle="tab" onclick="location.hash = $(this).attr('href'); setTimeout(function() {$('input, select').trigger('refresh');}, 410);">Select &middot; Multiple</a>
+                </div>
 
-                    <div class="text-center mb-4">
+                <div class="text-center mb-4">
+                    <div class="btn-group">
                         <a class="btn btn-sm btn-dark" href="#" onclick="$('select, input').trigger('refresh');">Refresh</a>
+                        <a class="btn btn-sm btn-dark" href="#" onclick="$('select, input').trigger('destroy');">Destroy</a>
                     </div>
                 </div>
-                <div class="col-md-9">
+            </div>
+            <div class="col-md-9">
 
-                    <!-- Tabs -->
-                    <div class="card shadow-sm">
-                        <div class="card-body tab-content">
+                <!-- Tabs -->
+                <div class="card shadow-sm">
+                    <div class="card-body tab-content">
 
-                            <!-- Tab - Input Checkbox -->
-                            <div class="tab-pane fade" id="tab-inputcheckbox">
-                                <div class="form-group">
-                                    <input type="checkbox" name="switchbox-simple" id="switchbox-simple" data-switch="true" checked>
-                                    <label for="switchbox-simple">Switchbox</label>
+                        <!-- Tab - Input Checkbox -->
+                        <div class="tab-pane fade" id="tab-checkbox">
+                            <div class="form-group">
+                                <input type="checkbox" id="switchbox-simple" data-switcher="true" checked>
+                                <label for="switchbox-simple">Switchbox</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="switchbox-color" data-switcher="true" data-colored="true" checked>
+                                <label for="switchbox-color">Colored switchbox</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="switchbox-disable" data-switcher="true" checked disabled>
+                                <label for="switchbox-disable">Disabled switchbox </label>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="switchbox-disable-empty" data-switcher="true" disabled>
+                                <label for="switchbox-disable-empty">Disable empty switchbox</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="checkbox-simple" checked>
+                                <label for="checkbox-simple">Checkbox</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="checkbox-color" data-colored="true" checked>
+                                <label for="checkbox-color">Colored checkbox</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="checkbox-image" data-image="./assets/check.svg" checked>
+                                <label for="checkbox-image">Checkbox with image</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="checkbox-image-color" data-image="./assets/check.svg" data-colored="true" checked>
+                                <label for="checkbox-image-color">Colored checkbox with image</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="checkbox-icon" data-icon="fa fa-check" checked>
+                                <label for="checkbox-icon">checkbox with icon</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="checkbox-icon-color" data-icon="fa fa-check" data-colored="true" checked>
+                                <label for="checkbox-icon-color">Colored checkbox with icon</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="checkbox-disable" checked disabled>
+                                <label for="checkbox-disable">Disabled checkbox</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="checkbox-image-disable" data-image="./assets/check.svg" checked disabled>
+                                <label for="checkbox-image-disable">Disabled checkbox with image</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="checkbox-icon-disable" data-icon="fa fa-check" checked disabled>
+                                <label for="checkbox-icon-disable">Disabled checkbox with icon</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="checkbox-disable-empty" disabled>
+                                <label for="checkbox-disable-empty">Disabled empty checkbox</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="checkbox-longlabel">
+                                <label for="checkbox-longlabel">Checkbox with very long label - its looks beautiful! <i>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur quae vel, laudantium voluptatem a incidunt reprehenderit sunt, ea culpa odio laborum minima recusandae ut, dolores! Neque autem, blanditiis aliquid alias.</i></label>
+                            </div>
+                            <div class="mt-5 table-responsive">
+                                <table class="table table-sm text-small">
+                                    <thead>
+                                        <tr class="text-nowrap">
+                                            <th class="w-20">Parameter</th>
+                                            <th class="w-20">Data Attribute</th>
+                                            <th class="w-10">Type</th>
+                                            <th class="w-10">Default</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>switcher</td>
+                                            <td>data&#8209;switcher</td>
+                                            <td>boolean</td>
+                                            <td>false</td>
+                                            <td>If true, checkbox will render as swhichbox.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>colored</td>
+                                            <td>data&#8209;colored</td>
+                                            <td>boolean</td>
+                                            <td>false</td>
+                                            <td>If true, checkbox dot, checkbox icon and swhichbox dot will be colored.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>image</td>
+                                            <td>data&#8209;image</td>
+                                            <td>string</td>
+                                            <td>null</td>
+                                            <td>Path to image to replace checkbox dot.<br>Ignored for switchboxes.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>icon</td>
+                                            <td>data&#8209;icon</td>
+                                            <td>string</td>
+                                            <td>null</td>
+                                            <td>Icon &lt;i&gt; class to replace checkbox dot.<br>For example: Font Aswesome &quot;fas fa-check&quot;.<br>Ignored for switchboxes.<br>Ignored if image is defined.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Tab - Input Radio -->
+                        <div class="tab-pane fade" id="tab-radio">
+                            <div class="form-group">
+                                <input type="radio" name="radio" id="radio-simple">
+                                <label for="radio-simple">Radio button</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" name="radio" id="radio-color" data-colored="true">
+                                <label for="radio-color">Colored radio button</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" name="radio" id="radio-disable" checked disabled>
+                                <label for="radio-disable">Disabled radio button</label>
+                            </div>
+                            <div class="mt-5 table-responsive">
+                                <table class="table table-sm text-small">
+                                    <thead>
+                                        <tr class="text-nowrap">
+                                            <th class="w-20">Parameter</th>
+                                            <th class="w-20">Data Attribute</th>
+                                            <th class="w-10">Type</th>
+                                            <th class="w-10">Default</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>colored</td>
+                                            <td>data&#8209;colored</td>
+                                            <td>boolean</td>
+                                            <td>false</td>
+                                            <td>If true, radio dot will render colored.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Tab - Input Number -->
+                        <div class="tab-pane fade" id="tab-number">
+                            <div class="form-group row">
+                                <div class="col-md-6 col-form-label">
+                                    <label class="form-text" for="number-simple">Simple field:</label>
                                 </div>
-                                <div class="form-group">
-                                    <input type="checkbox" name="switchbox-colored" id="switchbox-colored" data-switch="true" data-colored="true" checked>
-                                    <label for="switchbox-colored">Colored switchbox</label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" name="switchbox-disabled" id="switchbox-disabled" data-switch="true" checked disabled>
-                                    <label for="switchbox-disabled">Disabled switchbox</label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" name="checkbox-simple" id="checkbox-simple" checked>
-                                    <label for="checkbox-simple">Simple checkbox</label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" name="checkbox-colored" id="checkbox-colored" data-colored="true" checked>
-                                    <label for="checkbox-colored">Colored checkbox</label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" name="checkbox-icon" id="checkbox-icon" data-icon="fa fa-check" checked>
-                                    <label for="checkbox-icon">Checkbox with Font Awesome icon</label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" name="checkbox-icon-colored" id="checkbox-icon-colored" data-icon="fa fa-check" data-colored="true" checked>
-                                    <label for="checkbox-icon-colored">Colored checkbox with Font Awesome icon</label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" name="checkbox-disabled" id="checkbox-disabled" checked disabled>
-                                    <label for="checkbox-disabled">Disabled checkbox</label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" name="checkbox-icon-disabled" id="checkbox-icon-disabled" data-icon="fa fa-check" data-colored="true" checked disabled>
-                                    <label for="checkbox-icon-disabled">Disabled checkbox with Font Awesome icon</label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="checkbox" name="checkbox-longlabel" id="checkbox-longlabel">
-                                    <label for="checkbox-longlabel">Checkbox with very long label - its looks beautiful! <em>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur quae vel, laudantium voluptatem a incidunt reprehenderit sunt, ea culpa odio laborum minima recusandae ut, dolores! Neque autem, blanditiis aliquid alias.</em></label>
+                                <div class="col-md-3">
+                                    <input type="number" class="form-control text-right" id="number-simple">
                                 </div>
                             </div>
-
-                            <!-- Tab - Input Radio -->
-                            <div class="tab-pane fade" id="tab-inputradio">
-                                <div class="form-group">
-                                    <input type="radio" name="radio" id="radio-simple-1" checked>
-                                    <label for="radio-simple-1">Simple radio button</label>
+                            <div class="form-group row">
+                                <div class="col-md-6 col-form-label">
+                                    <label class="form-text" for="number-simple">Field with min, max and&nbsp;step attributes:</label>
                                 </div>
-                                <div class="form-group">
-                                    <input type="radio" name="radio" id="radio-simple-2">
-                                    <label for="radio-simple-2">Simple radio button</label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="radio" name="radio" id="radio-disabled" disabled>
-                                    <label for="radio-disabled">Disabled radio button</label>
+                                <div class="col-md-3">
+                                    <input type="number" class="form-control form-control text-right" id="number-simple" min="5" max="100" step=".5">
                                 </div>
                             </div>
-
-                            <!-- Tab - Input File -->
-                            <div class="tab-pane fade" id="tab-inputfile">
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-5 col-form-label">
-                                            <label class="form-text text-muted" for="file-simple">Simple file uploader:</label>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <input type="file" name="file-simple" id="file-simple">
-                                        </div>
-                                    </div>
+                            <div class="form-group row">
+                                <div class="col-md-6 col-form-label">
+                                    <label class="form-text" for="number-spin">Buttons with spin-effect:</label>
                                 </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-5 col-form-label">
-                                            <label class="form-text text-muted" for="file-multiple">Multiple file uploader:</label>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <input type="file" name="file-multiple" id="file-multiple" data-browse="Browse a files" data-browse-empty="Browse a files" multiple>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-5 col-form-label">
-                                            <label class="form-text text-muted" for="file-icon">File uploader with cons:</label>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <input type="file" name="file-icon" id="file-icon" data-icon-file="fa fa-file" data-icon-upload="fa fa-file">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-5 col-form-label">
-                                            <label class="form-text text-muted" for="file-placeholder">File uploader with custom placeholders:</label>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <input type="file" name="file-placeholder" id="file-placeholder" data-placeholder="Lorem ipsum dolor" data-browse="MEOW!" data-browse-empty="Click ME!">
-                                        </div>
-                                    </div>
+                                <div class="col-md-3">
+                                    <input type="number" class="form-control text-right" id="number-spin" data-spin="true">
                                 </div>
                             </div>
-
-                            <!-- Tab - Input Number -->
-                            <div class="tab-pane fade" id="tab-inputnumber">
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-5 col-form-label">
-                                            <label class="form-text text-muted" for="number-simple">Simple input number:</label>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <input type="number" class="form-control" name="number-simple" id="number-simple">
-                                        </div>
-                                    </div>
+                            <div class="form-group row">
+                                <div class="col-md-6 col-form-label">
+                                    <label class="form-text" for="number-color">Colored buttons:</label>
                                 </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-5 col-form-label">
-                                            <label class="form-text text-muted" for="number-colored">Colored input number:</label>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <input type="number" class="form-control" name="number-colored" id="number-colored" data-colored="true">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-5 col-form-label">
-                                            <label class="form-text text-muted" for="number-disabled">Disabled input number:</label>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <input type="number" class="form-control" name="number-disabled" id="number-disabled" disabled>
-                                        </div>
-                                    </div>
+                                <div class="col-md-3">
+                                    <input type="number" class="form-control text-right" id="number-color" data-colored="true">
                                 </div>
                             </div>
-
-                            <!-- Tab - Select -->
-                            <div class="tab-pane fade" id="tab-select">
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-5 col-form-label">
-                                            <label class="form-text text-muted" for="select-simple">Simple select:</label>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <select name="select-simple" id="select-simple" data-search-limit="1" data-small="true">
-                                                <option value="">Nothing selected</option>
-                                                <option value="1">Lorem</option>
-                                                <option value="2" data-html="<b>Ipsum</b> <i>dolor</i> <s>sit</s>" selected>Ipsum dolor sit</option>
-                                                <option value="3">Amet</option>
-                                                <option value="4">Consectetur adipisicing elit</option>
-                                                <option value="5">Possimus sunt dolores</option>
-                                                <option value="6">Lorem ipsum dolor sit amet consectetur adipisicing elit saepe distinctio eligendi modi totam voluptatibus iusto labore nam suscipit dolorem fugit aliquid illum ducimus commodi rem maxime adipisci</option>
-                                                <option value="7">Dolorum</option>
-                                                <option value="8">Veniam ea saepe incidunt</option>
-                                                <option value="9">Quibusdam</option>
-                                                <option value="10">Animi</option>
-                                                <option value="11">Praesentium</option>
-                                                <option value="12">Tempora iste unde dicta eaqu</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                            <div class="form-group row">
+                                <div class="col-md-6 col-form-label">
+                                    <label class="form-text" for="number-image">Buttons with images:</label>
                                 </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-5 col-form-label">
-                                            <label class="form-text text-muted" for="select-search">Select with search:</label>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <select name="select-search" id="select-search" data-search-limit="1" data-search-class="form-control form-control-sm">
-                                                <option value="">Nothing selected</option>
-                                                <option value="1">Lorem</option>
-                                                <option value="2">Ipsum dolor sit</option>
-                                                <option value="3">Amet</option>
-                                                <option value="4">Consectetur adipisicing elit</option>
-                                                <option value="5">Possimus sunt dolores</option>
-                                                <option value="6">Lorem ipsum dolor sit amet consectetur adipisicing elit saepe distinctio eligendi modi totam voluptatibus iusto labore nam suscipit dolorem fugit aliquid illum ducimus commodi rem maxime adipisci</option>
-                                                <option value="7">Dolorum</option>
-                                                <option value="8">Veniam ea saepe incidunt</option>
-                                                <option value="9">Quibusdam</option>
-                                                <option value="10">Animi</option>
-                                                <option value="11">Praesentium</option>
-                                                <option value="12">Tempora iste unde dicta eaqu</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-5 col-form-label">
-                                            <label class="form-text text-muted" for="select-icon">Select with icon:</label>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <select name="select-icon" id="select-icon" data-icon="fa fa-chevron-down" data-small="true">
-                                                <option value="">Nothing selected</option>
-                                                <option value="1">Lorem</option>
-                                                <option value="2">Ipsum dolor sit</option>
-                                                <option value="3">Amet</option>
-                                                <option value="4">Consectetur adipisicing elit</option>
-                                                <option value="5">Possimus sunt dolores</option>
-                                                <option value="6">Lorem ipsum dolor sit amet consectetur adipisicing elit saepe distinctio eligendi modi totam voluptatibus iusto labore nam suscipit dolorem fugit aliquid illum ducimus commodi rem maxime adipisci</option>
-                                                <option value="7">Dolorum</option>
-                                                <option value="8">Veniam ea saepe incidunt</option>
-                                                <option value="9">Quibusdam</option>
-                                                <option value="10">Animi</option>
-                                                <option value="11">Praesentium</option>
-                                                <option value="12">Tempora iste unde dicta eaqu</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-5 col-form-label">
-                                            <label class="form-text text-muted" for="select-disabled">Disabled select:</label>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <select name="select-disabled" id="select-disabled" data-icon="fa fa-times" disabled>
-                                                <option value="1" selected>Lorem ipsum dolor</option>
-                                                <option value="2">Dolor</option>
-                                                <option value="3">Amet</option>
-                                                <option value="4">Consectetur adipisicing elit</option>
-                                                <option value="5">Possimus sunt dolores</option>
-                                                <option value="6">Lorem ipsum dolor sit amet consectetur adipisicing elit saepe distinctio eligendi modi totam voluptatibus iusto labore nam suscipit dolorem fugit aliquid illum ducimus commodi rem maxime adipisci</option>
-                                                <option value="7">Dolorum</option>
-                                                <option value="8">Veniam ea saepe incidunt</option>
-                                                <option value="9">Quibusdam</option>
-                                                <option value="10">Animi</option>
-                                                <option value="11">Praesentium</option>
-                                                <option value="12">Tempora iste unde dicta eaqu</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                <div class="col-md-3">
+                                    <input type="number" class="form-control text-right" id="number-image"
+                                    data-plus-image="./assets/chevron-up.svg"
+                                    data-minus-image="./assets/chevron-down.svg">
                                 </div>
                             </div>
-
-                            <!-- Tab - Select Multiple -->
-                            <div class="tab-pane fade" id="tab-selectmultiple">
-
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-5 col-form-label">
-                                            <label class="form-text text-muted" for="multiple-simple">Simple select:</label>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <select name="multiple-simple" id="multiple-simple" data-small="true" multiple>
-                                                <option value="1">Lorem</option>
-                                                <option value="2">Ipsum dolor sit</option>
-                                                <option value="3">Amet</option>
-                                                <option value="4">Consectetur adipisicing elit</option>
-                                                <option value="5">Possimus sunt dolores</option>
-                                                <option value="6">Lorem ipsum dolor sit amet consectetur adipisicing elit saepe distinctio eligendi modi totam voluptatibus iusto labore nam suscipit dolorem fugit aliquid illum ducimus commodi rem maxime adipisci</option>
-                                                <option value="7">Dolorum</option>
-                                                <option value="8">Veniam ea saepe incidunt</option>
-                                                <option value="9">Quibusdam</option>
-                                                <option value="10">Animi</option>
-                                                <option value="11">Praesentium</option>
-                                                <option value="12">Tempora iste unde dicta eaqu</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                            <div class="form-group row">
+                                <div class="col-md-6 col-form-label">
+                                    <label class="form-text" for="number-icon">Buttons with icons:</label>
                                 </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-5 col-form-label">
-                                            <label class="form-text text-muted" for="multiple-search">Select with search:</label>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <select name="multiple-search" id="multiple-search" data-search-limit="1" data-search-class="form-control form-control-sm" multiple>
-                                                <option value="1">Lorem</option>
-                                                <option value="2">Ipsum dolor sit</option>
-                                                <option value="3">Amet</option>
-                                                <option value="4">Consectetur adipisicing elit</option>
-                                                <option value="5">Possimus sunt dolores</option>
-                                                <option value="6">Lorem ipsum dolor sit amet consectetur adipisicing elit saepe distinctio eligendi modi totam voluptatibus iusto labore nam suscipit dolorem fugit aliquid illum ducimus commodi rem maxime adipisci</option>
-                                                <option value="7">Dolorum</option>
-                                                <option value="8">Veniam ea saepe incidunt</option>
-                                                <option value="9">Quibusdam</option>
-                                                <option value="10">Animi</option>
-                                                <option value="11">Praesentium</option>
-                                                <option value="12">Tempora iste unde dicta eaqu</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                <div class="col-md-3">
+                                    <input type="number" class="form-control text-right" id="number-icon"
+                                    data-plus-icon="fa fa-plus"
+                                    data-minus-icon="fa fa-minus">
                                 </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-5 col-form-label">
-                                            <label class="form-text text-muted" for="multiple-icon">Select with icons:</label>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <select name="multiple-icon" id="multiple-icon" data-icon="fa fa-chevron-down" data-check-icon="fa fa-check" multiple>
-                                                <option value="1">Lorem</option>
-                                                <option value="2">Ipsum dolor sit</option>
-                                                <option value="3">Amet</option>
-                                                <option value="4">Consectetur adipisicing elit</option>
-                                                <option value="5">Possimus sunt dolores</option>
-                                                <option value="6">Lorem ipsum dolor sit amet consectetur adipisicing elit saepe distinctio eligendi modi totam voluptatibus iusto labore nam suscipit dolorem fugit aliquid illum ducimus commodi rem maxime adipisci</option>
-                                                <option value="7">Dolorum</option>
-                                                <option value="8">Veniam ea saepe incidunt</option>
-                                                <option value="9">Quibusdam</option>
-                                                <option value="10">Animi</option>
-                                                <option value="11">Praesentium</option>
-                                                <option value="12">Tempora iste unde dicta eaqu</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-5 col-form-label">
-                                            <label class="form-text text-muted" for="multiple-disabled">Disabled select:</label>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <select name="multiple-disabled" id="multiple-disabled" data-icon="fa fa-times" disabled multiple>
-                                                <option value="1" selected>Lorem ipsum</option>
-                                                <option value="2" selected>Dolor</option>
-                                                <option value="3">Amet</option>
-                                                <option value="4">Consectetur adipisicing elit</option>
-                                                <option value="5">Possimus sunt dolores</option>
-                                                <option value="6">Lorem ipsum dolor sit amet consectetur adipisicing elit saepe distinctio eligendi modi totam voluptatibus iusto labore nam suscipit dolorem fugit aliquid illum ducimus commodi rem maxime adipisci</option>
-                                                <option value="7">Dolorum</option>
-                                                <option value="8">Veniam ea saepe incidunt</option>
-                                                <option value="9">Quibusdam</option>
-                                                <option value="10">Animi</option>
-                                                <option value="11">Praesentium</option>
-                                                <option value="12">Tempora iste unde dicta eaqu</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
+                            <div class="form-group row">
+                                <div class="col-md-6 col-form-label">
+                                    <label class="form-text" for="number-icon-color">Colored buttons with icons:</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="number" class="form-control text-right" id="number-icon-color"
+                                    data-plus-icon="fa fa-plus"
+                                    data-minus-icon="fa fa-minus"
+                                    data-colored="true">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6 col-form-label">
+                                    <label class="form-text" for="number-button">Buttons with custom class:</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="number" class="form-control text-right" id="number-button"
+                                    data-plus-class="btn btn-sm btn-outline-primary"
+                                    data-minus-class="btn btn-sm btn-outline-primary">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6 col-form-label">
+                                    <label class="form-text" for="number-button-image">Buttons with images and custom class:</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="number" class="form-control text-right" id="number-button-image"
+                                    data-plus-image="./assets/chevron-up.svg"
+                                    data-minus-image="./assets/chevron-down.svg"
+                                    data-plus-class="btn btn-light"
+                                    data-minus-class="btn btn-light">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6 col-form-label">
+                                    <label class="form-text" for="number-button-icon">Buttons with icons and custom class:</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="number" class="form-control text-right" id="number-button-icon"
+                                    data-plus-icon="fa fa-plus"
+                                    data-minus-icon="fa fa-minus"
+                                    data-plus-class="btn btn-sm btn-success"
+                                    data-minus-class="btn btn-sm btn-danger">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6 col-form-label">
+                                    <label class="form-text" for="number-disable">Disabled field:</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="number" class="form-control text-right" id="number-disable" value="12345" disabled>
+                                </div>
+                            </div>
+                            <div class="mt-5 table-responsive">
+                                <table class="table table-sm text-small">
+                                    <thead>
+                                        <tr class="text-nowrap">
+                                            <th class="w-20">Parameter</th>
+                                            <th class="w-20">Data Attribute</th>
+                                            <th class="w-10">Type</th>
+                                            <th class="w-10">Default</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>spin</td>
+                                            <td>data&#8209;spin</td>
+                                            <td>boolean</td>
+                                            <td>false</td>
+                                            <td>If true, the value will change while the plus and minus buttons are pressed.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>colored</td>
+                                            <td>data&#8209;colored</td>
+                                            <td>boolean</td>
+                                            <td>false</td>
+                                            <td>If true, input buttons will render colored.<br>Ignored if plusImage or minusImage are defined.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>plusClass</td>
+                                            <td>data&#8209;plus&#8209;class</td>
+                                            <td>string</td>
+                                            <td>null</td>
+                                            <td>Class for &laquo;&plus;&raquo; button.<br>For example: Bootstrap &quot;btn btn-success&quot;.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>minusClass</td>
+                                            <td>data&#8209;minus&#8209;class</td>
+                                            <td>string</td>
+                                            <td>null</td>
+                                            <td>Class for &laquo;&minus;&raquo; button.<br>For example: Bootstrap &quot;btn btn-danger&quot;.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>plusImage</td>
+                                            <td>data&#8209;plus&#8209;image</td>
+                                            <td>string</td>
+                                            <td>null</td>
+                                            <td>Path to image to replace &laquo;&plus;&raquo;.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>minusImage</td>
+                                            <td>data&#8209;minus&#8209;image</td>
+                                            <td>string</td>
+                                            <td>null</td>
+                                            <td>Path to image to replace &laquo;&minus;&raquo;.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>plusIcon</td>
+                                            <td>data&#8209;plus&#8209;icon</td>
+                                            <td>string</td>
+                                            <td>null</td>
+                                            <td>Icon &lt;i&gt; class to replace &laquo;&plus;&raquo;.<br>For example: Font Aswesome &quot;fas fa-plus&quot;.<br>Ignored if plusImage is defined.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>minusIcon</td>
+                                            <td>data&#8209;minus&#8209;icon</td>
+                                            <td>string</td>
+                                            <td>null</td>
+                                            <td>Icon &lt;i&gt; class to replace &laquo;&minus;&raquo;.<br>For example: Font Aswesome &quot;fas fa-minus&quot;.<br>Ignored if minusImage is defined.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
+                        <!-- Tab - Input File -->
+                        <div class="tab-pane fade" id="tab-file">
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="file-simple">Simple field:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="file" id="file-simple" data-input-class="null" data-browse-class="null">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="file-multiple">Field to select multiple files:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="file" id="file-multiple" multiple>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <span class="form-text">Field without ID:</span>
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="file">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="file-image">Field with images:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="file" id="file-image"
+                                    data-input-image="./assets/file.svg"
+                                    data-browse-image="./assets/file-browse.svg">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="file-icon">Field with icons:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="file" id="file-icon"
+                                    data-input-icon="fa fa-file"
+                                    data-browse-icon="fa fa-upload">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="file-placeholder">Field with custom placeholders:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="file" id="file-placeholder"
+                                    data-placeholder="I'm empty :("
+                                    data-browse="CLICK ME!"
+                                    data-selected-multiple="We are already %s!"
+                                    multiple>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="file-disable-simple">Disabled simple field:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="file" id="file-disable-simple" data-input-class="null" data-browse-class="null" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="file-disable">Disabled field:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="file" id="file-disable"
+                                    data-input-class="form-control text-muted"
+                                    data-browse-class="btn btn-primary disabled"
+                                    disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="file-disable-image">Disabled field with images:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="file" id="file-disable-image"
+                                    data-input-image="./assets/file.svg"
+                                    data-browse-image="./assets/file-browse.svg"
+                                    data-input-class="form-control text-muted"
+                                    data-browse-class="btn btn-primary disabled"
+                                    disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="file-disable-icon">Disabled field with icons:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="file" id="file-disable-icon"
+                                    data-input-icon="fa fa-file"
+                                    data-browse-icon="fa fa-upload"
+                                    data-input-class="form-control text-muted"
+                                    data-browse-class="btn btn-primary disabled"
+                                    disabled>
+                                </div>
+                            </div>
+                            <div class="mt-5 table-responsive">
+                                <table class="table table-sm text-small">
+                                    <thead>
+                                        <tr class="text-nowrap">
+                                            <th class="w-20">Parameter</th>
+                                            <th class="w-20">Data Attribute</th>
+                                            <th class="w-10">Type</th>
+                                            <th class="w-10">Default</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <tr>
+                                                <td>multipleLimit</td>
+                                                <td>data&#8209;multiple&#8209;limit</td>
+                                                <td>integer</td>
+                                                <td>3</td>
+                                                <td>Number of files to replace their names with their count.</td>
+                                            </tr>
+                                            <td>inputClass</td>
+                                            <td>data&#8209;input&#8209;class</td>
+                                            <td>string</td>
+                                            <td>null</td>
+                                            <td>Adds a class for input with files.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>browseClass</td>
+                                            <td>data&#8209;browse&#8209;class</td>
+                                            <td>string</td>
+                                            <td>null</td>
+                                            <td>Adds a class for browse button.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>inputImage</td>
+                                            <td>data&#8209;input&#8209;image</td>
+                                            <td>string</td>
+                                            <td>null</td>
+                                            <td>Path to image which prepends to input with files.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>inputIcon</td>
+                                            <td>data&#8209;input&#8209;icon</td>
+                                            <td>string</td>
+                                            <td>null</td>
+                                            <td>Icon &lt;i&gt; class which prepends to input with files.<br>For example: Font Aswesome &quot;fas fa-file&quot;.<br>Ignored if inputImage is defined.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>browseImage</td>
+                                            <td>data&#8209;browse&#8209;image</td>
+                                            <td>string</td>
+                                            <td>null</td>
+                                            <td>Path to image placed in browse button.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>browseIcon</td>
+                                            <td>data&#8209;browse&#8209;icon</td>
+                                            <td>string</td>
+                                            <td>null</td>
+                                            <td>Icon &lt;i&gt; class which placed in browse button.<br>For example: Font Aswesome &quot;fas fa-upload&quot;.<br>Ignored if browseImage is defined.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="mt-5 table-responsive">
+                                <table class="table table-sm text-small">
+                                    <thead>
+                                        <tr class="text-nowrap">
+                                            <th class="w-20">Locale string</th>
+                                            <th class="w-20">Data Attribute</th>
+                                            <th>Example</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <tr>
+                                                <td>placeholder</td>
+                                                <td>data&#8209;placeholder</td>
+                                                <td>No file selected</td>
+                                            </tr>
+                                            <td>browse</td>
+                                            <td>data&#8209;browse</td>
+                                            <td>Browse</td>
+                                        </tr>
+                                        <tr>
+                                            <td>selectedMultiple</td>
+                                            <td>data&#8209;selected&#8209;multiple</td>
+                                            <td>Selected files: %s</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Tab - Select -->
+                        <div class="tab-pane fade" id="tab-select">
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="select-simple">Simple selectbox:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="select-simple">
+                                        <option value=""></option>
+                                        <option value="1" data-html="<b>Lorem</b> <i>ipsum</i> <s>dolor</s>">Lorem ipsum dolor sit amet</option>
+                                        <option value="2">Consectetur adipisicing elit</option>
+                                        <option value="3">Impedit ratione nemo</option>
+                                        <option value="4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate harum debitis, perspiciatis dolores distinctio sequi voluptas quo a placeat nam veritatis beatae maxime excepturi aspernatur incidunt alias, voluptate, similique facilis</option>
+                                        <option value="5">Hic ipsum quo quam</option>
+                                        <option value="6">Possimus blanditiis</option>
+                                        <option value="7">Modi esse pariatur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="select-placeholder">Selectbox with custom placeholder:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="select-placeholder" data-placeholder="I'm empty! :(">
+                                        <option value=""></option>
+                                        <option value="1">Lorem ipsum dolor sit amet</option>
+                                        <option value="2">Consectetur adipisicing elit</option>
+                                        <option value="3">Impedit ratione nemo</option>
+                                        <option value="4">Hic ipsum quo quam</option>
+                                        <option value="5">Possimus blanditiis</option>
+                                        <option value="6">Modi esse pariatur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="select-optgroup">Selectbox with option groups:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="select-optgroup">
+                                        <option value="">Nothing</option>
+                                        <option value="1">Lorem ipsum dolor sit amet</option>
+                                        <optgroup label="Option group 1">
+                                            <option value="2">Consectetur adipisicing elit</option>
+                                            <option value="3">Impedit ratione nemo</option>
+                                        </optgroup>
+                                        <option value="4">Hic ipsum quo quam</option>
+                                        <optgroup label="Option group 2">
+                                            <option value="5">Possimus blanditiis</option>
+                                            <option value="6">Modi esse pariatur</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="select-search">Selectbox with search:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="select-search" data-search-limit="1" data-search-placeholder="Filter options...">
+                                        <option value="">Nothing</option>
+                                        <option value="1">Lorem ipsum dolor sit amet</option>
+                                        <option value="2">Consectetur adipisicing elit</option>
+                                        <option value="3">Impedit ratione nemo</option>
+                                        <option value="4">Hic ipsum quo quam</option>
+                                        <option value="5">Possimus blanditiis</option>
+                                        <option value="6">Modi esse pariatur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="select-search-slow">Selectbox with slow search:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="select-search-slow" data-search-limit="1" data-search-minlength="3" data-search-pause="500">
+                                        <option value="">Nothing</option>
+                                        <option value="1">Lorem ipsum dolor sit amet</option>
+                                        <option value="2">Consectetur adipisicing elit</option>
+                                        <option value="3">Fuga maxime consequuntur a sit </option>
+                                        <option value="4">Praesentium nobis magni adipisci quo</option>
+                                        <option value="5">A corporis</option>
+                                        <option value="6">Molestiae minus inventore </option>
+                                        <option value="7">Quibusdam ipsa atque</option>
+                                        <option value="8">Laborum aut vitae magni</option>
+                                        <option value="9">Officiis vero</option>
+                                        <option value="10">Delectus quasi</option>
+                                        <option value="11">Error expedita nesciunt a</option>
+                                        <option value="12">Tempore delectus </option>
+                                        <option value="13">Repellendus sunt </option>
+                                        <option value="14">Aliquam voluptatum aut omnis</option>
+                                        <option value="15">Ullam facilis</option>
+                                        <option value="16">Architecto quae fugit</option>
+                                        <option value="17">Placeat ratione</option>
+                                        <option value="18">Ducimus praesentium sequi </option>
+                                        <option value="19">In laboriosam quisquam unde</option>
+                                        <option value="20">Nemo eos totam quasi </option>
+                                        <option value="21">Accusantium perferendis </option>
+                                        <option value="22">Iure eaque est cupiditate</option>
+                                        <option value="23">Itaque facere autem </option>
+                                        <option value="24">Aut ea ad incidunt </option>
+                                        <option value="25">Veritatis dolorem </option>
+                                        <option value="26">Ratione quod assumenda </option>
+                                        <option value="27">Corporis cupiditate amet </option>
+                                        <option value="28">Reiciendis</option>
+                                        <option value="29">Maiores officia vitae recusandae</option>
+                                        <option value="30">Repellendus dolor </option>
+                                        <option value="31">Impedit accusantium </option>
+                                        <option value="32">Quasi officia</option>
+                                        <option value="33">Ab illum sequi</option>
+                                        <option value="34">Vitae iusto</option>
+                                        <option value="35">Culpa facere iure</option>
+                                        <option value="36">Omnis beatae</option>
+                                        <option value="37">Enim</option>
+                                        <option value="38">Cum unde</option>
+                                        <option value="39">Veniam delectus </option>
+                                        <option value="40">Exercitationem maxime </option>
+                                        <option value="41">Natus consectetur</option>
+                                        <option value="42">Commodi animi </option>
+                                        <option value="43">Facere quidem nesciunt</option>
+                                        <option value="44">Temporibus ipsum eos </option>
+                                        <option value="45">Rerum est iste modi </option>
+                                        <option value="46">Asperiores reprehenderit </option>
+                                        <option value="47">Aliquid magnam! </option>
+                                        <option value="48">Facilis deleniti </option>
+                                        <option value="49">Aut labore sapiente </option>
+                                        <option value="50">Sint id illum fuga</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="select-nosearch">Selectbox without search:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="select-nosearch" data-search-limit="0">
+                                        <option value="">Nothing</option>
+                                        <option value="1">Lorem ipsum dolor sit amet</option>
+                                        <option value="2">Consectetur adipisicing elit</option>
+                                        <option value="3">Fuga maxime consequuntur a sit </option>
+                                        <option value="4">Praesentium nobis magni adipisci quo</option>
+                                        <option value="5">A corporis</option>
+                                        <option value="6">Molestiae minus inventore </option>
+                                        <option value="7">Quibusdam ipsa atque</option>
+                                        <option value="8">Laborum aut vitae magni</option>
+                                        <option value="9">Officiis vero</option>
+                                        <option value="10">Delectus quasi</option>
+                                        <option value="11">Error expedita nesciunt a</option>
+                                        <option value="12">Tempore delectus </option>
+                                        <option value="13">Repellendus sunt </option>
+                                        <option value="14">Aliquam voluptatum aut omnis</option>
+                                        <option value="15">Ullam facilis</option>
+                                        <option value="16">Architecto quae fugit</option>
+                                        <option value="17">Placeat ratione</option>
+                                        <option value="18">Ducimus praesentium sequi </option>
+                                        <option value="19">In laboriosam quisquam unde</option>
+                                        <option value="20">Nemo eos totam quasi </option>
+                                        <option value="21">Accusantium perferendis </option>
+                                        <option value="22">Iure eaque est cupiditate</option>
+                                        <option value="23">Itaque facere autem </option>
+                                        <option value="24">Aut ea ad incidunt </option>
+                                        <option value="25">Veritatis dolorem </option>
+                                        <option value="26">Ratione quod assumenda </option>
+                                        <option value="27">Corporis cupiditate amet </option>
+                                        <option value="28">Reiciendis</option>
+                                        <option value="29">Maiores officia vitae recusandae</option>
+                                        <option value="30">Repellendus dolor </option>
+                                        <option value="31">Impedit accusantium </option>
+                                        <option value="32">Quasi officia</option>
+                                        <option value="33">Ab illum sequi</option>
+                                        <option value="34">Vitae iusto</option>
+                                        <option value="35">Culpa facere iure</option>
+                                        <option value="36">Omnis beatae</option>
+                                        <option value="37">Enim</option>
+                                        <option value="38">Cum unde</option>
+                                        <option value="39">Veniam delectus </option>
+                                        <option value="40">Exercitationem maxime </option>
+                                        <option value="41">Natus consectetur</option>
+                                        <option value="42">Commodi animi </option>
+                                        <option value="43">Facere quidem nesciunt</option>
+                                        <option value="44">Temporibus ipsum eos </option>
+                                        <option value="45">Rerum est iste modi </option>
+                                        <option value="46">Asperiores reprehenderit </option>
+                                        <option value="47">Aliquid magnam! </option>
+                                        <option value="48">Facilis deleniti </option>
+                                        <option value="49">Aut labore sapiente </option>
+                                        <option value="50">Sint id illum fuga</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="select-image">Selectbox with image:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="select-image" data-trigger-image="./assets/chevron-down.svg">
+                                        <option value="">Nothing</option>
+                                        <option value="1">Lorem ipsum dolor sit amet</option>
+                                        <option value="2">Consectetur adipisicing elit</option>
+                                        <option value="3">Impedit ratione nemo</option>
+                                        <option value="4">Hic ipsum quo quam</option>
+                                        <option value="5">Possimus blanditiis</option>
+                                        <option value="6">Modi esse pariatur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="select-icon">Selectbox with icon:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="select-icon" data-trigger-icon="fa fa-angle-down">
+                                        <option value="">Nothing</option>
+                                        <option value="1">Lorem ipsum dolor sit amet</option>
+                                        <option value="2">Consectetur adipisicing elit</option>
+                                        <option value="3">Impedit ratione nemo</option>
+                                        <option value="4">Hic ipsum quo quam</option>
+                                        <option value="5">Possimus blanditiis</option>
+                                        <option value="6">Modi esse pariatur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="select-disable">Disabled selectbox:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="select-disable" disabled>
+                                        <option value="1">Lorem ipsum dolor sit amet</option>
+                                        <option value="2">Consectetur adipisicing elit</option>
+                                        <option value="3">Impedit ratione nemo</option>
+                                        <option value="4">Hic ipsum quo quam</option>
+                                        <option value="5">Possimus blanditiis</option>
+                                        <option value="6">Modi esse pariatur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="select-disable-image">Disabled selectbox with image:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="select-disable-image" data-trigger-image="./assets/chevron-down.svg" disabled>
+                                        <option value="1">Lorem ipsum dolor sit amet</option>
+                                        <option value="2">Consectetur adipisicing elit</option>
+                                        <option value="3">Impedit ratione nemo</option>
+                                        <option value="4">Hic ipsum quo quam</option>
+                                        <option value="5">Possimus blanditiis</option>
+                                        <option value="6">Modi esse pariatur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="select-disable-icon">Disabled selectbox with icon:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="select-disable-icon" data-trigger-icon="fa fa-angle-down" disabled>
+                                        <option value="1">Lorem ipsum dolor sit amet</option>
+                                        <option value="2">Consectetur adipisicing elit</option>
+                                        <option value="3">Impedit ratione nemo</option>
+                                        <option value="4">Hic ipsum quo quam</option>
+                                        <option value="5">Possimus blanditiis</option>
+                                        <option value="6">Modi esse pariatur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="select-disable-empty">Disabled empty selectbox:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="select-disable-empty" disabled>
+                                        <option value=""></option>
+                                        <option value="1">Lorem ipsum dolor sit amet</option>
+                                        <option value="2">Consectetur adipisicing elit</option>
+                                        <option value="3">Impedit ratione nemo</option>
+                                        <option value="4">Hic ipsum quo quam</option>
+                                        <option value="5">Possimus blanditiis</option>
+                                        <option value="6">Modi esse pariatur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mt-5 table-responsive">
+                                <table class="table table-sm text-small">
+                                    <thead>
+                                        <tr class="text-nowrap">
+                                            <th class="w-20">Parameter</th>
+                                            <th class="w-20">Data Attribute</th>
+                                            <th class="w-10">Type</th>
+                                            <th class="w-10">Default</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>smartMinHeight</td>
+                                            <td>data&#8209;smart&#8209;min&#8209;height</td>
+                                            <td>integer</td>
+                                            <td>150</td>
+                                            <td>Minimal height of dropdown.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>smartPosition</td>
+                                            <td>data&#8209;smart&#8209;position</td>
+                                            <td>boolean</td>
+                                            <td>true</td>
+                                            <td>If true and bottom offset less than smartMinHeight and than top offset, dropdown will drop up.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>dropdownOffset</td>
+                                            <td>data&#8209;dropdown&#8209;offset</td>
+                                            <td>integer</td>
+                                            <td>20</td>
+                                            <td>Dropdown offset from selectbox (in px).</td>
+                                        </tr>
+                                        <tr>
+                                            <td>dropdownSpeed</td>
+                                            <td>data&#8209;dropdown&#8209;speed</td>
+                                            <td>integer</td>
+                                            <td>150</td>
+                                            <td>Fade in / fade out speed of dropdown.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>searchLimit</td>
+                                            <td>data&#8209;search&#8209;limit</td>
+                                            <td>integer</td>
+                                            <td>10</td>
+                                            <td>Minimal number of options to show search input.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>searchMinlength</td>
+                                            <td>data&#8209;search&#8209;minlength</td>
+                                            <td>integer</td>
+                                            <td>0</td>
+                                            <td>Minimal length of search input to start searching.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>searchPause</td>
+                                            <td>data&#8209;search&#8209;pause</td>
+                                            <td>integer</td>
+                                            <td>0</td>
+                                            <td>Pause between keypresses in search input to start searching.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>searchClass</td>
+                                            <td>data&#8209;search&#8209;class</td>
+                                            <td>string</td>
+                                            <td>null</td>
+                                            <td>Class of search input.<br>For example: Bootstrap &quot;form-control&quot;.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>triggerImage</td>
+                                            <td>data&#8209;trigger&#8209;image</td>
+                                            <td>string</td>
+                                            <td>null</td>
+                                            <td>Path to image to replace selectbox angle.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>triggerIcon</td>
+                                            <td>data&#8209;trigger&#8209;icon</td>
+                                            <td>string</td>
+                                            <td>null</td>
+                                            <td>Icon &lt;i&gt; class to replace selectbox angle.<br>Ignored if triggerImage is defined.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="mt-5 table-responsive">
+                                <table class="table table-sm text-small">
+                                    <thead>
+                                        <tr class="text-nowrap">
+                                            <th class="w-20">Locale string</th>
+                                            <th class="w-20">Data Attribute</th>
+                                            <th>Example</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>placeholder</td>
+                                            <td>data&#8209;placeholder</td>
+                                            <td>Select...</td>
+                                        </tr>
+                                        <tr>
+                                            <td>searchPlaceholder</td>
+                                            <td>data&#8209;search&#8209;placeholder</td>
+                                            <td>Search</td>
+                                        </tr>
+                                        <tr>
+                                            <td>notFound</td>
+                                            <td>data&#8209;not&#8209;found</td>
+                                            <td>Matches not found</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Tab - Select Multiple -->
+                        <div class="tab-pane fade" id="tab-multiselect">
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="multiselect-simple">Simple selectbox:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="multiselect-simple" multiple>
+                                        <option value="1" data-html="<b>Lorem</b> <i>ipsum</i> <s>dolor</s>">Lorem ipsum dolor sit amet</option>
+                                        <option value="2">Consectetur adipisicing elit</option>
+                                        <option value="3">Impedit ratione nemo</option>
+                                        <option value="4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate harum debitis, perspiciatis dolores distinctio sequi voluptas quo a placeat nam veritatis beatae maxime excepturi aspernatur incidunt alias, voluptate, similique facilis</option>
+                                        <option value="5">Hic ipsum quo quam</option>
+                                        <option value="6">Possimus blanditiis</option>
+                                        <option value="7">Modi esse pariatur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="multiselect-placeholder">Selectbox with custom placeholder:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="multiselect-placeholder" data-placeholder="I'm empty! :(" data-selected-multiple="We are already %s of %a!" data-selected-all="All with us!" multiple>
+                                        <option value="1">Lorem ipsum dolor sit amet</option>
+                                        <option value="2">Consectetur adipisicing elit</option>
+                                        <option value="3">Impedit ratione nemo</option>
+                                        <option value="4">Hic ipsum quo quam</option>
+                                        <option value="5">Possimus blanditiis</option>
+                                        <option value="6">Modi esse pariatur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="multiselect-optgroup">Selectbox with option groups:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="multiselect-optgroup" multiple>
+                                        <option value="1">Lorem ipsum dolor sit amet</option>
+                                        <optgroup label="Option group 1">
+                                            <option value="2">Consectetur adipisicing elit</option>
+                                            <option value="3">Impedit ratione nemo</option>
+                                        </optgroup>
+                                        <option value="4">Hic ipsum quo quam</option>
+                                        <optgroup label="Option group 2">
+                                            <option value="5">Possimus blanditiis</option>
+                                            <option value="6">Modi esse pariatur</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="multiselect-search">Selectbox with search and toggler:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="multiselect-search" data-search-limit="1" data-toggle-limit="1" data-search-placeholder="Filter options..." multiple>
+                                        <option value="1">Lorem ipsum dolor sit amet</option>
+                                        <option value="2">Consectetur adipisicing elit</option>
+                                        <option value="3">Impedit ratione nemo</option>
+                                        <option value="4">Hic ipsum quo quam</option>
+                                        <option value="5">Possimus blanditiis</option>
+                                        <option value="6">Modi esse pariatur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="multiselect-search-slow">Selectbox with slow search:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="multiselect-search-slow" data-search-limit="1" data-search-minlength="3" data-search-pause="500" multiple>
+                                        <option value="1">Lorem ipsum dolor sit amet</option>
+                                        <option value="2">Consectetur adipisicing elit</option>
+                                        <option value="3">Fuga maxime consequuntur a sit </option>
+                                        <option value="4">Praesentium nobis magni adipisci quo</option>
+                                        <option value="5">A corporis</option>
+                                        <option value="6">Molestiae minus inventore </option>
+                                        <option value="7">Quibusdam ipsa atque</option>
+                                        <option value="8">Laborum aut vitae magni</option>
+                                        <option value="9">Officiis vero</option>
+                                        <option value="10">Delectus quasi</option>
+                                        <option value="11">Error expedita nesciunt a</option>
+                                        <option value="12">Tempore delectus </option>
+                                        <option value="13">Repellendus sunt </option>
+                                        <option value="14">Aliquam voluptatum aut omnis</option>
+                                        <option value="15">Ullam facilis</option>
+                                        <option value="16">Architecto quae fugit</option>
+                                        <option value="17">Placeat ratione</option>
+                                        <option value="18">Ducimus praesentium sequi </option>
+                                        <option value="19">In laboriosam quisquam unde</option>
+                                        <option value="20">Nemo eos totam quasi </option>
+                                        <option value="21">Accusantium perferendis </option>
+                                        <option value="22">Iure eaque est cupiditate</option>
+                                        <option value="23">Itaque facere autem </option>
+                                        <option value="24">Aut ea ad incidunt </option>
+                                        <option value="25">Veritatis dolorem </option>
+                                        <option value="26">Ratione quod assumenda </option>
+                                        <option value="27">Corporis cupiditate amet </option>
+                                        <option value="28">Reiciendis</option>
+                                        <option value="29">Maiores officia vitae recusandae</option>
+                                        <option value="30">Repellendus dolor </option>
+                                        <option value="31">Impedit accusantium </option>
+                                        <option value="32">Quasi officia</option>
+                                        <option value="33">Ab illum sequi</option>
+                                        <option value="34">Vitae iusto</option>
+                                        <option value="35">Culpa facere iure</option>
+                                        <option value="36">Omnis beatae</option>
+                                        <option value="37">Enim</option>
+                                        <option value="38">Cum unde</option>
+                                        <option value="39">Veniam delectus </option>
+                                        <option value="40">Exercitationem maxime </option>
+                                        <option value="41">Natus consectetur</option>
+                                        <option value="42">Commodi animi </option>
+                                        <option value="43">Facere quidem nesciunt</option>
+                                        <option value="44">Temporibus ipsum eos </option>
+                                        <option value="45">Rerum est iste modi </option>
+                                        <option value="46">Asperiores reprehenderit </option>
+                                        <option value="47">Aliquid magnam! </option>
+                                        <option value="48">Facilis deleniti </option>
+                                        <option value="49">Aut labore sapiente </option>
+                                        <option value="50">Sint id illum fuga</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="multiselect-nosearch">Selectbox without search and toggler:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="multiselect-nosearch" data-search-limit="0" data-toggle-limit="0" multiple>
+                                        <option value="1">Lorem ipsum dolor sit amet</option>
+                                        <option value="2">Consectetur adipisicing elit</option>
+                                        <option value="3">Fuga maxime consequuntur a sit </option>
+                                        <option value="4">Praesentium nobis magni adipisci quo</option>
+                                        <option value="5">A corporis</option>
+                                        <option value="6">Molestiae minus inventore </option>
+                                        <option value="7">Quibusdam ipsa atque</option>
+                                        <option value="8">Laborum aut vitae magni</option>
+                                        <option value="9">Officiis vero</option>
+                                        <option value="10">Delectus quasi</option>
+                                        <option value="11">Error expedita nesciunt a</option>
+                                        <option value="12">Tempore delectus </option>
+                                        <option value="13">Repellendus sunt </option>
+                                        <option value="14">Aliquam voluptatum aut omnis</option>
+                                        <option value="15">Ullam facilis</option>
+                                        <option value="16">Architecto quae fugit</option>
+                                        <option value="17">Placeat ratione</option>
+                                        <option value="18">Ducimus praesentium sequi </option>
+                                        <option value="19">In laboriosam quisquam unde</option>
+                                        <option value="20">Nemo eos totam quasi </option>
+                                        <option value="21">Accusantium perferendis </option>
+                                        <option value="22">Iure eaque est cupiditate</option>
+                                        <option value="23">Itaque facere autem </option>
+                                        <option value="24">Aut ea ad incidunt </option>
+                                        <option value="25">Veritatis dolorem </option>
+                                        <option value="26">Ratione quod assumenda </option>
+                                        <option value="27">Corporis cupiditate amet </option>
+                                        <option value="28">Reiciendis</option>
+                                        <option value="29">Maiores officia vitae recusandae</option>
+                                        <option value="30">Repellendus dolor </option>
+                                        <option value="31">Impedit accusantium </option>
+                                        <option value="32">Quasi officia</option>
+                                        <option value="33">Ab illum sequi</option>
+                                        <option value="34">Vitae iusto</option>
+                                        <option value="35">Culpa facere iure</option>
+                                        <option value="36">Omnis beatae</option>
+                                        <option value="37">Enim</option>
+                                        <option value="38">Cum unde</option>
+                                        <option value="39">Veniam delectus </option>
+                                        <option value="40">Exercitationem maxime </option>
+                                        <option value="41">Natus consectetur</option>
+                                        <option value="42">Commodi animi </option>
+                                        <option value="43">Facere quidem nesciunt</option>
+                                        <option value="44">Temporibus ipsum eos </option>
+                                        <option value="45">Rerum est iste modi </option>
+                                        <option value="46">Asperiores reprehenderit </option>
+                                        <option value="47">Aliquid magnam! </option>
+                                        <option value="48">Facilis deleniti </option>
+                                        <option value="49">Aut labore sapiente </option>
+                                        <option value="50">Sint id illum fuga</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="multiselect-image">Selectbox with image:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="multiselect-image" data-trigger-image="./assets/chevron-down.svg" data-option-image="./assets/check.svg" multiple>
+                                        <option value="1">Lorem ipsum dolor sit amet</option>
+                                        <option value="2">Consectetur adipisicing elit</option>
+                                        <option value="3">Impedit ratione nemo</option>
+                                        <option value="4">Hic ipsum quo quam</option>
+                                        <option value="5">Possimus blanditiis</option>
+                                        <option value="6">Modi esse pariatur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="multiselect-icon">Selectbox with icon:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="multiselect-icon" data-trigger-icon="fa fa-angle-down" data-option-icon="fa fa-check" multiple>
+                                        <option value="1">Lorem ipsum dolor sit amet</option>
+                                        <option value="2">Consectetur adipisicing elit</option>
+                                        <option value="3">Impedit ratione nemo</option>
+                                        <option value="4">Hic ipsum quo quam</option>
+                                        <option value="5">Possimus blanditiis</option>
+                                        <option value="6">Modi esse pariatur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="multiselect-disable">Disabled selectbox:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="multiselect-disable" multiple disabled>
+                                        <option value="1" selected>Lorem ipsum dolor sit amet</option>
+                                        <option value="2" selected>Consectetur adipisicing elit</option>
+                                        <option value="3" selected>Impedit ratione nemo</option>
+                                        <option value="4" selected>Hic ipsum quo quam</option>
+                                        <option value="5" selected>Possimus blanditiis</option>
+                                        <option value="6" selected>Modi esse pariatur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="multiselect-disable-image">Disabled selectbox with image:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="multiselect-disable-image" data-trigger-image="./assets/chevron-down.svg" data-option-image="./assets/check.svg" multiple disabled>
+                                        <option value="1" selected>Lorem ipsum dolor sit amet</option>
+                                        <option value="2" selected>Consectetur adipisicing elit</option>
+                                        <option value="3" selected>Impedit ratione nemo</option>
+                                        <option value="4" selected>Hic ipsum quo quam</option>
+                                        <option value="5" selected>Possimus blanditiis</option>
+                                        <option value="6">Modi esse pariatur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="multiselect-disable-icon">Disabled selectbox with icon:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="multiselect-disable-icon" data-trigger-icon="fa fa-angle-down" data-option-icon="fa fa-check" multiple disabled>
+                                        <option value="1" selected>Lorem ipsum dolor sit amet</option>
+                                        <option value="2" selected>Consectetur adipisicing elit</option>
+                                        <option value="3">Impedit ratione nemo</option>
+                                        <option value="4">Hic ipsum quo quam</option>
+                                        <option value="5">Possimus blanditiis</option>
+                                        <option value="6">Modi esse pariatur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-5 col-form-label">
+                                    <label class="form-text" for="multiselect-disable-empty">Disabled empty selectbox:</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="multiselect-disable-empty" multiple disabled>
+                                        <option value="1">Lorem ipsum dolor sit amet</option>
+                                        <option value="2">Consectetur adipisicing elit</option>
+                                        <option value="3">Impedit ratione nemo</option>
+                                        <option value="4">Hic ipsum quo quam</option>
+                                        <option value="5">Possimus blanditiis</option>
+                                        <option value="6">Modi esse pariatur</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mt-5 table-responsive">
+                                <table class="table table-sm text-small">
+                                    <thead>
+                                        <tr class="text-nowrap">
+                                            <th class="w-20">Parameter</th>
+                                            <th class="w-20">Data Attribute</th>
+                                            <th class="w-10">Type</th>
+                                            <th class="w-10">Default</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <td colspan="5" class="font-italic">Include parent.</td>
+                                        <tr>
+                                            <td>multipleLimit</td>
+                                            <td>data&#8209;multiple&#8209;limit</td>
+                                            <td>integer</td>
+                                            <td>3</td>
+                                            <td>Number of options to replace their text with their count.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>toggleLimit</td>
+                                            <td>data&#8209;toggle&#8209;limit</td>
+                                            <td>integer</td>
+                                            <td>10</td>
+                                            <td>Minimal number of options to show toggle button.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>optionImage</td>
+                                            <td>data&#8209;option&#8209;image</td>
+                                            <td>string</td>
+                                            <td>null</td>
+                                            <td>Path to image to replace option check icon.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>optionIcon</td>
+                                            <td>data&#8209;option&#8209;icon</td>
+                                            <td>string</td>
+                                            <td>null</td>
+                                            <td>Icon &lt;i&gt; class to replace option check icon.<br>Ignored if optionImage is defined.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="mt-5 table-responsive">
+                                <table class="table table-sm text-small">
+                                    <thead>
+                                        <tr class="text-nowrap">
+                                            <th class="w-20">Locale string</th>
+                                            <th class="w-20">Data Attribute</th>
+                                            <th>Example</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="3" class="font-italic">Include parent.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>selectedMultiple</td>
+                                            <td>data&#8209;selected&#8209;multiple</td>
+                                            <td>Selected %s of %a</td>
+                                        </tr>
+                                        <tr>
+                                            <td>selectedAll</td>
+                                            <td>data&#8209;selected&#8209;all</td>
+                                            <td>Selected all</td>
+                                        </tr>
+                                        <tr>
+                                            <td>toggle</td>
+                                            <td>data&#8209;toggle</td>
+                                            <td>Toggle all</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
+                </div>
 
+                <!-- Copyright -->
+                <div class="mt-3 text-secondary text-small clearfix">
+                    <div class="mb-1 mb-sm-0 float-sm-left">
+                        &copy; <a class="text-secondary" href="https://lashchevsky.me" target="_blank">Alexander Lashchevsky</a>, 2020
+                    </div>
+                    <div class="float-sm-right text-sm-right">
+                        v4.0.0 &middot; <a class="text-secondary" href="https://github.com/alexanevsky/formstyler" target="_blank">GitHub</a>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Assets JS -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <!-- Assets JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-        <script src="../dist/formstyler.min.js"></script>
-        <script src="./assets/docs.js"></script>
-    </body>
+    <script src="../dist/formstyler.min.js"></script>
+    <script src="./assets/docs.js"></script>
+</body>
 </html>

@@ -1,13 +1,35 @@
-/*
- * jQuery FormStyler v3.1.1
- * https://github.com/Alexanevsky/formstyler
+/*!
+ * jQuery FormStyler v4.0.0
+ * https://github.com/alexanevsky/formstyler
  *
  * Copyright 2020 Alexanevsky (https://lashchevsky.me)
  * Copyright 2012-2017 Dimox (http://dimox.name)
  *
  * Released under the MIT license.
  *
- * Date: 2020-06-06
+ * Date: 2020-07-09
+ */
+/*
+ * TOC
+ *
+ * Checkbox
+ * Switchbox
+ * Radio
+ * Number
+ * File
+ * Select
+ */
+/*
+ * TOC
+ *
+ * Common
+ * Labels
+ * Checkbox
+ * Switchbox
+ * Radio
+ * Number
+ * File
+ * Select
  */
 .formstyler-checkbox,
 .formstyler-checkbox *,
@@ -17,14 +39,12 @@
 .formstyler-switchbox *,
 .formstyler-switchblock,
 .formstyler-switchblock *,
-.formstyler-radio,
-.formstyler-radio *,
 .formstyler-radioblock,
 .formstyler-radioblock *,
+.formstyler-radio,
+.formstyler-radio *,
 .formstyler-number,
 .formstyler-number *,
-.formstyler-file,
-.formstyler-file *,
 .formstyler-select,
 .formstyler-select * {
   -webkit-box-sizing: border-box;
@@ -42,10 +62,10 @@
   background-color: #fff;
   -webkit-box-shadow: none;
   box-shadow: none;
-  -webkit-transition: border-color 0.15s linear, background 0.15s linear, -webkit-box-shadow 0.15s linear;
-  transition: border-color 0.15s linear, background 0.15s linear, -webkit-box-shadow 0.15s linear;
-  transition: border-color 0.15s linear, box-shadow 0.15s linear, background 0.15s linear;
-  transition: border-color 0.15s linear, box-shadow 0.15s linear, background 0.15s linear, -webkit-box-shadow 0.15s linear;
+  -webkit-transition: border-color 0.15s ease-in-out, background 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, background 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   cursor: pointer;
   overflow: hidden;
   -webkit-user-select: none;
@@ -55,6 +75,8 @@
   .formstyler-checkbox input {
     position: absolute;
     z-index: -1;
+    width: 0;
+    height: 0;
     margin: 0;
     padding: 0;
     opacity: 0; }
@@ -62,45 +84,70 @@
   .formstyler-checkbox .formstyler-checkbox-icon,
   .formstyler-checkbox .formstyler-checkbox-image {
     position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 14px;
+    height: 14px;
     opacity: 0;
-    -webkit-transition: opacity 0.15s linear;
-    transition: opacity 0.15s linear; }
-  .formstyler-checkbox .formstyler-checkbox-dot,
-  .formstyler-checkbox .formstyler-checkbox-image {
-    top: 5px;
-    left: 5px;
-    width: 12px;
-    height: 12px; }
+    -webkit-transition: opacity 0.15s ease-in-out;
+    transition: opacity 0.15s ease-in-out; }
   .formstyler-checkbox .formstyler-checkbox-dot {
-    background: #007bff;
+    background-color: #007bff;
     border-radius: 4px; }
   .formstyler-checkbox .formstyler-checkbox-icon {
-    top: 0;
-    left: 0;
-    width: 22px;
-    height: 22px;
-    line-height: 22px;
+    line-height: 14px;
+    font-size: 14px;
     text-align: center;
-    font-size: 15px;
     color: #007bff; }
   .formstyler-checkbox.formstyler-colored .formstyler-checkbox-dot {
-    background: #28a745; }
+    background-color: #28a745; }
   .formstyler-checkbox.formstyler-colored .formstyler-checkbox-icon {
     color: #28a745; }
   .formstyler-checkbox:hover:not(.formstyler-disabled):not(.formstyler-focused), .formstyler-checkbox.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused) {
-    border-color: #ced4da; }
+    border-color: #adb5bd;
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+    .formstyler-checkbox:hover:not(.formstyler-disabled):not(.formstyler-focused) .formstyler-checkbox-dot, .formstyler-checkbox.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused) .formstyler-checkbox-dot {
+      background-color: #007bff; }
+    .formstyler-checkbox:hover:not(.formstyler-disabled):not(.formstyler-focused) .formstyler-checkbox-icon, .formstyler-checkbox.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused) .formstyler-checkbox-icon {
+      color: #007bff; }
+    .formstyler-checkbox:hover:not(.formstyler-disabled):not(.formstyler-focused).formstyler-colored, .formstyler-checkbox.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused).formstyler-colored {
+      border-color: #adb5bd;
+      -webkit-box-shadow: none;
+      box-shadow: none; }
+      .formstyler-checkbox:hover:not(.formstyler-disabled):not(.formstyler-focused).formstyler-colored .formstyler-checkbox-dot, .formstyler-checkbox.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused).formstyler-colored .formstyler-checkbox-dot {
+        background-color: #28a745; }
+      .formstyler-checkbox:hover:not(.formstyler-disabled):not(.formstyler-focused).formstyler-colored .formstyler-checkbox-icon, .formstyler-checkbox.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused).formstyler-colored .formstyler-checkbox-icon {
+        color: #28a745; }
   .formstyler-checkbox.formstyler-focused {
     border-color: #80bdff;
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); }
+    -webkit-box-shadow: 0 0 0 3.2px rgba(0, 123, 255, 0.25);
+    box-shadow: 0 0 0 3.2px rgba(0, 123, 255, 0.25); }
+    .formstyler-checkbox.formstyler-focused .formstyler-checkbox-dot {
+      background-color: #007bff; }
+    .formstyler-checkbox.formstyler-focused .formstyler-checkbox-icon {
+      color: #007bff; }
+    .formstyler-checkbox.formstyler-focused.formstyler-colored.formstyler-checked {
+      border-color: #71dd8a;
+      -webkit-box-shadow: 0 0 0 3.2px rgba(40, 167, 69, 0.25);
+      box-shadow: 0 0 0 3.2px rgba(40, 167, 69, 0.25); }
+      .formstyler-checkbox.formstyler-focused.formstyler-colored.formstyler-checked .formstyler-checkbox-dot {
+        background-color: #28a745; }
+      .formstyler-checkbox.formstyler-focused.formstyler-colored.formstyler-checked .formstyler-checkbox-icon {
+        color: #28a745; }
   .formstyler-checkbox.formstyler-disabled {
     border-color: #ced4da;
-    background: #e9ecef;
+    background-color: #e9ecef;
+    -webkit-box-shadow: none;
+    box-shadow: none;
     cursor: not-allowed; }
     .formstyler-checkbox.formstyler-disabled .formstyler-checkbox-dot {
-      background: #6c757d; }
+      background-color: #6c757d; }
     .formstyler-checkbox.formstyler-disabled .formstyler-checkbox-icon {
       color: #6c757d; }
+    .formstyler-checkbox.formstyler-disabled .formstyler-checkbox-image {
+      -webkit-filter: grayscale(1);
+      filter: grayscale(1); }
   .formstyler-checkbox.formstyler-checked .formstyler-checkbox-dot,
   .formstyler-checkbox.formstyler-checked .formstyler-checkbox-icon,
   .formstyler-checkbox.formstyler-checked .formstyler-checkbox-image {
@@ -108,6 +155,7 @@
 
 .formstyler-checkblock {
   position: relative;
+  min-height: 24px;
   padding-left: 32px; }
   .formstyler-checkblock .formstyler-checkbox {
     position: absolute;
@@ -133,10 +181,10 @@
   background-color: #fff;
   -webkit-box-shadow: none;
   box-shadow: none;
-  -webkit-transition: border-color 0.15s linear, background 0.15s linear, -webkit-box-shadow 0.15s linear;
-  transition: border-color 0.15s linear, background 0.15s linear, -webkit-box-shadow 0.15s linear;
-  transition: border-color 0.15s linear, box-shadow 0.15s linear, background 0.15s linear;
-  transition: border-color 0.15s linear, box-shadow 0.15s linear, background 0.15s linear, -webkit-box-shadow 0.15s linear;
+  -webkit-transition: border-color 0.15s ease-in-out, background 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, background 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   cursor: pointer;
   overflow: hidden;
   -webkit-user-select: none;
@@ -146,6 +194,8 @@
   .formstyler-switchbox input {
     position: absolute;
     z-index: -1;
+    width: 0;
+    height: 0;
     margin: 0;
     padding: 0;
     opacity: 0; }
@@ -155,35 +205,70 @@
     left: 18px;
     width: 14px;
     height: 14px;
-    background: #6c757d;
-    -webkit-transition: background 0.15s linear, left 0.15s linear, right 0.15s linear, opacity 0.15s linear;
-    transition: background 0.15s linear, left 0.15s linear, right 0.15s linear, opacity 0.15s linear;
-    border-radius: 50%; }
+    border-radius: 50%;
+    background-color: #6c757d;
+    -webkit-transition: background 0.15s ease-in-out, left 0.15s ease-in-out, right 0.15s ease-in-out, opacity 0.15s ease-in-out;
+    transition: background 0.15s ease-in-out, left 0.15s ease-in-out, right 0.15s ease-in-out, opacity 0.15s ease-in-out; }
   .formstyler-switchbox.formstyler-colored .formstyler-switchbox-dot {
-    background: #dc3545; }
+    background-color: #dc3545; }
+  .formstyler-switchbox:hover:not(.formstyler-disabled):not(.formstyler-focused), .formstyler-switchbox.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused) {
+    border-color: #adb5bd;
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+    .formstyler-switchbox:hover:not(.formstyler-disabled):not(.formstyler-focused) .formstyler-checkbox-dot, .formstyler-switchbox.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused) .formstyler-checkbox-dot {
+      background-color: #6c757d; }
+    .formstyler-switchbox:hover:not(.formstyler-disabled):not(.formstyler-focused).formstyler-colored, .formstyler-switchbox.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused).formstyler-colored {
+      border-color: #adb5bd;
+      -webkit-box-shadow: none;
+      box-shadow: none; }
+      .formstyler-switchbox:hover:not(.formstyler-disabled):not(.formstyler-focused).formstyler-colored .formstyler-checkbox-dot, .formstyler-switchbox.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused).formstyler-colored .formstyler-checkbox-dot {
+        background-color: #dc3545; }
+    .formstyler-switchbox:hover:not(.formstyler-disabled):not(.formstyler-focused).formstyler-checked .formstyler-checkbox-dot, .formstyler-switchbox.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused).formstyler-checked .formstyler-checkbox-dot {
+      background-color: #007bff; }
+    .formstyler-switchbox:hover:not(.formstyler-disabled):not(.formstyler-focused).formstyler-checked.formstyler-colored, .formstyler-switchbox.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused).formstyler-checked.formstyler-colored {
+      border-color: #adb5bd;
+      -webkit-box-shadow: none;
+      box-shadow: none; }
+      .formstyler-switchbox:hover:not(.formstyler-disabled):not(.formstyler-focused).formstyler-checked.formstyler-colored .formstyler-checkbox-dot, .formstyler-switchbox.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused).formstyler-checked.formstyler-colored .formstyler-checkbox-dot {
+        background-color: #28a745; }
   .formstyler-switchbox.formstyler-checked .formstyler-switchbox-dot {
     left: 4px;
-    background: #007bff; }
+    background-color: #007bff; }
   .formstyler-switchbox.formstyler-checked.formstyler-colored .formstyler-switchbox-dot {
-    background: #28a745; }
-  .formstyler-switchbox:hover:not(.formstyler-disabled):not(.formstyler-focused), .formstyler-switchbox.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused) {
-    border-color: #ced4da; }
+    background-color: #28a745; }
   .formstyler-switchbox.formstyler-focused {
     border-color: #80bdff;
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); }
+    -webkit-box-shadow: 0 0 0 3.2px rgba(0, 123, 255, 0.25);
+    box-shadow: 0 0 0 3.2px rgba(0, 123, 255, 0.25); }
+    .formstyler-switchbox.formstyler-focused .formstyler-switchbox-dot {
+      background-color: #6c757d; }
+    .formstyler-switchbox.formstyler-focused.formstyler-colored {
+      border-color: #efa2a9;
+      -webkit-box-shadow: 0 0 0 3.2px rgba(220, 53, 69, 0.25);
+      box-shadow: 0 0 0 3.2px rgba(220, 53, 69, 0.25); }
+      .formstyler-switchbox.formstyler-focused.formstyler-colored .formstyler-switchbox-dot {
+        background-color: #dc3545; }
+    .formstyler-switchbox.formstyler-focused.formstyler-checked .formstyler-switchbox-dot {
+      background-color: #007bff; }
+    .formstyler-switchbox.formstyler-focused.formstyler-checked.formstyler-colored {
+      border-color: #71dd8a;
+      -webkit-box-shadow: 0 0 0 3.2px rgba(40, 167, 69, 0.25);
+      box-shadow: 0 0 0 3.2px rgba(40, 167, 69, 0.25); }
+      .formstyler-switchbox.formstyler-focused.formstyler-checked.formstyler-colored .formstyler-switchbox-dot {
+        background-color: #28a745; }
   .formstyler-switchbox.formstyler-disabled {
     border-color: #ced4da;
-    background: #e9ecef;
+    background-color: #e9ecef;
     cursor: not-allowed; }
     .formstyler-switchbox.formstyler-disabled .formstyler-switchbox-dot {
       opacity: 0; }
-    .formstyler-switchbox.formstyler-disabled.formstyler-checked .formstyler-switchbox-dot {
-      background: #6c757d;
+    .formstyler-switchbox.formstyler-disabled.formstyler-checked .formstyler-switchbox-dot, .formstyler-switchbox.formstyler-disabled.formstyler-checked.formstyler-colored .formstyler-switchbox-dot {
+      background-color: #6c757d;
       opacity: 1; }
 
 .formstyler-switchblock {
   position: relative;
+  min-height: 24px;
   padding-left: 44px; }
   .formstyler-switchblock .formstyler-switchbox {
     position: absolute;
@@ -209,10 +294,10 @@
   background-color: #fff;
   -webkit-box-shadow: none;
   box-shadow: none;
-  -webkit-transition: border-color 0.15s linear, background 0.15s linear, -webkit-box-shadow 0.15s linear;
-  transition: border-color 0.15s linear, background 0.15s linear, -webkit-box-shadow 0.15s linear;
-  transition: border-color 0.15s linear, box-shadow 0.15s linear, background 0.15s linear;
-  transition: border-color 0.15s linear, box-shadow 0.15s linear, background 0.15s linear, -webkit-box-shadow 0.15s linear;
+  -webkit-transition: border-color 0.15s ease-in-out, background 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, background 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
   cursor: pointer;
   overflow: hidden;
   -webkit-user-select: none;
@@ -222,37 +307,62 @@
   .formstyler-radio input {
     position: absolute;
     z-index: -1;
+    width: 0;
+    height: 0;
     margin: 0;
     padding: 0;
     opacity: 0; }
   .formstyler-radio .formstyler-radio-dot {
     position: absolute;
-    top: 5px;
-    left: 5px;
-    width: 12px;
-    height: 12px;
+    top: 4px;
+    left: 4px;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
-    background: #007bff;
+    background-color: #007bff;
     opacity: 0;
-    -webkit-transition: opacity 0.15s linear;
-    transition: opacity 0.15s linear; }
+    -webkit-transition: opacity 0.15s ease-in-out;
+    transition: opacity 0.15s ease-in-out; }
+  .formstyler-radio.formstyler-colored .formstyler-radio-dot {
+    background-color: #28a745; }
   .formstyler-radio:hover:not(.formstyler-disabled):not(.formstyler-focused), .formstyler-radio.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused) {
-    border-color: #ced4da; }
+    border-color: #adb5bd;
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+    .formstyler-radio:hover:not(.formstyler-disabled):not(.formstyler-focused) .formstyler-radio-dot, .formstyler-radio.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused) .formstyler-radio-dot {
+      background-color: #007bff; }
+    .formstyler-radio:hover:not(.formstyler-disabled):not(.formstyler-focused).formstyler-colored, .formstyler-radio.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused).formstyler-colored {
+      border-color: #adb5bd;
+      -webkit-box-shadow: none;
+      box-shadow: none; }
+      .formstyler-radio:hover:not(.formstyler-disabled):not(.formstyler-focused).formstyler-colored .formstyler-radio-dot, .formstyler-radio.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused).formstyler-colored .formstyler-radio-dot {
+        background-color: #28a745; }
   .formstyler-radio.formstyler-focused {
     border-color: #80bdff;
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); }
-  .formstyler-radio.formstyler-disabled {
+    -webkit-box-shadow: 0 0 0 3.2px rgba(0, 123, 255, 0.25);
+    box-shadow: 0 0 0 3.2px rgba(0, 123, 255, 0.25); }
+    .formstyler-radio.formstyler-focused .formstyler-radio-dot {
+      background-color: #007bff; }
+    .formstyler-radio.formstyler-focused.formstyler-colored.formstyler-checked {
+      border-color: #71dd8a;
+      -webkit-box-shadow: 0 0 0 3.2px rgba(40, 167, 69, 0.25);
+      box-shadow: 0 0 0 3.2px rgba(40, 167, 69, 0.25); }
+      .formstyler-radio.formstyler-focused.formstyler-colored.formstyler-checked .formstyler-radio-dot {
+        background-color: #28a745; }
+  .formstyler-radio.formstyler-disabled, .formstyler-radio.formstyler-disabled.formstyler-colored {
     border-color: #ced4da;
-    background: #e9ecef;
+    background-color: #e9ecef;
+    -webkit-box-shadow: none;
+    box-shadow: none;
     cursor: not-allowed; }
-    .formstyler-radio.formstyler-disabled .formstyler-radio-dot {
+    .formstyler-radio.formstyler-disabled .formstyler-radio-dot, .formstyler-radio.formstyler-disabled.formstyler-colored .formstyler-radio-dot {
       background: #6c757d; }
   .formstyler-radio.formstyler-checked .formstyler-radio-dot {
     opacity: 1; }
 
 .formstyler-radioblock {
   position: relative;
+  min-height: 24px;
   padding-left: 32px; }
   .formstyler-radioblock .formstyler-radio {
     position: absolute;
@@ -267,189 +377,153 @@
     cursor: not-allowed; }
 
 .formstyler-number {
-  position: relative;
-  padding-right: 27px;
-  -webkit-transition: padding 0.15s linear;
-  transition: padding 0.15s linear; }
-  .formstyler-number input {
-    width: 100%; }
-    .formstyler-number input::-webkit-inner-spin-button, .formstyler-number input::-webkit-outer-spin-button {
-      margin: 0;
-      -webkit-appearance: none; }
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start; }
+  .formstyler-number input::-webkit-inner-spin-button, .formstyler-number input::-webkit-outer-spin-button {
+    margin: 0;
+    -webkit-appearance: none; }
   .formstyler-number .formstyler-number-button {
-    position: absolute;
-    right: 0;
-    width: 19px;
-    height: 19px;
-    -webkit-transition: opacity 0.15s linear, visibility 0.15s linear;
-    transition: opacity 0.15s linear, visibility 0.15s linear;
-    overflow: hidden;
     cursor: pointer; }
-    .formstyler-number .formstyler-number-button.formstyler-number-plus {
-      top: 0; }
-    .formstyler-number .formstyler-number-button.formstyler-number-minus {
-      bottom: 0; }
-    .formstyler-number .formstyler-number-button.formstyler-number-button-icon {
-      line-height: 19px;
-      text-align: center;
-      color: #007bff;
-      -webkit-transition: color 0.15s linear;
-      transition: color 0.15s linear;
-      font-size: 16px; }
-      .formstyler-number .formstyler-number-button.formstyler-number-button-icon:hover {
-        color: #007bff; }
-    .formstyler-number .formstyler-number-button.formstyler-number-button-image {
-      line-height: 0; }
-    .formstyler-number .formstyler-number-button.formstyler-number-button-angle::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 0;
-      border-right: 8px solid transparent;
-      border-left: 8px solid transparent;
-      left: 2px;
-      -webkit-transition: border-color 0.15s linear;
-      transition: border-color 0.15s linear; }
-    .formstyler-number .formstyler-number-button.formstyler-number-button-angle.formstyler-number-plus::after {
-      bottom: 2px;
-      border-bottom: 8px solid #007bff; }
-    .formstyler-number .formstyler-number-button.formstyler-number-button-angle.formstyler-number-plus:hover::after {
-      border-bottom-color: #007bff; }
-    .formstyler-number .formstyler-number-button.formstyler-number-button-angle.formstyler-number-minus::after {
-      top: 2px;
-      border-top: 8px solid #007bff; }
-    .formstyler-number .formstyler-number-button.formstyler-number-button-angle.formstyler-number-minus:hover::after {
-      border-top-color: #007bff; }
-    .formstyler-number .formstyler-number-button .formstyler-number-image {
-      width: 16px;
+    .formstyler-number .formstyler-number-button:first-child {
+      margin-right: 8px; }
+    .formstyler-number .formstyler-number-button:last-child {
+      margin-left: 8px; }
+    .formstyler-number .formstyler-number-button.formstyler-styled {
       height: 16px;
-      margin-top: 1.5px; }
-    .formstyler-number .formstyler-number-button .formstyler-number-angle {
-      position: relative;
-      width: inherit;
-      height: inherit; }
-  .formstyler-number.formstyler-colored .formstyler-number-button.formstyler-number-button-icon.formstyler-number-plus {
+      width: 16px;
+      line-height: 16px;
+      font-size: 16px;
+      font-family: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", sans-serif;
+      text-align: center; }
+      .formstyler-number .formstyler-number-button.formstyler-styled .formstyler-number-text,
+      .formstyler-number .formstyler-number-button.formstyler-styled .formstyler-number-icon {
+        color: #007bff;
+        -webkit-transition: color 0.15s ease-in-out;
+        transition: color 0.15s ease-in-out; }
+      .formstyler-number .formstyler-number-button.formstyler-styled .formstyler-number-text {
+        font-weight: bold; }
+      .formstyler-number .formstyler-number-button.formstyler-styled:hover .formstyler-number-text,
+      .formstyler-number .formstyler-number-button.formstyler-styled:hover .formstyler-number-icon {
+        color: #4da3ff; }
+  .formstyler-number.formstyler-colored .formstyler-number-button.formstyler-styled.formstyler-number-plus .formstyler-number-text,
+  .formstyler-number.formstyler-colored .formstyler-number-button.formstyler-styled.formstyler-number-plus .formstyler-number-icon {
     color: #28a745; }
-  .formstyler-number.formstyler-colored .formstyler-number-button.formstyler-number-button-icon.formstyler-number-minus {
+  .formstyler-number.formstyler-colored .formstyler-number-button.formstyler-styled.formstyler-number-minus .formstyler-number-text,
+  .formstyler-number.formstyler-colored .formstyler-number-button.formstyler-styled.formstyler-number-minus .formstyler-number-icon {
     color: #dc3545; }
-  .formstyler-number.formstyler-colored .formstyler-number-button.formstyler-number-button-icon.formstyler-number-plus:hover, .formstyler-number.formstyler-colored .formstyler-number-button.formstyler-number-button-icon.formstyler-number-minus:hover {
-    color: #007bff; }
-  .formstyler-number.formstyler-colored .formstyler-number-button.formstyler-number-button-angle.formstyler-number-plus::after {
-    border-bottom-color: #28a745; }
-  .formstyler-number.formstyler-colored .formstyler-number-button.formstyler-number-button-angle.formstyler-number-plus:hover::after {
-    border-bottom-color: #007bff; }
-  .formstyler-number.formstyler-colored .formstyler-number-button.formstyler-number-button-angle.formstyler-number-minus::after {
-    border-top-color: #dc3545; }
-  .formstyler-number.formstyler-colored .formstyler-number-button.formstyler-number-button-angle.formstyler-number-minus:hover::after {
-    border-top-color: #007bff; }
-  .formstyler-number.formstyler-disabled {
-    padding-right: 0; }
-    .formstyler-number.formstyler-disabled .formstyler-number-button {
-      visibility: hidden;
-      opacity: 0; }
+  .formstyler-number.formstyler-colored .formstyler-number-button.formstyler-styled:hover.formstyler-number-plus .formstyler-number-text,
+  .formstyler-number.formstyler-colored .formstyler-number-button.formstyler-styled:hover.formstyler-number-plus .formstyler-number-icon {
+    color: #48d368; }
+  .formstyler-number.formstyler-colored .formstyler-number-button.formstyler-styled:hover.formstyler-number-minus .formstyler-number-text,
+  .formstyler-number.formstyler-colored .formstyler-number-button.formstyler-styled:hover.formstyler-number-minus .formstyler-number-icon {
+    color: #e77681; }
+  .formstyler-number .formstyler-number-image {
+    width: 16px; }
+  .formstyler-number.formstyler-disabled .formstyler-number-button {
+    display: none; }
 
 .formstyler-file {
   position: relative;
-  display: block;
-  height: 38px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   overflow: hidden; }
   .formstyler-file input {
     position: absolute;
-    top: 0;
-    right: 0;
-    height: auto;
+    z-index: -1;
+    width: 0;
+    height: 0;
     margin: 0;
     padding: 0;
-    opacity: 0;
+    opacity: 0; }
+  .formstyler-file.formstyler-noid input {
+    z-index: 1;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: auto;
     font-size: 100px;
     line-height: 1em;
     cursor: pointer; }
   .formstyler-file .formstyler-file-name {
-    position: relative;
-    display: block;
-    height: 38px;
-    padding: 6.5px 0;
-    border-bottom: 1px solid #ced4da;
-    font: 15px/24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-    -webkit-transition: opacity 0.15s linear, border-color 0.15s linear;
-    transition: opacity 0.15s linear, border-color 0.15s linear; }
-    .formstyler-file .formstyler-file-name .formstyler-file-name-image {
-      position: absolute;
-      width: 15px;
-      height: 15px;
-      top: 11px;
-      left: 0; }
-      .formstyler-file .formstyler-file-name .formstyler-file-name-image + .formstyler-file-name-value {
-        margin-left: 23px; }
+    cursor: pointer; }
     .formstyler-file .formstyler-file-name .formstyler-file-name-icon {
       margin-right: 8px;
       color: #6c757d; }
-  .formstyler-file .formstyler-file-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: auto;
-    width: 150px;
-    height: 38px;
-    /*.formstyler-file-button-span {
-            position: relative;
-            display: inline-block;
-        }*/ }
-    .formstyler-file .formstyler-file-button + .formstyler-file-name {
-      margin-right: 158px; }
-    .formstyler-file .formstyler-file-button.formstyler-iconed {
-      width: 38px;
-      padding-left: 0;
-      padding-right: 0;
-      text-align: center; }
-      .formstyler-file .formstyler-file-button.formstyler-iconed + .formstyler-file-name {
-        margin-right: 46px; }
-    .formstyler-file .formstyler-file-button.formstyler-styled {
-      padding: 7px 0;
-      background: #007bff;
-      border-radius: 4px;
-      font: 16px/24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-      text-align: center;
-      color: #fff; }
-    .formstyler-file .formstyler-file-button .formstyler-file-button-image {
+    .formstyler-file .formstyler-file-name .formstyler-file-name-image {
       position: absolute;
-      top: 11px;
-      left: 11px;
+      top: 50%;
+      left: 8px;
+      margin-top: -7px;
+      width: 14px;
+      height: 14px; }
+    .formstyler-file .formstyler-file-name.formstyler-imaged {
+      position: relative;
+      text-indent: 0 !important;
+      padding-left: 30px !important; }
+    .formstyler-file .formstyler-file-name.formstyler-styled {
+      width: 100%;
+      height: 22px;
+      font-family: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", sans-serif;
+      font-size: 14px;
+      line-height: 22px;
+      color: #212529; }
+  .formstyler-file .formstyler-file-button {
+    margin-left: 8px;
+    white-space: nowrap;
+    cursor: pointer; }
+    .formstyler-file .formstyler-file-button .formstyler-file-button-image {
       width: 16px;
       height: 16px; }
-    .formstyler-file .formstyler-file-button .formstyler-file-button-image + .formstyler-file-button-value,
-    .formstyler-file .formstyler-file-button .formstyler-file-button-icon + .formstyler-file-button-value {
-      display: none; }
-  .formstyler-file.formstyler-file-empty .formstyler-file-name {
-    opacity: 0; }
-  .formstyler-file.formstyler-file-empty .formstyler-file-button {
-    left: 0;
-    width: auto; }
-    .formstyler-file.formstyler-file-empty .formstyler-file-button .formstyler-file-button-value {
-      display: inline-block; }
-    .formstyler-file.formstyler-file-empty .formstyler-file-button .formstyler-file-button-image {
-      display: none;
-      /*position: absolute;
-                top: ($height - $font-size-text)/2;
-                left: - ($font-size-text + $margin);
-                margin: 0;*/ }
-    .formstyler-file.formstyler-file-empty .formstyler-file-button .formstyler-file-button-icon {
-      margin-right: 8px; }
-  .formstyler-file:hover .formstyler-file-name, .formstyler-file.formstyler-hovered .formstyler-file-name {
-    border-bottom-color: #ced4da; }
-  .formstyler-file.formstyler-focused .formstyler-file-name {
-    border-bottom-color: #80bdff; }
+    .formstyler-file .formstyler-file-button.formstyler-styled {
+      height: 38px;
+      font-family: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", sans-serif;
+      font-size: 16px;
+      line-height: 24px;
+      padding: 7px 8px;
+      background-color: #007bff;
+      border: 0 solid transparent;
+      border-radius: 4px;
+      color: #fff;
+      -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out;
+      transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out; }
+      .formstyler-file .formstyler-file-button.formstyler-styled:hover {
+        border-color: transparent;
+        background-color: #0056b3;
+        color: #fff; }
   .formstyler-file.formstyler-disabled {
     cursor: not-allowed; }
-    .formstyler-file.formstyler-disabled input {
-      display: none; }
+    .formstyler-file.formstyler-disabled .formstyler-file-name,
     .formstyler-file.formstyler-disabled .formstyler-file-button {
-      background: #ced4da;
-      color: #000;
-      cursor: not-allowed; }
+      pointer-events: none; }
+    .formstyler-file.formstyler-disabled .formstyler-file-name.formstyler-styled {
+      color: #6c757d; }
+    .formstyler-file.formstyler-disabled .formstyler-file-button.formstyler-styled {
+      background-color: #6c757d; }
 
 .formstyler-select {
   position: relative;
@@ -463,31 +537,33 @@
     margin: 0;
     padding: 0;
     opacity: 0; }
-  .formstyler-select .formstyler-select-box {
+  .formstyler-select .formstyler-select-container {
     position: relative;
     width: 100%;
     height: 38px;
-    padding-right: 36px;
+    padding-right: 38px;
     border: 1px solid #ced4da;
     border-radius: 4px;
     background-color: #fff;
     -webkit-box-shadow: none;
     box-shadow: none;
-    -webkit-transition: border-color 0.15s linear, background 0.15s linear, -webkit-box-shadow 0.15s linear;
-    transition: border-color 0.15s linear, background 0.15s linear, -webkit-box-shadow 0.15s linear;
-    transition: border-color 0.15s linear, box-shadow 0.15s linear, background 0.15s linear;
-    transition: border-color 0.15s linear, box-shadow 0.15s linear, background 0.15s linear, -webkit-box-shadow 0.15s linear;
+    -webkit-transition: border-color 0.15s ease-in-out, background 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, background 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, background 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
     cursor: pointer;
     overflow: hidden;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none; }
-    .formstyler-select .formstyler-select-box .formstyler-select-text {
+    .formstyler-select .formstyler-select-container .formstyler-select-value {
       height: 36px;
-      font: 15px/24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-      padding: 6px 8px 6px 15px;
-      color: #000;
+      font-family: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", sans-serif;
+      font-size: 16px;
+      line-height: 24px;
+      padding: 6px 0 6px 16px;
+      color: #212529;
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
@@ -495,259 +571,291 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
-      -webkit-transition: color 0.15s linear;
-      transition: color 0.15s linear; }
-      .formstyler-select .formstyler-select-box .formstyler-select-text.formstyler-select-text-placeholder {
+      -webkit-transition: color 0.15s ease-in-out;
+      transition: color 0.15s ease-in-out; }
+      .formstyler-select .formstyler-select-container .formstyler-select-value.formstyler-select-placeholder {
         color: #6c757d; }
-    .formstyler-select .formstyler-select-box .formstyler-select-trigger-angle {
+    .formstyler-select .formstyler-select-container .formstyler-select-trigger {
       position: absolute;
       top: 0;
       right: 0;
       width: 36px;
-      height: 36px;
-      -webkit-transition: -webkit-transform 0.15s linear;
-      transition: -webkit-transform 0.15s linear;
-      transition: transform 0.15s linear;
-      transition: transform 0.15s linear, -webkit-transform 0.15s linear; }
-      .formstyler-select .formstyler-select-box .formstyler-select-trigger-angle::before {
+      height: 36px; }
+      .formstyler-select .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-image,
+      .formstyler-select .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-icon,
+      .formstyler-select .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-handler {
         position: absolute;
-        z-index: 1;
-        content: '';
-        top: 14.25px;
-        right: 10.5px;
-        width: 0;
-        height: 0;
-        border-top: 7.5px solid #ced4da;
-        border-right: 7.5px solid transparent;
-        border-left: 7.5px solid transparent;
-        -webkit-transition: border-color 0.15s linear;
-        transition: border-color 0.15s linear; }
-    .formstyler-select .formstyler-select-box .formstyler-select-trigger-icon,
-    .formstyler-select .formstyler-select-box .formstyler-select-trigger-image {
-      position: absolute;
-      top: 10.5px;
-      right: 10.5px;
-      width: 15px;
-      height: 15px; }
-    .formstyler-select .formstyler-select-box .formstyler-select-trigger-icon {
-      font-size: 15px;
-      line-height: 15px;
-      color: #ced4da;
-      -webkit-transition: color 0.15s linear, -webkit-transform 0.15s linear;
-      transition: color 0.15s linear, -webkit-transform 0.15s linear;
-      transition: transform 0.15s linear, color 0.15s linear;
-      transition: transform 0.15s linear, color 0.15s linear, -webkit-transform 0.15s linear; }
-    .formstyler-select .formstyler-select-box .formstyler-select-trigger-image {
-      -webkit-transition: -webkit-transform 0.15s linear;
-      transition: -webkit-transform 0.15s linear;
-      transition: transform 0.15s linear;
-      transition: transform 0.15s linear, -webkit-transform 0.15s linear; }
-    .formstyler-select .formstyler-select-box:hover, .formstyler-select .formstyler-select-box.formstyler-hovered {
-      border-color: #ced4da; }
-      .formstyler-select .formstyler-select-box:hover .formstyler-select-trigger-angle::before, .formstyler-select .formstyler-select-box.formstyler-hovered .formstyler-select-trigger-angle::before {
-        border-top-color: #ced4da; }
-      .formstyler-select .formstyler-select-box:hover .formstyler-select-trigger-icon, .formstyler-select .formstyler-select-box.formstyler-hovered .formstyler-select-trigger-icon {
-        color: #ced4da; }
-    .formstyler-select .formstyler-select-box:active {
-      border-color: #80bdff; }
-      .formstyler-select .formstyler-select-box:active .formstyler-select-trigger-angle::before {
-        border-top-color: #80bdff; }
-      .formstyler-select .formstyler-select-box:active .formstyler-select-trigger-icon {
-        color: #80bdff; }
+        top: 11px;
+        right: 11px;
+        width: 14px;
+        height: 14px;
+        -webkit-transform: rotate(0);
+        transform: rotate(0); }
+      .formstyler-select .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-image {
+        -webkit-transition: -webkit-transform 0.15s ease-in-out;
+        transition: -webkit-transform 0.15s ease-in-out;
+        transition: transform 0.15s ease-in-out;
+        transition: transform 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out; }
+      .formstyler-select .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-icon {
+        font-size: 14px;
+        line-height: 14px;
+        color: #ced4da;
+        text-align: center;
+        -webkit-transition: color 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
+        transition: color 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
+        transition: color 0.15s ease-in-out, transform 0.15s ease-in-out;
+        transition: color 0.15s ease-in-out, transform 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out; }
+      .formstyler-select .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-handler {
+        border: 3.5px solid #ced4da;
+        border-radius: 50%;
+        -webkit-transition: border-color 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
+        transition: border-color 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
+        transition: border-color 0.15s ease-in-out, transform 0.15s ease-in-out;
+        transition: border-color 0.15s ease-in-out, transform 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out; }
   .formstyler-select .formstyler-select-dropdown {
+    display: none;
     position: absolute;
     left: 0;
-    right: 0;
-    width: 100%;
     margin: 0;
     border: 1px solid #ced4da;
     border-radius: 4px;
     background-color: #fff;
-    -webkit-transition: margin 0.15s linear;
-    transition: margin 0.15s linear; }
-  .formstyler-select .formstyler-select-list {
-    position: relative;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    border-bottom-left-radius: inherit;
-    border-bottom-right-radius: inherit;
-    overflow: auto;
+    -webkit-box-shadow: none;
+    box-shadow: none;
     overflow-x: hidden;
-    -webkit-overflow-scrolling: touch; }
-    .formstyler-select .formstyler-select-list:first-child {
-      border-top-left-radius: inherit;
-      border-top-right-radius: inherit; }
-  .formstyler-select .formstyler-select-toggle,
-  .formstyler-select .formstyler-select-option,
-  .formstyler-select .formstyler-select-optgroup {
-    margin: 0;
-    padding: 5px 15px;
-    background-color: #fff;
-    font: 14px/24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    list-style: none; }
-  .formstyler-select .formstyler-select-optgroup {
-    font-weight: bold;
-    cursor: default; }
-  .formstyler-select .formstyler-select-toggle {
-    font-weight: bold; }
-  .formstyler-select .formstyler-select-toggle,
-  .formstyler-select .formstyler-select-option {
-    cursor: pointer; }
-    .formstyler-select .formstyler-select-toggle.formstyler-selected,
-    .formstyler-select .formstyler-select-option.formstyler-selected {
+    overflow-y: auto;
+    -webkit-transition: margin 0.15s ease-in-out;
+    transition: margin 0.15s ease-in-out;
+    right: 0;
+    width: 100%; }
+    .formstyler-select .formstyler-select-dropdown .formstyler-select-list {
+      position: relative;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      overflow: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch; }
+      .formstyler-select .formstyler-select-dropdown .formstyler-select-list:first-child {
+        border-top-left-radius: inherit;
+        border-top-right-radius: inherit; }
+      .formstyler-select .formstyler-select-dropdown .formstyler-select-list:last-child {
+        border-bottom-left-radius: inherit;
+        border-bottom-right-radius: inherit; }
+      .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option,
+      .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-optgroup {
+        margin: 0;
+        padding: 3px 8px;
+        background-color: #fff;
+        font-family: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", sans-serif;
+        color: #212529;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        list-style: none; }
+      .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-optgroup {
+        font-size: 14px;
+        line-height: 22px;
+        font-weight: bold;
+        cursor: default; }
+      .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option {
+        position: relative;
+        font-size: 14px;
+        line-height: 22px;
+        font-weight: normal;
+        -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+        cursor: pointer; }
+        .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option:not(.formstyler-disabled).formstyler-selected {
+          background-color: #fff;
+          color: #007bff; }
+        .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option:not(.formstyler-disabled):hover {
+          background-color: #f8f9fa;
+          color: #003e80; }
+        .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option.formstyler-disabled {
+          background-color: #fff;
+          color: #6c757d;
+          cursor: not-allowed; }
+        .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option.formstyler-optgrouped {
+          padding-left: 29px; }
+        .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option.formstyler-select-placeholder {
+          color: #6c757d; }
+        .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option .formstyler-select-option-image,
+        .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option .formstyler-select-option-icon {
+          display: none; }
+        .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option.formstyler-multiple {
+          padding-left: 38px; }
+          .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option.formstyler-multiple.formstyler-styled::before,
+          .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option.formstyler-multiple .formstyler-select-option-image,
+          .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option.formstyler-multiple .formstyler-select-option-icon {
+            display: block;
+            position: absolute;
+            opacity: 0; }
+          .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option.formstyler-multiple .formstyler-select-option-image {
+            top: 7px;
+            left: 12px;
+            width: 14px;
+            height: 14px;
+            -webkit-transition: opacity 0.15s ease-in-out;
+            transition: opacity 0.15s ease-in-out; }
+          .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option.formstyler-multiple .formstyler-select-option-icon {
+            top: 3px;
+            left: 8px;
+            width: 22px;
+            height: 22px;
+            font-size: 14px;
+            line-height: 22px;
+            text-align: center;
+            color: #007bff;
+            -webkit-transition: color 0.15s ease-in-out, opacity 0.15s ease-in-out;
+            transition: color 0.15s ease-in-out, opacity 0.15s ease-in-out; }
+          .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option.formstyler-multiple.formstyler-styled::before {
+            content: '';
+            top: 7px;
+            left: 12px;
+            width: 14px;
+            height: 14px;
+            border: 3.5px solid #007bff;
+            border-radius: 50%;
+            -webkit-transition: border-color 0.15s ease-in-out, opacity 0.15s ease-in-out;
+            transition: border-color 0.15s ease-in-out, opacity 0.15s ease-in-out; }
+          .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option.formstyler-multiple.formstyler-selected.formstyler-styled::before,
+          .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option.formstyler-multiple.formstyler-selected .formstyler-select-option-image,
+          .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option.formstyler-multiple.formstyler-selected .formstyler-select-option-icon {
+            opacity: 1; }
+          .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option.formstyler-multiple.formstyler-disabled .formstyler-select-option-image {
+            -webkit-filter: grayscale(1);
+            filter: grayscale(1); }
+          .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option.formstyler-multiple.formstyler-disabled .formstyler-select-option-icon {
+            color: #6c757d; }
+          .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option.formstyler-multiple:not(.formstyler-disabled):hover .formstyler-select-option-icon {
+            color: #003e80; }
+          .formstyler-select .formstyler-select-dropdown .formstyler-select-list .formstyler-select-option.formstyler-multiple:not(.formstyler-disabled):hover.formstyler-styled::before {
+            border-color: #003e80; }
+    .formstyler-select .formstyler-select-dropdown .formstyler-select-toggle {
+      position: relative;
+      margin: 0;
+      padding: 3px 8px 3px 38px;
       background-color: #fff;
-      color: #007bff; }
-    .formstyler-select .formstyler-select-toggle:hover,
-    .formstyler-select .formstyler-select-option:hover {
-      background-color: #f8f9fa;
-      color: #007bff; }
-  .formstyler-select .formstyler-select-option.formstyler-optgrouped {
-    padding-left: 39px; }
-  .formstyler-select .formstyler-select-option.formstyler-select-option-placeholder {
-    color: #6c757d; }
-  .formstyler-select .formstyler-select-option.formstyler-disabled {
-    background-color: #fff;
-    color: #6c757d;
-    cursor: not-allowed; }
-  .formstyler-select .formstyler-select-notfound {
-    margin: 8px;
-    font: 15px/24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-    text-align: center;
-    color: #6c757d; }
-  .formstyler-select .formstyler-select-search.formstyler-select-search-custom {
-    padding: 8px; }
-    .formstyler-select .formstyler-select-search.formstyler-select-search-custom + .formstyler-select-notfound {
-      margin-top: 0; }
-  .formstyler-select .formstyler-select-search .formstyler-select-search-input {
-    display: block;
-    width: 100%;
-    height: 38px;
-    border: none;
-    border-bottom: 1px solid #ced4da;
-    text-indent: 15px;
-    padding: 6.5px 0;
-    font: 15px/24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      font-family: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", sans-serif;
+      font-size: 14px;
+      line-height: 22px;
+      font-weight: bold;
+      color: #212529;
+      cursor: pointer;
+      -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out; }
+      .formstyler-select .formstyler-select-dropdown .formstyler-select-toggle.formstyler-styled::before,
+      .formstyler-select .formstyler-select-dropdown .formstyler-select-toggle .formstyler-select-toggle-image,
+      .formstyler-select .formstyler-select-dropdown .formstyler-select-toggle .formstyler-select-toggle-icon {
+        position: absolute;
+        opacity: 0; }
+      .formstyler-select .formstyler-select-dropdown .formstyler-select-toggle .formstyler-select-toggle-image {
+        top: 7px;
+        left: 12px;
+        width: 14px;
+        height: 14px;
+        -webkit-transition: opacity 0.15s ease-in-out;
+        transition: opacity 0.15s ease-in-out; }
+      .formstyler-select .formstyler-select-dropdown .formstyler-select-toggle .formstyler-select-toggle-icon {
+        top: 3px;
+        left: 8px;
+        width: 22px;
+        height: 22px;
+        font-size: 14px;
+        line-height: 22px;
+        text-align: center;
+        color: #007bff;
+        -webkit-transition: color 0.15s ease-in-out, opacity 0.15s ease-in-out;
+        transition: color 0.15s ease-in-out, opacity 0.15s ease-in-out; }
+      .formstyler-select .formstyler-select-dropdown .formstyler-select-toggle.formstyler-styled::before {
+        content: '';
+        top: 7px;
+        left: 12px;
+        width: 14px;
+        height: 14px;
+        border: 3.5px solid #007bff;
+        border-radius: 50%;
+        -webkit-transition: border-color 0.15s ease-in-out, opacity 0.15s ease-in-out;
+        transition: border-color 0.15s ease-in-out, opacity 0.15s ease-in-out; }
+      .formstyler-select .formstyler-select-dropdown .formstyler-select-toggle.formstyler-selected {
+        background-color: #fff;
+        color: #007bff; }
+        .formstyler-select .formstyler-select-dropdown .formstyler-select-toggle.formstyler-selected.formstyler-styled::before,
+        .formstyler-select .formstyler-select-dropdown .formstyler-select-toggle.formstyler-selected .formstyler-select-toggle-image,
+        .formstyler-select .formstyler-select-dropdown .formstyler-select-toggle.formstyler-selected .formstyler-select-toggle-icon {
+          opacity: 1; }
+      .formstyler-select .formstyler-select-dropdown .formstyler-select-toggle:hover {
+        background-color: #f8f9fa;
+        color: #003e80; }
+        .formstyler-select .formstyler-select-dropdown .formstyler-select-toggle:hover .formstyler-select-toggle-icon {
+          color: #003e80; }
+        .formstyler-select .formstyler-select-dropdown .formstyler-select-toggle:hover.formstyler-styled::before {
+          border-color: #003e80; }
+    .formstyler-select .formstyler-select-dropdown .formstyler-select-search {
+      padding: 3px 8px; }
+      .formstyler-select .formstyler-select-dropdown .formstyler-select-search .formstyler-select-search-input {
+        width: 100%; }
+        .formstyler-select .formstyler-select-dropdown .formstyler-select-search .formstyler-select-search-input.formstyler-styled {
+          margin: 0;
+          padding: 0;
+          border: none;
+          background-color: transparent;
+          font-family: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", sans-serif;
+          font-size: 14px;
+          line-height: 22px;
+          font-weight: normal;
+          text-indent: 0;
+          color: #212529;
+          -webkit-transition: color 0.15s ease-in-out;
+          transition: color 0.15s ease-in-out;
+          outline: none; }
+          .formstyler-select .formstyler-select-dropdown .formstyler-select-search .formstyler-select-search-input.formstyler-styled:hover {
+            color: #212529; }
+          .formstyler-select .formstyler-select-dropdown .formstyler-select-search .formstyler-select-search-input.formstyler-styled:focus {
+            color: #212529; }
+    .formstyler-select .formstyler-select-dropdown .formstyler-select-notfound {
+      display: none;
+      padding: 3px 8px;
+      font-family: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", sans-serif;
+      font-size: 14px;
+      line-height: 22px;
+      font-weight: normal;
+      text-align: center;
+      color: #6c757d; }
+  .formstyler-select:hover:not(.formstyler-disabled):not(.formstyler-focused):not(.formstyler-opened) .formstyler-select-container, .formstyler-select.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused):not(.formstyler-opened) .formstyler-select-container {
+    border-color: #adb5bd;
     -webkit-box-shadow: none;
     box-shadow: none; }
-    .formstyler-select .formstyler-select-search .formstyler-select-search-input::-webkit-input-placeholder {
-      color: #6c757d; }
-    .formstyler-select .formstyler-select-search .formstyler-select-search-input::-moz-placeholder {
-      color: #6c757d; }
-    .formstyler-select .formstyler-select-search .formstyler-select-search-input:-ms-input-placeholder {
-      color: #6c757d; }
-    .formstyler-select .formstyler-select-search .formstyler-select-search-input::-ms-input-placeholder {
-      color: #6c757d; }
-    .formstyler-select .formstyler-select-search .formstyler-select-search-input::placeholder {
-      color: #6c757d; }
-  .formstyler-select.formstyler-small .formstyler-select-box {
-    height: 29px;
-    padding-right: 27px; }
-    .formstyler-select.formstyler-small .formstyler-select-box .formstyler-select-text {
-      height: 27px;
-      font: 13px/24px -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-      padding: 1.5px 8px 1.5px 13px; }
-    .formstyler-select.formstyler-small .formstyler-select-box .formstyler-select-trigger-angle {
-      width: 27px;
-      height: 27px; }
-      .formstyler-select.formstyler-small .formstyler-select-box .formstyler-select-trigger-angle::before {
-        top: 10.25px;
-        right: 7px;
-        border-top: 6.5px solid #ced4da;
-        border-right: 6.5px solid transparent;
-        border-left: 6.5px solid transparent; }
-    .formstyler-select.formstyler-small .formstyler-select-box .formstyler-select-trigger-icon,
-    .formstyler-select.formstyler-small .formstyler-select-box .formstyler-select-trigger-image {
-      position: absolute;
-      top: 7px;
-      right: 7px;
-      width: 13px;
-      height: 13px; }
-    .formstyler-select.formstyler-small .formstyler-select-box .formstyler-select-trigger-icon {
-      font-size: 13px;
-      line-height: 13px; }
-  .formstyler-select.formstyler-select-pos-down .formstyler-select-dropdown {
-    margin-top: 8px; }
-  .formstyler-select.formstyler-select-pos-up .formstyler-select-dropdown {
-    margin-bottom: 8px; }
-  .formstyler-select.formstyler-focused .formstyler-select-box, .formstyler-select.formstyler-opened .formstyler-select-box {
+    .formstyler-select:hover:not(.formstyler-disabled):not(.formstyler-focused):not(.formstyler-opened) .formstyler-select-container .formstyler-select-value:not(.formstyler-select-placeholder), .formstyler-select.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused):not(.formstyler-opened) .formstyler-select-container .formstyler-select-value:not(.formstyler-select-placeholder) {
+      color: #212529; }
+    .formstyler-select:hover:not(.formstyler-disabled):not(.formstyler-focused):not(.formstyler-opened) .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-icon, .formstyler-select.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused):not(.formstyler-opened) .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-icon {
+      color: #adb5bd; }
+    .formstyler-select:hover:not(.formstyler-disabled):not(.formstyler-focused):not(.formstyler-opened) .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-handler, .formstyler-select.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused):not(.formstyler-opened) .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-handler {
+      border-color: #adb5bd; }
+  .formstyler-select.formstyler-focused .formstyler-select-container, .formstyler-select.formstyler-opened .formstyler-select-container {
     border-color: #80bdff;
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); }
-    .formstyler-select.formstyler-focused .formstyler-select-box .formstyler-select-trigger-angle::before, .formstyler-select.formstyler-opened .formstyler-select-box .formstyler-select-trigger-angle::before {
-      border-top-color: #80bdff; }
-    .formstyler-select.formstyler-focused .formstyler-select-box .formstyler-select-trigger-icon, .formstyler-select.formstyler-opened .formstyler-select-box .formstyler-select-trigger-icon {
+    -webkit-box-shadow: 0 0 0 3.2px rgba(0, 123, 255, 0.25);
+    box-shadow: 0 0 0 3.2px rgba(0, 123, 255, 0.25); }
+    .formstyler-select.formstyler-focused .formstyler-select-container .formstyler-select-value:not(.formstyler-select-placeholder), .formstyler-select.formstyler-opened .formstyler-select-container .formstyler-select-value:not(.formstyler-select-placeholder) {
+      color: #212529; }
+    .formstyler-select.formstyler-focused .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-icon, .formstyler-select.formstyler-opened .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-icon {
       color: #80bdff; }
-  .formstyler-select.formstyler-opened .formstyler-select-box .formstyler-select-trigger-angle,
-  .formstyler-select.formstyler-opened .formstyler-select-box .formstyler-select-trigger-icon,
-  .formstyler-select.formstyler-opened .formstyler-select-box .formstyler-select-trigger-image {
+    .formstyler-select.formstyler-focused .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-handler, .formstyler-select.formstyler-opened .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-handler {
+      border-color: #80bdff; }
+  .formstyler-select.formstyler-opened .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-image,
+  .formstyler-select.formstyler-opened .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-icon,
+  .formstyler-select.formstyler-opened .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-handler {
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg); }
-  .formstyler-select.formstyler-disabled .formstyler-select-box {
+  .formstyler-select.formstyler-disabled .formstyler-select-container {
     border-color: #ced4da;
     background-color: #e9ecef;
-    cursor: not-allowed; }
-    .formstyler-select.formstyler-disabled .formstyler-select-box .formstyler-select-text {
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+    .formstyler-select.formstyler-disabled .formstyler-select-container .formstyler-select-value {
       color: #6c757d; }
-    .formstyler-select.formstyler-disabled .formstyler-select-box .formstyler-select-trigger-angle::before {
-      border-top-color: #ced4da; }
-  .formstyler-select.formstyler-multiselect .formstyler-select-toggle,
-  .formstyler-select.formstyler-multiselect .formstyler-select-option {
-    position: relative;
-    padding-left: 32px; }
-    .formstyler-select.formstyler-multiselect .formstyler-select-toggle .formstyler-select-check-dot,
-    .formstyler-select.formstyler-multiselect .formstyler-select-toggle .formstyler-select-check-icon,
-    .formstyler-select.formstyler-multiselect .formstyler-select-toggle .formstyler-select-check-image,
-    .formstyler-select.formstyler-multiselect .formstyler-select-option .formstyler-select-check-dot,
-    .formstyler-select.formstyler-multiselect .formstyler-select-option .formstyler-select-check-icon,
-    .formstyler-select.formstyler-multiselect .formstyler-select-option .formstyler-select-check-image {
-      position: absolute;
-      top: 11px;
-      left: 10px;
-      width: 12px;
-      height: 12px;
-      opacity: 0;
-      -webkit-transition: opacity 0.15s linear;
-      transition: opacity 0.15s linear; }
-    .formstyler-select.formstyler-multiselect .formstyler-select-toggle .formstyler-select-check-dot,
-    .formstyler-select.formstyler-multiselect .formstyler-select-option .formstyler-select-check-dot {
-      border-radius: 4px;
-      background-color: #007bff; }
-    .formstyler-select.formstyler-multiselect .formstyler-select-toggle .formstyler-select-check-icon,
-    .formstyler-select.formstyler-multiselect .formstyler-select-option .formstyler-select-check-icon {
-      font-size: 12px;
-      line-height: 12px;
-      text-align: center;
-      color: #007bff; }
-    .formstyler-select.formstyler-multiselect .formstyler-select-toggle.formstyler-optgrouped,
-    .formstyler-select.formstyler-multiselect .formstyler-select-option.formstyler-optgrouped {
-      padding-left: 56px; }
-      .formstyler-select.formstyler-multiselect .formstyler-select-toggle.formstyler-optgrouped .formstyler-select-check-dot,
-      .formstyler-select.formstyler-multiselect .formstyler-select-toggle.formstyler-optgrouped .formstyler-select-check-icon,
-      .formstyler-select.formstyler-multiselect .formstyler-select-toggle.formstyler-optgrouped .formstyler-select-check-image,
-      .formstyler-select.formstyler-multiselect .formstyler-select-option.formstyler-optgrouped .formstyler-select-check-dot,
-      .formstyler-select.formstyler-multiselect .formstyler-select-option.formstyler-optgrouped .formstyler-select-check-icon,
-      .formstyler-select.formstyler-multiselect .formstyler-select-option.formstyler-optgrouped .formstyler-select-check-image {
-        left: 34px; }
-    .formstyler-select.formstyler-multiselect .formstyler-select-toggle.formstyler-selected,
-    .formstyler-select.formstyler-multiselect .formstyler-select-option.formstyler-selected {
-      color: #000; }
-      .formstyler-select.formstyler-multiselect .formstyler-select-toggle.formstyler-selected .formstyler-select-check-dot,
-      .formstyler-select.formstyler-multiselect .formstyler-select-toggle.formstyler-selected .formstyler-select-check-icon,
-      .formstyler-select.formstyler-multiselect .formstyler-select-toggle.formstyler-selected .formstyler-select-check-image,
-      .formstyler-select.formstyler-multiselect .formstyler-select-option.formstyler-selected .formstyler-select-check-dot,
-      .formstyler-select.formstyler-multiselect .formstyler-select-option.formstyler-selected .formstyler-select-check-icon,
-      .formstyler-select.formstyler-multiselect .formstyler-select-option.formstyler-selected .formstyler-select-check-image {
-        opacity: 1; }
-  .formstyler-select.formstyler-colored .formstyler-select-toggle .formstyler-select-check-dot,
-  .formstyler-select.formstyler-colored .formstyler-select-option .formstyler-select-check-dot {
-    background-color: #28a745; }
-  .formstyler-select.formstyler-colored .formstyler-select-toggle .formstyler-select-check-icon,
-  .formstyler-select.formstyler-colored .formstyler-select-option .formstyler-select-check-icon {
-    color: #28a745; }
-
-select[multiple] {
-  height: 38px; }
+    .formstyler-select.formstyler-disabled .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-icon {
+      color: #ced4da; }
+    .formstyler-select.formstyler-disabled .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-handler {
+      border-color: #ced4da; }

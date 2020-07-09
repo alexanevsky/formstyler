@@ -7,14 +7,11 @@ $(document).ready(function() {
 
     $('input, select').formstyler({
         file: {
-            class: 'form-control',
-            buttonClass: 'btn btn-success',
-            multipleLimit: 5
+            inputClass: 'form-control',
+            browseClass: 'btn btn-primary'
         },
-        locale: {
-            file: {
-                placeholder: 'Nothing selected'
-            }
+        select: {
+            searchClass: 'form-control form-control-sm'
         }
     });
 });

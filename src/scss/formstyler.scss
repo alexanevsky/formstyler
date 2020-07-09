@@ -1,26 +1,36 @@
-/*
- * jQuery FormStyler v3.1.1
- * https://github.com/Alexanevsky/formstyler
+/*!
+ * jQuery FormStyler v4.0.0
+ * https://github.com/alexanevsky/formstyler
  *
  * Copyright 2020 Alexanevsky (https://lashchevsky.me)
  * Copyright 2012-2017 Dimox (http://dimox.name)
  *
  * Released under the MIT license.
  *
- * Date: 2020-06-06
+ * Date: 2020-07-09
  */
 
-@import 'variables';
+ /*
+ * TOC
+ *
+ * Checkbox
+ * Switchbox
+ * Radio
+ * Number
+ * File
+ * Select
+ */
 
-@if $resetcss == true {
+@import 'formstyler_variables';
+
+ @if $resetcss == true {
     .formstyler-checkbox,
     .formstyler-checkblock,
     .formstyler-switchbox,
     .formstyler-switchblock,
-    .formstyler-radio,
     .formstyler-radioblock,
+    .formstyler-radio,
     .formstyler-number,
-    .formstyler-file,
     .formstyler-select {
         &,
         & * {
@@ -29,20 +39,19 @@
     }
 }
 
-
 // > Checkbox
 .formstyler-checkbox {
     position: relative;
     display: block;
     float: left;
-    width: $font-height-text;
-    height: $font-height-text;
-    margin: 0 $margin 0 0;
-    border: $border-width solid $border-color;
-    border-radius: $border-radius;
-    background-color: $bg;
-    box-shadow: $boxshadow-checkbox;
-    transition: border-color $transition-duration $transition-timing, box-shadow $transition-duration $transition-timing, background $transition-duration $transition-timing;
+    width: $checkbox-size;
+    height: $checkbox-size;
+    margin: 0 $checkbox-margin 0 0;
+    border: $checkbox-border-width solid $checkbox-border-color;
+    border-radius: $checkbox-border-radius;
+    background-color: $checkbox-background;
+    box-shadow: $checkbox-box-shadow;
+    transition: border-color $transition, box-shadow $transition, background $transition;
     cursor: pointer;
     overflow: hidden;
     user-select: none;
@@ -50,6 +59,8 @@
     input {
         position: absolute;
         z-index: -1;
+        width: 0;
+        height: 0;
         margin: 0;
         padding: 0;
         opacity: 0;
@@ -58,63 +69,92 @@
     .formstyler-checkbox-icon,
     .formstyler-checkbox-image {
         position: absolute;
+        top: ($checkbox-size - $checkbox-border-width * 2 - $checkbox-dot-size) / 2;
+        left: ($checkbox-size - $checkbox-border-width * 2 - $checkbox-dot-size) / 2;
+        width: $checkbox-dot-size;
+        height: $checkbox-dot-size;
         opacity: 0;
-        transition: opacity $transition-duration $transition-timing;
-    }
-    .formstyler-checkbox-dot,
-    .formstyler-checkbox-image {
-        top: ($font-height-text - $border-width*2 - $font-height-text/2)/2;
-        left: ($font-height-text - $border-width*2 - $font-height-text/2)/2;
-        width: $font-height-text / 2;
-        height: $font-height-text / 2;
+        transition: opacity $transition;
     }
     .formstyler-checkbox-dot {
-        background: $text-color-active;
-
-        @if $border-radius > ($font-height-text - $border-width * 2) / 1.5 / 2 == true {
-            border-radius: 50%;
-        } @else {
-            border-radius: $border-radius;
-        }
+        background-color: $checkbox-dot-color;
+        border-radius: $checkbox-dot-border-radius;
     }
     .formstyler-checkbox-icon {
-        top: 0;
-        left: 0;
-        width: $font-height-text - $border-width*2;
-        height: $font-height-text - $border-width*2;
-        line-height: $font-height-text - $border-width*2;
+        line-height: $checkbox-dot-size;
+        font-size: $checkbox-dot-size;
         text-align: center;
-        font-size: ceil(($font-height-text - $border-width * 2) / 1.5);
-        color: $text-color-active;
+        color: $checkbox-dot-color;
     }
     &.formstyler-colored {
         .formstyler-checkbox-dot {
-            background: $color-positive;
+            background-color: $checkbox-dot-color-positive;
         }
         .formstyler-checkbox-icon {
-            color: $color-positive;
+            color: $checkbox-dot-color-positive;
         }
     }
     &:hover,
     &.formstyler-hovered {
         &:not(.formstyler-disabled):not(.formstyler-focused) {
-            border-color: $border-color-hover;
+            border-color: $checkbox-border-color-hover;
+            box-shadow: $checkbox-box-shadow-hover;
+
+            .formstyler-checkbox-dot {
+                background-color: $checkbox-dot-color-hover;
+            }
+            .formstyler-checkbox-icon {
+                color: $checkbox-dot-color-hover;
+            }
+            &.formstyler-colored {
+                border-color: $checkbox-border-color-positive-hover;
+                box-shadow: $checkbox-box-shadow-positive-hover;
+
+                .formstyler-checkbox-dot {
+                    background-color: $checkbox-dot-color-positive-hover;
+                }
+                .formstyler-checkbox-icon {
+                    color: $checkbox-dot-color-positive-hover;
+                }
+            }
         }
     }
     &.formstyler-focused {
-        border-color: $border-color-active;
-        box-shadow: $boxshadow-checkbox-active;
+        border-color: $checkbox-border-color-focus;
+        box-shadow: $checkbox-box-shadow-focus;
+
+        .formstyler-checkbox-dot {
+            background-color: $checkbox-dot-color-focus;
+        }
+        .formstyler-checkbox-icon {
+            color: $checkbox-dot-color-focus;
+        }
+        &.formstyler-colored.formstyler-checked {
+            border-color: $checkbox-border-color-positive-focus;
+            box-shadow: $checkbox-box-shadow-positive-focus;
+
+            .formstyler-checkbox-dot {
+                background-color: $checkbox-dot-color-positive-focus;
+            }
+            .formstyler-checkbox-icon {
+                color: $checkbox-dot-color-positive-focus;
+            }
+        }
     }
     &.formstyler-disabled {
-        border-color: $border-color-disabled;
-        background: $bg-disabled;
+        border-color: $checkbox-border-color-disabled;
+        background-color: $checkbox-background-disabled;
+        box-shadow: $checkbox-box-shadow-disabled;
         cursor: not-allowed;
 
         .formstyler-checkbox-dot {
-            background: $text-color-disabled;
+            background-color: $checkbox-dot-color-disabled;
         }
         .formstyler-checkbox-icon {
-            color: $text-color-disabled;
+            color: $checkbox-dot-color-disabled;
+        }
+        .formstyler-checkbox-image {
+            filter: grayscale(1);
         }
     }
     &.formstyler-checked {
@@ -127,7 +167,8 @@
 }
 .formstyler-checkblock {
     position: relative;
-    padding-left: $font-height-text + $margin;
+    min-height: $checkbox-size;
+    padding-left: $checkbox-size + $checkbox-margin;
 
     .formstyler-checkbox {
         position: absolute;
@@ -141,26 +182,25 @@
     }
     &.formstyler-disabled {
         .formstyler-label {
-            color: $text-color-disabled;
+            color: $label-color-disabled;
             cursor: not-allowed;
         }
     }
 }
-
 
 // > Switchbox
 .formstyler-switchbox {
     position: relative;
     display: block;
     float: left;
-    width: ceil($font-height-text * 1.5);
-    height: $font-height-text;
-    margin: 0 $margin 0 0;
-    border: $border-width solid $border-color;
-    border-radius: $border-radius-switch;
-    background-color: $bg;
-    box-shadow: $boxshadow-checkbox;
-    transition: border-color $transition-duration $transition-timing, box-shadow $transition-duration $transition-timing, background $transition-duration $transition-timing;
+    width: ceil($switchbox-size * 1.5);
+    height: $switchbox-size;
+    margin: 0 $switchbox-margin 0 0;
+    border: $switchbox-border-width solid $switchbox-border-color;
+    border-radius: $switchbox-border-radius;
+    background-color: $switchbox-background;
+    box-shadow: $switchbox-box-shadow;
+    transition: border-color $transition, box-shadow $transition, background $transition;
     cursor: pointer;
     overflow: hidden;
     user-select: none;
@@ -168,70 +208,122 @@
     input {
         position: absolute;
         z-index: -1;
+        width: 0;
+        height: 0;
         margin: 0;
         padding: 0;
         opacity: 0;
     }
     .formstyler-switchbox-dot {
         position: absolute;
-        top: ceil(($font-height-text - $border-width * 2 - ($font-height-text - $border-width * 2) / 1.5) / 2);
-        left: ceil(($font-height-text - $border-width * 2 - floor(($font-height-text - $border-width * 2) / 1.5)) / 2 + floor(($font-height-text - $border-width * 2) / 1.5));
-        width: floor(($font-height-text - $border-width * 2) / 1.5);
-        height: floor(($font-height-text - $border-width * 2) / 1.5);
-        background: $text-color-placeholder;
-        transition: background $transition-duration $transition-timing, left $transition-duration $transition-timing, right $transition-duration $transition-timing, opacity $transition-duration $transition-timing;
-
-        @if $border-radius-switch > floor(($font-height-text - $border-width * 2) / 1.5 / 2) == true {
-            border-radius: 50%;
-        } @else {
-            border-radius: $border-radius-switch;
-        }
+        top: ceil(($switchbox-size - $switchbox-border-width * 2 - ($switchbox-size - $switchbox-border-width * 2) / 1.5) / 2);
+        left: ceil(($switchbox-size - $switchbox-border-width * 2 - $switchbox-dot-size) / 2 + $switchbox-dot-size);
+        width: $switchbox-dot-size;
+        height: $switchbox-dot-size;
+        border-radius: $switchbox-dot-border-radius;
+        background-color: $switchbox-dot-color;
+        transition: background $transition, left $transition, right $transition, opacity $transition;
     }
     &.formstyler-colored {
         .formstyler-switchbox-dot {
-            background: $color-negative;
-        }
-    }
-    &.formstyler-checked {
-        .formstyler-switchbox-dot {
-            left: ceil(($font-height-text - $border-width * 2 - floor(($font-height-text - $border-width * 2) / 1.5)) / 2);
-            background: $text-color-active;
-        }
-        &.formstyler-colored {
-            .formstyler-switchbox-dot {
-                background: $color-positive;
-            }
+            background-color: $switchbox-dot-color-negative;
         }
     }
     &:hover,
     &.formstyler-hovered {
         &:not(.formstyler-disabled):not(.formstyler-focused) {
-            border-color: $border-color-hover;
+            border-color: $switchbox-border-color-hover;
+            box-shadow: $switchbox-box-shadow-hover;
+
+            .formstyler-checkbox-dot {
+                background-color: $switchbox-dot-color-hover;
+            }
+            &.formstyler-colored {
+                border-color: $switchbox-border-color-negative-hover;
+                box-shadow: $switchbox-box-shadow-negative-hover;
+
+                .formstyler-checkbox-dot {
+                    background-color: $switchbox-dot-color-negative-hover;
+                }
+            }
+            &.formstyler-checked {
+                .formstyler-checkbox-dot {
+                    background-color: $switchbox-dot-color-checked-hover;
+                }
+                &.formstyler-colored {
+                    border-color: $switchbox-border-color-positive-hover;
+                    box-shadow: $switchbox-box-shadow-positive-hover;
+
+                    .formstyler-checkbox-dot {
+                        background-color: $switchbox-dot-color-positive-hover;
+                    }
+                }
+            }
+        }
+    }
+    &.formstyler-checked {
+        .formstyler-switchbox-dot {
+            left: ceil(($switchbox-size - $switchbox-border-width * 2 - $switchbox-dot-size) / 2);
+            background-color: $switchbox-dot-color-checked;
+        }
+        &.formstyler-colored {
+            .formstyler-switchbox-dot {
+                background-color: $switchbox-dot-color-positive;
+            }
         }
     }
     &.formstyler-focused {
-        border-color: $border-color-active;
-        box-shadow: $boxshadow-checkbox-active;
+        border-color: $switchbox-border-color-focus;
+        box-shadow: $switchbox-box-shadow-focus;
+
+        .formstyler-switchbox-dot {
+            background-color: $switchbox-dot-color-focus;
+        }
+        &.formstyler-colored {
+            border-color: $switchbox-border-color-negative-focus;
+            box-shadow: $switchbox-box-shadow-negative-focus;
+
+            .formstyler-switchbox-dot {
+                background-color: $switchbox-dot-color-negative-focus;
+            }
+        }
+        &.formstyler-checked {
+            .formstyler-switchbox-dot {
+                background-color: $switchbox-dot-color-checked-focus;
+            }
+            &.formstyler-colored {
+                border-color: $switchbox-border-color-positive-focus;
+                box-shadow: $switchbox-box-shadow-positive-focus;
+
+                .formstyler-switchbox-dot {
+                    background-color: $switchbox-dot-color-positive-focus;
+                }
+            }
+        }
     }
     &.formstyler-disabled {
-        border-color: $border-color-disabled;
-        background: $bg-disabled;
+        border-color: $switchbox-border-color-disabled;
+        background-color: $switchbox-background-disabled;
         cursor: not-allowed;
 
         .formstyler-switchbox-dot {
             opacity: 0;
         }
         &.formstyler-checked {
-            .formstyler-switchbox-dot {
-                background: $text-color-disabled;
-                opacity: 1;
+            &,
+            &.formstyler-colored {
+                .formstyler-switchbox-dot {
+                    background-color: $switchbox-dot-color-disabled;
+                    opacity: 1;
+                }
             }
         }
     }
 }
 .formstyler-switchblock {
     position: relative;
-    padding-left: ceil($font-height-text * 1.5) + $margin;
+    min-height: $switchbox-size;
+    padding-left: ceil($switchbox-size * 1.5) + $switchbox-margin;
 
     .formstyler-switchbox {
         position: absolute;
@@ -245,26 +337,25 @@
     }
     &.formstyler-disabled {
         .formstyler-label {
-            color: $text-color-disabled;
+            color: $label-color-disabled;
             cursor: not-allowed;
         }
     }
 }
-
 
 // > Radio
 .formstyler-radio {
     position: relative;
     float: left;
     display: block;
-    width: $font-height-text;
-    height: $font-height-text;
-    margin: 0 $margin 0 0;
-    border: $border-width solid $border-color;
+    width: $radio-size;
+    height: $radio-size;
+    margin: 0 $radio-margin 0 0;
+    border: $radio-border-width solid $radio-border-color;
     border-radius: 50%;
-    background-color: $bg;
-    box-shadow: $boxshadow-checkbox;
-    transition: border-color $transition-duration $transition-timing, box-shadow $transition-duration $transition-timing, background $transition-duration $transition-timing;
+    background-color: $radio-background;
+    box-shadow: $radio-box-shadow;
+    transition: border-color $transition, box-shadow $transition, background $transition;
     cursor: pointer;
     overflow: hidden;
     user-select: none;
@@ -272,38 +363,74 @@
     input {
         position: absolute;
         z-index: -1;
+        width: 0;
+        height: 0;
         margin: 0;
         padding: 0;
         opacity: 0;
     }
     .formstyler-radio-dot {
         position: absolute;
-        top: ($font-height-text - $border-width*2 - $font-height-text/2)/2;
-        left: ($font-height-text - $border-width*2 - $font-height-text/2)/2;
-        width: $font-height-text / 2;
-        height: $font-height-text / 2;
-        border-radius: 50%;
-        background: $text-color-active;
+        top: ($radio-size - $radio-border-width * 2 - $radio-dot-size) / 2;
+        left: ($radio-size - $radio-border-width * 2 - $radio-dot-size) / 2;
+        width: $radio-dot-size;
+        height: $radio-dot-size;
+        border-radius: $radio-dot-border-radius;
+        background-color: $radio-dot-color;
         opacity: 0;
-        transition: opacity $transition-duration $transition-timing;
+        transition: opacity $transition;
+    }
+    &.formstyler-colored {
+        .formstyler-radio-dot {
+            background-color: $radio-dot-color-positive;
+        }
     }
     &:hover,
     &.formstyler-hovered {
         &:not(.formstyler-disabled):not(.formstyler-focused) {
-            border-color: $border-color-hover;
+            border-color: $radio-border-color-hover;
+            box-shadow: $radio-box-shadow-hover;
+
+            .formstyler-radio-dot {
+                background-color: $radio-dot-color-hover;
+            }
+            &.formstyler-colored {
+                border-color: $radio-border-color-positive-hover;
+                box-shadow: $radio-box-shadow-positive-hover;
+
+                .formstyler-radio-dot {
+                    background-color: $radio-dot-color-positive-hover;
+                }
+            }
         }
     }
     &.formstyler-focused {
-        border-color: $border-color-active;
-        box-shadow: $boxshadow-checkbox-active;
-    }
-    &.formstyler-disabled {
-        border-color: $border-color-disabled;
-        background: $bg-disabled;
-        cursor: not-allowed;
+        border-color: $radio-border-color-focus;
+        box-shadow: $radio-box-shadow-focus;
 
         .formstyler-radio-dot {
-            background: $text-color-disabled;
+            background-color: $radio-dot-color-focus;
+        }
+        &.formstyler-colored.formstyler-checked {
+            border-color: $radio-border-color-positive-focus;
+            box-shadow: $radio-box-shadow-positive-focus;
+
+            .formstyler-radio-dot {
+                background-color: $radio-dot-color-positive-focus;
+            }
+        }
+    }
+    &.formstyler-disabled {
+        &,
+        &.formstyler-colored {
+            border-color: $radio-border-color-disabled;
+            background-color: $radio-background-disabled;
+            box-shadow: $radio-box-shadow-disabled;
+            cursor: not-allowed;
+
+            .formstyler-radio-dot {
+                background: $radio-dot-color-disabled;
+            }
         }
     }
     &.formstyler-checked {
@@ -314,7 +441,8 @@
 }
 .formstyler-radioblock {
     position: relative;
-    padding-left: $font-height-text + $margin;
+    min-height: $radio-size;
+    padding-left: $radio-size + $radio-margin;
 
     .formstyler-radio {
         position: absolute;
@@ -328,22 +456,20 @@
     }
     &.formstyler-disabled {
         .formstyler-label {
-            color: $text-color-disabled;
+            color: $label-color-disabled;
             cursor: not-allowed;
         }
     }
 }
 
-
 // > Number
 .formstyler-number {
-    position: relative;
-    padding-right: $height / 2 + $margin;
-    transition: padding $transition-duration $transition-timing;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
 
     input {
-        width: 100%;
-
         &::-webkit-inner-spin-button,
         &::-webkit-outer-spin-button {
             margin: 0;
@@ -351,282 +477,190 @@
         }
     }
     .formstyler-number-button {
-        position: absolute;
-        right: 0;
-        width: floor($height/2);
-        height: floor($height/2);
-        transition: opacity $transition-duration $transition-timing, visibility $transition-duration $transition-timing;
-        overflow: hidden;
         cursor: pointer;
 
-        &.formstyler-number-plus {
-            top: 0;
+        &:first-child {
+            margin-right: $number-button-margin;
         }
-        &.formstyler-number-minus {
-            bottom: 0;
+        &:last-child {
+            margin-left: $number-button-margin;
         }
-        &.formstyler-number-button-icon {
-            line-height: floor($height/2);
+        &.formstyler-styled {
+            height: $number-button-font-size;
+            width: $number-button-font-size;
+            line-height: $number-button-font-size;
+            font-size: $number-button-font-size;
+            font-family: $number-button-font-family;
             text-align: center;
-            color: $text-color-active;
-            transition: color $transition-duration $transition-timing;
 
-            @if floor($height/2) > $font-size-text == true {
-                font-size: $font-size-text;
-            } @else {
-                font-size: floor($height/2);
+            .formstyler-number-text,
+            .formstyler-number-icon {
+                color: $number-button-color;
+                transition: color $transition;
             }
-
+            .formstyler-number-text {
+                font-weight: $number-button-font-weight;
+            }
             &:hover {
-                color: $text-color-hover;
-            }
-        }
-        &.formstyler-number-button-image {
-            line-height: 0;
-        }
-        &.formstyler-number-button-angle {
-            &::after {
-                content: '';
-                position: absolute;
-                width: 0;
-                height: 0;
-                border-right: floor($font-height-text/2/1.5) solid transparent;
-                border-left: floor($font-height-text/2/1.5) solid transparent;
-                left: ($font-height-text/2 - floor($font-height-text/2/1.5))/2;
-                transition: border-color $transition-duration $transition-timing;
-            }
-            &.formstyler-number-plus {
-                &::after {
-                    bottom: ($font-height-text/2 - floor($font-height-text/2/1.5))/2;
-                    border-bottom: floor($font-height-text/2/1.5) solid $text-color-active;
-                }
-                &:hover {
-                    &::after {
-                        border-bottom-color: $text-color-hover;
-                    }
+                .formstyler-number-text,
+                .formstyler-number-icon {
+                    color: $number-button-color-hover;
                 }
             }
-            &.formstyler-number-minus {
-                &::after {
-                    top: ($font-height-text/2 - floor($font-height-text/2/1.5))/2;
-                    border-top: floor($font-height-text/2/1.5) solid $text-color-active;
-                }
-                &:hover {
-                    &::after {
-                        border-top-color: $text-color-hover;
-                    }
-                }
-            }
-        }
-        .formstyler-number-image {
-            @if floor($height/2) > $font-size-text == true {
-                width: $font-size-text;
-                height: $font-size-text;
-                margin-top: (floor($height/2) - $font-size-text) / 2;
-            } @else {
-                width: floor($height/2);
-                height: floor($height/2);
-            }
-        }
-        .formstyler-number-angle {
-            position: relative;
-            width: inherit;
-            height: inherit;
         }
     }
     &.formstyler-colored {
         .formstyler-number-button {
-            &.formstyler-number-button-icon {
+            &.formstyler-styled {
                 &.formstyler-number-plus {
-                    color: $color-positive;
-                }
-                &.formstyler-number-minus {
-                    color: $color-negative;
-                }
-                &.formstyler-number-plus,
-                &.formstyler-number-minus {
-                    &:hover {
-                        color: $text-color-hover;
+                    .formstyler-number-text,
+                    .formstyler-number-icon {
+                        color: $number-button-color-plus;
                     }
                 }
-            }
-            &.formstyler-number-button-angle {
-                &.formstyler-number-plus {
-                    &::after {
-                        border-bottom-color: $color-positive;
+                &.formstyler-number-minus {
+                    .formstyler-number-text,
+                    .formstyler-number-icon {
+                        color: $number-button-color-minus;
                     }
-                    &:hover {
-                        &::after {
-                            border-bottom-color: $text-color-hover;
+                }
+                &:hover {
+                    &.formstyler-number-plus {
+                        .formstyler-number-text,
+                        .formstyler-number-icon {
+                            color: $number-button-color-plus-hover;
                         }
                     }
-                }
-                &.formstyler-number-minus {
-                    &::after {
-                        border-top-color: $color-negative;
-                    }
-                    &:hover {
-                        &::after {
-                            border-top-color: $text-color-hover;
+                    &.formstyler-number-minus {
+                        .formstyler-number-text,
+                        .formstyler-number-icon {
+                            color: $number-button-color-minus-hover;
                         }
                     }
                 }
             }
         }
     }
+    .formstyler-number-image {
+        width: $number-button-font-size;
+    }
     &.formstyler-disabled {
-        padding-right: 0;
-
         .formstyler-number-button {
-            visibility: hidden;
-            opacity: 0;
+            display: none;
         }
     }
 }
 
-
 // > File
 .formstyler-file {
     position: relative;
-    display: block;
-    height: $height;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
     overflow: hidden;
 
     input {
         position: absolute;
-        top: 0;
-        right: 0;
-        height: auto;
+        z-index: -1;
+        width: 0;
+        height: 0;
         margin: 0;
         padding: 0;
         opacity: 0;
-        font-size: 100px;
-        line-height: 1em;
-        cursor: pointer;
+    }
+    &.formstyler-noid {
+        input {
+            z-index: 1;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: auto;
+            font-size: 100px;
+            line-height: 1em;
+            cursor: pointer;
+        }
     }
     .formstyler-file-name {
-        position: relative;
-        display: block;
-        height: $height;
-        padding: ($height - $font-height-text - $border-width)/2 0;
-        border-bottom: $border-width solid $border-color;
-        font: #{$font-size-input}/#{$font-height-input} $font-family-input;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
-        transition: opacity $transition-duration $transition-timing, border-color $transition-duration $transition-timing;
+        cursor: pointer;
 
+        .formstyler-file-name-icon {
+            margin-right: $file-input-margin;
+            color: $file-input-color-placeholder;
+        }
         .formstyler-file-name-image {
             position: absolute;
-            width: $font-size-input;
-            height: $font-size-input;
-            top: ($height - $font-size-input - $border-width)/2;
-            left: 0;
-
-            & + .formstyler-file-name-value {
-                margin-left: $font-size-input + $margin;
-            }
+            top: 50%;
+            left: $file-input-margin;
+            margin-top: - ceil($file-input-font-size / 2);
+            width: $file-input-font-size;
+            height: $file-input-font-size;
         }
-        .formstyler-file-name-icon {
-            margin-right: $margin;
-            color: $text-color-placeholder;
+        .formstyler-file-name-value {}
+        &.formstyler-imaged {
+            position: relative;
+            text-indent: 0 !important;
+            padding-left: ($file-input-font-size + $file-input-margin * 2) !important;
+        }
+        &.formstyler-styled {
+            width: 100%;
+            height: $file-input-line-height;
+            font-family: $file-input-font-family;
+            font-size: $file-input-font-size;
+            line-height: $file-input-line-height;
+            color: $file-input-color;
         }
     }
     .formstyler-file-button {
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: auto;
-        width: 150px;
-        height: $height;
+        margin-left: $file-button-margin;
+        white-space: nowrap;
+        cursor: pointer;
 
-        & + .formstyler-file-name {
-            margin-right: 150px + $margin;
-        }
-        &.formstyler-iconed {
-            width: $height;
-            padding-left: 0;
-            padding-right: 0;
-            text-align: center;
-
-            & + .formstyler-file-name {
-            margin-right: $height + $margin;
-        }
+        .formstyler-file-button-image {
+            width: $file-button-font-size;
+            height: $file-button-font-size;
         }
         &.formstyler-styled {
-            padding: ($height - $font-height-text)/2 0;
-            background: $text-color-active;
-            border-radius: $border-radius;
-            font: #{$font-size-text}/#{$font-height-text} $font-family-text;
-            text-align: center;
-            color: $bg;
-        }
-        /*.formstyler-file-button-span {
-            position: relative;
-            display: inline-block;
-        }*/
-        .formstyler-file-button-image {
-            position: absolute;
-            top: ($height - $font-size-text)/2;
-            left: ($height - $font-size-text)/2;
-            width: $font-size-text;
-            height: $font-size-text;
-        }
-        .formstyler-file-button-image,
-        .formstyler-file-button-icon {
-            & + .formstyler-file-button-value {
-                display: none;
-            }
-        }
-    }
-    &.formstyler-file-empty {
-        .formstyler-file-name {
-            opacity: 0;
-        }
-        .formstyler-file-button {
-            left: 0;
-            width: auto;
+            height: $file-button-size;
+            font-family: $file-button-font-family;
+            font-size: $file-button-font-size;
+            line-height: $file-button-line-height;
+            padding: ceil(($file-button-size - $file-button-line-height) / 2) $file-button-margin;
+            background-color: $file-button-background;
+            border: $file-button-border-width solid $file-button-border-color;
+            border-radius: $file-button-border-radius;
+            color: $file-button-color;
+            transition: background-color $transition, border-color $transition, color $transition;
 
-            .formstyler-file-button-value {
-                display: inline-block;
+            &:hover {
+                border-color: $file-button-border-color-hover;
+                background-color: $file-button-background-hover;
+                color: $file-button-color-hover;
             }
-            .formstyler-file-button-image {
-                display: none;
-                /*position: absolute;
-                top: ($height - $font-size-text)/2;
-                left: - ($font-size-text + $margin);
-                margin: 0;*/
-            }
-            .formstyler-file-button-icon {
-                margin-right: $margin;
-            }
-        }
-    }
-    &:hover,
-    &.formstyler-hovered {
-        .formstyler-file-name {
-            border-bottom-color: $border-color-hover;
-        }
-    }
-    &.formstyler-focused {
-        .formstyler-file-name {
-            border-bottom-color: $border-color-active;
         }
     }
     &.formstyler-disabled {
         cursor: not-allowed;
 
-        input {
-            display: none;
+        .formstyler-file-name,
+        .formstyler-file-button {
+            pointer-events: none;
+        }
+        .formstyler-file-name {
+            &.formstyler-styled {
+                color: $file-input-color-disabled;
+            }
         }
         .formstyler-file-button {
-            background: $border-color-disabled;
-            color: $text-color;
-            cursor: not-allowed;
+            &.formstyler-styled {
+                background-color: $file-input-color-disabled;
+            }
         }
     }
 }
-
 
 // > Select
 .formstyler-select {
@@ -643,406 +677,405 @@
         padding: 0;
         opacity: 0;
     }
-    .formstyler-select-box {
+    .formstyler-select-container {
         position: relative;
         width: 100%;
-        height: $height;
-        padding-right: $height - $border-width * 2;
-        border: $border-width solid $border-color;
-        border-radius: $border-radius;
-        background-color: $bg;
-        box-shadow: $boxshadow-selectbox;
-        transition: border-color $transition-duration $transition-timing, box-shadow $transition-duration $transition-timing, background $transition-duration $transition-timing;
+        height: $select-container-size;
+        padding-right: $select-container-size;
+        border: $select-container-border-width solid $select-container-border-color;
+        border-radius: $select-container-border-radius;
+        background-color: $select-container-background;
+        box-shadow: $select-container-box-shadow;
+        transition: border-color $transition, box-shadow $transition, background $transition;
         cursor: pointer;
         overflow: hidden;
         user-select: none;
 
-        .formstyler-select-text {
-            height: $height - $border-width * 2;
-            font: #{$font-size-input}/#{$font-height-input} $font-family-input;
-            padding: ($height - $border-width * 2 - $font-height-input)/2 $margin ($height - $border-width * 2 - $font-height-input)/2 $font-size-input;
-            color: $text-color;
+        .formstyler-select-value {
+            height: $select-container-size - $select-container-border-width * 2;
+            font-family: $select-container-font-family;
+            font-size: $select-container-font-size;
+            line-height: $select-container-line-height;
+            padding: floor(($select-container-size - $select-container-border-width * 2 - $select-container-line-height)/2) 0 ceil(($select-container-size - $select-container-border-width * 2 - $select-container-line-height) / 2) $select-container-text-indent;
+            color: $select-container-color;
             user-select: none;
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
-            transition: color $transition-duration $transition-timing;
+            transition: color $transition;
 
-            &.formstyler-select-text-placeholder {
-                color: $text-color-placeholder;
+            &.formstyler-select-placeholder {
+                color: $select-container-color-placeholder;
             }
         }
-        .formstyler-select-trigger-angle {
+        .formstyler-select-trigger {
             position: absolute;
             top: 0;
             right: 0;
-            width: $height - $border-width * 2;
-            height: $height - $border-width * 2;
-            transition: transform $transition-duration $transition-timing;
+            width: $select-container-size - $select-container-border-width * 2;
+            height: $select-container-size - $select-container-border-width * 2;
 
-            &::before {
+            .formstyler-select-trigger-image,
+            .formstyler-select-trigger-icon,
+            .formstyler-select-trigger-handler {
                 position: absolute;
-                z-index: 1;
-                content: '';
-                top: ($height - $border-width * 2 - $font-size-input)/2 + $font-size-input/4;
-                right: ($height - $border-width * 2 - $font-size-input)/2;
-                width: 0;
-                height: 0;
-                border-top: $font-size-input/2 solid $border-color;
-                border-right: $font-size-input/2 solid transparent;
-                border-left: $font-size-input/2 solid transparent;
-                transition: border-color $transition-duration $transition-timing;
+                top: floor((($select-container-size - $select-container-border-width * 2) - $select-container-trigger-size) / 2);
+                right: floor((($select-container-size - $select-container-border-width * 2) - $select-container-trigger-size) / 2);
+                width: $select-container-trigger-size;
+                height: $select-container-trigger-size;
+                transform: rotate(0);
             }
-        }
-        .formstyler-select-trigger-icon,
-        .formstyler-select-trigger-image {
-            position: absolute;
-            top: ($height - $border-width*2 - $font-size-input) / 2;
-            right: ($height - $border-width*2 - $font-size-input) / 2;
-            width: $font-size-input;
-            height: $font-size-input;
-        }
-        .formstyler-select-trigger-icon {
-            font-size: $font-size-input;
-            line-height: $font-size-input;
-            color: $border-color;
-            transition: transform $transition-duration $transition-timing, color $transition-duration $transition-timing;
-        }
-        .formstyler-select-trigger-image {
-            transition: transform $transition-duration $transition-timing;
-        }
-        &:hover,
-        &.formstyler-hovered {
-            border-color: $border-color-hover;
-
-            .formstyler-select-trigger-angle {
-                &::before {
-                    border-top-color: $border-color-hover;
-                }
+            .formstyler-select-trigger-image {
+                transition: transform $transition;
             }
             .formstyler-select-trigger-icon {
-                color: $border-color-hover;
+                font-size: $select-container-trigger-size;
+                line-height: $select-container-trigger-size;
+                color: $select-container-border-color;
+                text-align: center;
+                transition: color $transition, transform $transition;
             }
-        }
-        &:active {
-            border-color: $border-color-active;
-
-            .formstyler-select-trigger-angle {
-                &::before {
-                    border-top-color: $border-color-active;
-                }
-            }
-            .formstyler-select-trigger-icon {
-                color: $border-color-active;
+            .formstyler-select-trigger-handler {
+                border: $select-container-trigger-size / 4 solid $select-container-border-color;
+                border-radius: 50%;
+                transition: border-color $transition, transform $transition;
             }
         }
     }
     .formstyler-select-dropdown {
+        display: none;
         position: absolute;
         left: 0;
-        @if $width-dropdown-full == true {
+        margin: 0;
+        border: $select-dropdown-border-width solid $select-dropdown-border-color;
+        border-radius: $select-dropdown-border-radius;
+        background-color: $select-dropdown-background;
+        box-shadow: $select-dropdown-box-shadow;
+        overflow-x: hidden;
+        overflow-y: auto;
+        transition: margin $transition;
+
+        @if $select-dropdown-width-full == true {
             right: 0;
             width: 100%;
         } @else {
             min-width: 100%;
         }
-        margin: 0;
-        border: $border-width solid $border-color;
-        border-radius: $border-radius;
-        background-color: $bg;
-        transition: margin $transition-duration $transition-timing;
-    }
-    .formstyler-select-list {
-        position: relative;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        border-bottom-left-radius: inherit;
-        border-bottom-right-radius: inherit;
-        overflow: auto;
-        overflow-x: hidden;
-        -webkit-overflow-scrolling: touch;
+        .formstyler-select-list {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            overflow: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
 
-        &:first-child {
-            border-top-left-radius: inherit;
-            border-top-right-radius: inherit;
-        }
-    }
-    .formstyler-select-toggle,
-    .formstyler-select-option,
-    .formstyler-select-optgroup {
-        margin: 0;
-        padding: round($margin/1.5) $font-size-input;
-        background-color: $bg;
-        font: #{$font-size-select}/#{$font-height-text} $font-family-text;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        list-style: none;
-    }
-    .formstyler-select-optgroup {
-        font-weight: bold;
-        cursor: default;
-    }
-    .formstyler-select-toggle {
-        font-weight: bold;
-        // border-bottom: 1px solid $border-color;
-        // color: $text-color-placeholder;
-    }
-    .formstyler-select-toggle,
-    .formstyler-select-option {
-        cursor: pointer;
-
-        &.formstyler-selected {
-            background-color: $bg-selectbox-active;
-            color: $text-color-active;
-        }
-        &:hover {
-            background-color: $bg-selectbox-hover;
-            color: $text-color-hover;
-        }
-    }
-    .formstyler-select-option {
-        &.formstyler-optgrouped {
-            padding-left: $font-size-input + $font-size-text * 1.5;
-        }
-        &.formstyler-select-option-placeholder {
-            color: $text-color-placeholder;
-        }
-        &.formstyler-disabled {
-            background-color: $bg;
-            color: $text-color-disabled;
-            cursor: not-allowed;
-        }
-    }
-    .formstyler-select-notfound {
-        margin: $margin;
-        font: #{$font-size-input}/#{$font-height-input} $font-family-input;
-        text-align: center;
-        color: $text-color-placeholder;
-    }
-    .formstyler-select-search {
-
-        &.formstyler-select-search-custom {
-            padding: $margin;
-
-            & + .formstyler-select-notfound {
-                margin-top: 0;
+            &:first-child {
+                border-top-left-radius: inherit;
+                border-top-right-radius: inherit;
             }
-        }
-        .formstyler-select-search-input {
-            display: block;
-            width: 100%;
-            height: $height;
-            border: none;
-            border-bottom: $border-width solid $border-color;
-            text-indent: $font-size-input;
-            padding: ($height - $border-width - $font-height-input)/2 0;
-            font: #{$font-size-input}/#{$font-height-input} $font-family-input;
-            box-shadow: $boxshadow-input;
-
-            &::placeholder {
-                color: $text-color-placeholder;
+            &:last-child {
+                border-bottom-left-radius: inherit;
+                border-bottom-right-radius: inherit;
             }
-        }
-    }
-    &.formstyler-small {
-        .formstyler-select-box {
-            height: $height-small;
-            padding-right: $height-small - $border-width * 2;
-
-            .formstyler-select-text {
-                height: $height-small - $border-width * 2;
-                font: #{$font-size-input-small}/#{$font-height-input} $font-family-input;
-                padding: ($height-small - $border-width * 2 - $font-height-input)/2 $margin ($height-small - $border-width * 2 - $font-height-input)/2 $font-size-input-small;
+            .formstyler-select-option,
+            .formstyler-select-optgroup {
+                margin: 0;
+                padding: $select-list-padding-y $select-list-padding-x;
+                background-color: $select-list-background;
+                font-family: $select-list-font-family;
+                color: $select-list-color;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                list-style: none;
             }
-            .formstyler-select-trigger-angle {
-                width: $height-small - $border-width * 2;
-                height: $height-small - $border-width * 2;
+            .formstyler-select-optgroup {
+                font-size: $select-optgroup-font-size;
+                line-height: $select-optgroup-line-height;
+                font-weight: $select-optgroup-font-weight;
+                cursor: default;
+            }
+            .formstyler-select-option {
+                position: relative;
+                font-size: $select-list-font-size;
+                line-height: $select-list-line-height;
+                font-weight: $select-list-font-weight;
+                transition: color $transition, background-color $transition;
+                cursor: pointer;
 
-                &::before {
-                    top: ($height-small - $border-width * 2 - $font-size-input-small)/2 + $font-size-input-small/4;
-                    right: ($height-small - $border-width * 2 - $font-size-input-small)/2;
-                    border-top: $font-size-input-small/2 solid $border-color;
-                    border-right: $font-size-input-small/2 solid transparent;
-                    border-left: $font-size-input-small/2 solid transparent;
+                &:not(.formstyler-disabled) {
+                    &.formstyler-selected {
+                        background-color: $select-list-background-selected;
+                        color: $select-list-color-selected;
+                    }
+                    &:hover {
+                        background-color: $select-list-background-hover;
+                        color: $select-list-color-hover;
+                    }
+                }
+                &.formstyler-disabled {
+                    background-color: $select-list-background-disabled;
+                    color: $select-list-color-disabled;
+                    cursor: not-allowed;
+                }
+                &.formstyler-optgrouped {
+                    padding-left: $select-list-padding-x + $select-list-font-size * 1.5;
+                }
+                &.formstyler-select-placeholder {
+                    color: $select-list-color-placeholder;
+                }
+                .formstyler-select-option-image,
+                .formstyler-select-option-icon {
+                    display: none;
+                }
+                &.formstyler-multiple {
+                    padding-left: $select-list-padding-x * 2 + $select-list-line-height;
+
+                    &.formstyler-styled::before,
+                    .formstyler-select-option-image,
+                    .formstyler-select-option-icon {
+                        display: block;
+                        position: absolute;
+                        opacity: 0;
+                    }
+                    .formstyler-select-option-image {
+                        top: $select-list-padding-y + ($select-list-line-height - $select-list-font-size) / 2;
+                        left: $select-list-padding-x + ($select-list-line-height - $select-list-font-size) / 2;
+                        width: $select-list-font-size;
+                        height: $select-list-font-size;
+                        transition: opacity $transition;
+                    }
+                    .formstyler-select-option-icon {
+                        top: $select-list-padding-y;
+                        left: $select-list-padding-x;
+                        width: $select-list-line-height;
+                        height: $select-list-line-height;
+                        font-size: $select-list-font-size;
+                        line-height: $select-list-line-height;
+                        text-align: center;
+                        color: $select-list-color-multiple;
+                        transition: color $transition, opacity $transition;
+                    }
+                    &.formstyler-styled::before {
+                        content: '';
+                        top: $select-list-padding-y + ($select-list-line-height - $select-list-font-size) / 2;
+                        left: $select-list-padding-x + ($select-list-line-height - $select-list-font-size) / 2;
+                        width: $select-list-font-size;
+                        height: $select-list-font-size;
+                        border: $select-list-font-size / 4 solid $select-list-color-multiple;
+                        border-radius: 50%;
+                        transition: border-color $transition, opacity $transition;
+                    }
+                    &.formstyler-selected {
+                        &.formstyler-styled::before,
+                        .formstyler-select-option-image,
+                        .formstyler-select-option-icon {
+                            opacity: 1;
+                        }
+                    }
+                    &.formstyler-disabled {
+                        .formstyler-select-option-image {
+                            filter: grayscale(1);
+                        }
+                        .formstyler-select-option-icon {
+                            color: $select-list-color-disabled;
+                        }
+                    }
+                    &:not(.formstyler-disabled) {
+                        &:hover {
+                            .formstyler-select-option-icon {
+                                color: $select-list-color-multiple-hover;
+                            }
+                            &.formstyler-styled::before {
+                                border-color: $select-list-color-multiple-hover;
+                            }
+                        }
+                    }
                 }
             }
-            .formstyler-select-trigger-icon,
-            .formstyler-select-trigger-image {
+        }
+        .formstyler-select-toggle {
+            position: relative;
+            margin: 0;
+            padding: $select-list-padding-y $select-list-padding-x $select-list-padding-y $select-list-padding-x * 2 + $select-toggle-line-height;
+            background-color: $select-list-background;
+            font-family: $select-list-font-family;
+            font-size: $select-toggle-font-size;
+            line-height: $select-toggle-line-height;
+            font-weight: $select-toggle-font-weight;
+            color: $select-list-color;
+            cursor: pointer;
+            transition: color $transition, background-color $transition;
+
+            &.formstyler-styled::before,
+            .formstyler-select-toggle-image,
+            .formstyler-select-toggle-icon {
                 position: absolute;
-                top: ($height-small - $border-width*2 - $font-size-input-small) / 2;
-                right: ($height-small - $border-width*2 - $font-size-input-small) / 2;
-                width: $font-size-input-small;
-                height: $font-size-input-small;
+                opacity: 0;
             }
-            .formstyler-select-trigger-icon {
-                font-size: $font-size-input-small;
-                line-height: $font-size-input-small;
+            .formstyler-select-toggle-image {
+                top: $select-list-padding-y + ($select-list-line-height - $select-list-font-size) / 2;
+                left: $select-list-padding-x + ($select-list-line-height - $select-list-font-size) / 2;
+                width: $select-list-font-size;
+                height: $select-list-font-size;
+                transition: opacity $transition;
+            }
+            .formstyler-select-toggle-icon {
+                top: $select-list-padding-y;
+                left: $select-list-padding-x;
+                width: $select-list-line-height;
+                height: $select-list-line-height;
+                font-size: $select-list-font-size;
+                line-height: $select-list-line-height;
+                text-align: center;
+                color: $select-list-color-multiple;
+                transition: color $transition, opacity $transition;
+            }
+            &.formstyler-styled::before {
+                content: '';
+                top: $select-list-padding-y + ($select-list-line-height - $select-list-font-size) / 2;
+                left: $select-list-padding-x + ($select-list-line-height - $select-list-font-size) / 2;
+                width: $select-list-font-size;
+                height: $select-list-font-size;
+                border: $select-list-font-size / 4 solid $select-list-color-multiple;
+                border-radius: 50%;
+                transition: border-color $transition, opacity $transition;
+            }
+            &.formstyler-selected {
+                background-color: $select-list-background-selected;
+                color: $select-list-color-selected;
+
+                &.formstyler-styled::before,
+                .formstyler-select-toggle-image,
+                .formstyler-select-toggle-icon {
+                    opacity: 1;
+                }
+            }
+            &:hover {
+                background-color: $select-list-background-hover;
+                color: $select-list-color-hover;
+
+                .formstyler-select-toggle-icon {
+                    color: $select-list-color-multiple-hover;
+                }
+                &.formstyler-styled::before {
+                    border-color: $select-list-color-multiple-hover;
+                }
             }
         }
-    }
-    &.formstyler-select-pos-down {
-        .formstyler-select-dropdown {
-            margin-top: $margin;
+        .formstyler-select-search {
+            padding: $select-list-padding-y $select-list-padding-x;
+
+            .formstyler-select-search-input {
+                width: 100%;
+
+                &.formstyler-styled {
+                    margin: 0;
+                    padding: 0;
+                    border: none;
+                    background-color: transparent;
+                    font-family: $select-search-font-family;
+                    font-size: $select-search-font-size;
+                    line-height: $select-search-line-height;
+                    font-weight: $select-search-font-weight;
+                    text-indent: 0;
+                    color: $select-search-color;
+                    transition: color $transition;
+                    outline: none;
+
+                    &:hover {
+                        color: $select-search-color-hover;
+                    }
+                    &:focus {
+                        color: $select-search-color-focus;
+                    }
+                }
+            }
+        }
+        .formstyler-select-notfound {
+            display: none;
+            padding: $select-list-padding-y $select-list-padding-x;
+            font-family: $select-notfound-font-family;
+            font-size: $select-notfound-font-size;
+            line-height: $select-notfound-line-height;
+            font-weight: $select-notfound-font-weight;
+            text-align: $select-notfound-alignment;
+            color: $select-notfound-color;
         }
     }
-    &.formstyler-select-pos-up {
-        .formstyler-select-dropdown {
-            margin-bottom: $margin;
+    &:hover,
+    &.formstyler-hovered {
+        &:not(.formstyler-disabled):not(.formstyler-focused):not(.formstyler-opened) {
+            .formstyler-select-container {
+                border-color: $select-container-border-color-hover;
+                box-shadow: $select-container-box-shadow-hover;
+
+                .formstyler-select-value {
+                    &:not(.formstyler-select-placeholder) {
+                        color: $select-container-color-hover;
+                    }
+                }
+                .formstyler-select-trigger {
+                    .formstyler-select-trigger-icon {
+                        color: $select-container-border-color-hover;
+                    }
+                    .formstyler-select-trigger-handler {
+                        border-color: $select-container-border-color-hover;
+                    }
+                }
+            }
         }
     }
     &.formstyler-focused,
     &.formstyler-opened {
-        .formstyler-select-box {
-            border-color: $border-color-active;
-            box-shadow: $boxshadow-selectbox-active;
+        .formstyler-select-container {
+            border-color: $select-container-border-color-focus;
+            box-shadow: $select-container-box-shadow-focus;
 
-            .formstyler-select-trigger-angle {
-                &::before {
-                    border-top-color: $border-color-active;
+            .formstyler-select-value {
+                &:not(.formstyler-select-placeholder) {
+                    color: $select-container-color-focus;
                 }
             }
-            .formstyler-select-trigger-icon {
-                color: $border-color-active;
+            .formstyler-select-trigger {
+                .formstyler-select-trigger-icon {
+                    color: $select-container-border-color-focus;
+                }
+                .formstyler-select-trigger-handler {
+                    border-color: $select-container-border-color-focus;
+                }
             }
         }
     }
     &.formstyler-opened {
-        .formstyler-select-box {
-            .formstyler-select-trigger-angle,
-            .formstyler-select-trigger-icon,
-            .formstyler-select-trigger-image {
-                transform: rotate(180deg);
+        .formstyler-select-container {
+            .formstyler-select-trigger {
+                .formstyler-select-trigger-image,
+                .formstyler-select-trigger-icon,
+                .formstyler-select-trigger-handler {
+                    transform: rotate(180deg);
+                }
             }
         }
     }
     &.formstyler-disabled {
-        .formstyler-select-box {
-            border-color: $border-color-disabled;
-            background-color: $bg-disabled;
-            cursor: not-allowed;
+        .formstyler-select-container {
+            border-color: $select-container-border-color-disabled;
+            background-color: $select-container-background-disabled;
+            box-shadow: $select-container-box-shadow-disabled;
 
-            .formstyler-select-text {
-                color: $text-color-disabled;
+            .formstyler-select-value {
+                color: $select-container-color-disabled;
             }
-            .formstyler-select-trigger-angle {
-                &::before {
-                    border-top-color: $border-color-disabled;
+            .formstyler-select-trigger {
+                .formstyler-select-trigger-icon {
+                    color: $select-container-border-color-disabled;
+                }
+                .formstyler-select-trigger-handler {
+                    border-color: $select-container-border-color-disabled;
                 }
             }
         }
     }
-    &.formstyler-multiselect {
-        .formstyler-select-toggle,
-        .formstyler-select-option {
-            position: relative;
-            padding-left: ceil($font-size-input/1.5)*2 + $font-height-text/2;
-
-            .formstyler-select-check-dot,
-            .formstyler-select-check-icon,
-            .formstyler-select-check-image {
-                position: absolute;
-                top: (round($margin/1.5) * 2 + $font-height-text - $font-height-text/2) / 2;
-                left: ceil($font-size-input/1.5);
-                width: $font-height-text/2;
-                height: $font-height-text/2;
-                opacity: 0;
-                transition: opacity $transition-duration $transition-timing;
-            }
-            .formstyler-select-check-dot {
-                border-radius: $border-radius;
-                background-color: $color-active;
-            }
-            .formstyler-select-check-icon {
-                font-size: $font-height-text/2;
-                line-height: $font-height-text/2;
-                text-align: center;
-                color: $color-active;
-            }
-            &.formstyler-optgrouped {
-                padding-left: ceil($font-size-input/1.5)*2 + $font-height-text/2 + $font-size-text * 1.5;
-
-                .formstyler-select-check-dot,
-                .formstyler-select-check-icon,
-                .formstyler-select-check-image {
-                    left: ceil($font-size-input/1.5) + $font-size-text * 1.5;
-                }
-            }
-            &.formstyler-selected {
-                color: $text-color;
-
-                .formstyler-select-check-dot,
-                .formstyler-select-check-icon,
-                .formstyler-select-check-image {
-                    opacity: 1;
-                }
-            }
-        }
-    }
-    &.formstyler-colored {
-        .formstyler-select-toggle,
-        .formstyler-select-option {
-            .formstyler-select-check-dot {
-                background-color: $color-positive;
-            }
-            .formstyler-select-check-icon {
-                color: $color-positive;
-            }
-        }
-    }
-}
-
-
-// > Input & Textarea
-@if $build-input == true {
-    #{$input-selector},
-    #{$textarea-selector} {
-        box-sizing: border-box;
-        display: inline-block;
-        width: 100%;
-        border: $border-width solid $border-color;
-        border-radius: $border-radius;
-        font: #{$font-size-input}/#{$font-height-input} $font-family-input;
-        background-color: $bg;
-        color: $text-color;
-        box-shadow: $boxshadow-input;
-        outline: none;
-        transition: box-shadow $transition-duration $transition-timing, background-color $transition-duration $transition-timing, background-image $transition-duration $transition-timing, border-color $transition-duration $transition-timing, color $transition-duration $transition-timing;
-
-        &::placeholder {
-            color: $text-color-placeholder;
-        }
-        &:hover {
-            border-color: $border-color-hover;
-        }
-        &:focus {
-            border-color: $border-color-active;
-            box-shadow: $boxshadow-input-active;
-        }
-        &:disabled {
-            background: $bg-disabled;
-            border-color: $border-color-disabled;
-            color: $text-color-disabled;
-            cursor: not-allowed;
-
-            &:hover {
-                border-color: $border-color-disabled;
-            }
-        }
-    }
-    #{$input-selector} {
-        height: $height;
-        padding: ($height - $border-width*2 - $font-height-input)/2 0;
-        text-indent: $font-size-input;
-    }
-    #{$textarea-selector} {
-        min-height: $height;
-        padding: ($height - $border-width*2 - $font-height-input)/2 $font-size-input;
-        resize: vertical;
-    }
-}
-
-select[multiple] {
-    height: $height;
 }

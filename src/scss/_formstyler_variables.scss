@@ -1,0 +1,324 @@
+/*
+ * TOC
+ *
+ * Common
+ * Labels
+ * Checkbox
+ * Switchbox
+ * Radio
+ * Number
+ * File
+ * Select
+ */
+
+// > Common
+$resetcss:              true;
+
+$transition-duration:   ease-in-out;
+$transition-timing:     .15s;
+$transition:            $transition-timing $transition-duration;
+
+// > Labels
+$label-color-disabled:  #6c757d;
+
+// > Checkbox
+$checkbox-size:     24px;
+
+$checkbox-margin:   8px;
+
+$checkbox-background:           #fff;
+$checkbox-background-disabled:  #e9ecef;
+
+$checkbox-border-radius:        4px;
+$checkbox-border-width:         1px;
+
+$checkbox-border-color:             #ced4da;
+$checkbox-border-color-hover:       #adb5bd;
+$checkbox-border-color-focus:       lighten(#007bff, 25%);
+$checkbox-border-color-disabled:    $checkbox-border-color;
+
+$checkbox-border-color-positive:        $checkbox-border-color;
+$checkbox-border-color-positive-hover:  $checkbox-border-color-hover;
+$checkbox-border-color-positive-focus:  lighten(#28a745, 25%);
+
+$checkbox-box-shadow:           none;
+$checkbox-box-shadow-hover:     none;
+$checkbox-box-shadow-focus:     0 0 0 3.2px rgba(#007bff, .25);
+$checkbox-box-shadow-disabled:  none;
+
+$checkbox-box-shadow-positive:          $checkbox-box-shadow;
+$checkbox-box-shadow-positive-hover:    $checkbox-box-shadow-hover;
+$checkbox-box-shadow-positive-focus:    0 0 0 3.2px rgba(#28a745, .25);
+
+$checkbox-dot-size:     14px;
+
+$checkbox-dot-color:            #007bff;
+$checkbox-dot-color-hover:      $checkbox-dot-color;
+$checkbox-dot-color-focus:      $checkbox-dot-color;
+$checkbox-dot-color-disabled:   #6c757d;
+
+$checkbox-dot-color-positive:       #28a745;
+$checkbox-dot-color-positive-hover: $checkbox-dot-color-positive;
+$checkbox-dot-color-positive-focus: $checkbox-dot-color-positive;
+
+$checkbox-dot-border-radius:        4px;
+
+// > Switchbox
+$switchbox-size:    24px;
+
+$switchbox-margin:  8px;
+
+$switchbox-background:          #fff;
+$switchbox-background-disabled: #e9ecef;
+
+$switchbox-border-radius:       12px;
+$switchbox-border-width:        1px;
+
+$switchbox-border-color:            #ced4da;
+$switchbox-border-color-hover:      #adb5bd;
+$switchbox-border-color-focus:      lighten(#007bff, 25%);
+$switchbox-border-color-disabled:   $switchbox-border-color;
+
+$switchbox-border-color-positive:           $switchbox-border-color;
+$switchbox-border-color-positive-hover:     $switchbox-border-color-hover;
+$switchbox-border-color-positive-focus:     lighten(#28a745, 25%);
+
+$switchbox-border-color-negative:           $switchbox-border-color;
+$switchbox-border-color-negative-hover:     $switchbox-border-color-hover;
+$switchbox-border-color-negative-focus:     lighten(#dc3545, 25%);
+
+$switchbox-box-shadow:              none;
+$switchbox-box-shadow-hover:        none;
+$switchbox-box-shadow-focus:        0 0 0 3.2px rgba(#007bff, .25);
+$switchbox-box-shadow-disabled:     none;
+
+$switchbox-box-shadow-positive:         $switchbox-box-shadow;
+$switchbox-box-shadow-positive-hover:   $switchbox-box-shadow-hover;
+$switchbox-box-shadow-positive-focus:   0 0 0 3.2px rgba(#28a745, .25);
+
+$switchbox-box-shadow-negative:         $switchbox-box-shadow;
+$switchbox-box-shadow-negative-hover:   $switchbox-box-shadow-hover;
+$switchbox-box-shadow-negative-focus:   0 0 0 3.2px rgba(#dc3545, .25);
+
+$switchbox-dot-size:        14px;
+
+$switchbox-dot-color:                   #6c757d;
+$switchbox-dot-color-hover:             $switchbox-dot-color;
+$switchbox-dot-color-focus:             $switchbox-dot-color;
+
+$switchbox-dot-color-checked:           #007bff;
+$switchbox-dot-color-checked-hover:     $switchbox-dot-color-checked;
+$switchbox-dot-color-checked-focus:     $switchbox-dot-color-checked;
+
+$switchbox-dot-color-disabled:  #6c757d;
+
+$switchbox-dot-color-positive:          #28a745;
+$switchbox-dot-color-positive-hover:    $switchbox-dot-color-positive;
+$switchbox-dot-color-positive-focus:    $switchbox-dot-color-positive;
+
+$switchbox-dot-color-negative:          #dc3545;
+$switchbox-dot-color-negative-hover:    $switchbox-dot-color-negative;
+$switchbox-dot-color-negative-focus:    $switchbox-dot-color-negative;
+
+$switchbox-dot-border-radius:       50%;
+
+// > Radio
+$radio-size:        24px;
+
+$radio-margin:      8px;
+
+$radio-background:          #fff;
+$radio-background-disabled: #e9ecef;
+
+$radio-border-radius:   50%;
+$radio-border-width:    1px;
+
+$radio-border-color:            #ced4da;
+$radio-border-color-hover:      #adb5bd;
+$radio-border-color-focus:      lighten(#007bff, 25%);
+$radio-border-color-disabled:   $radio-border-color;
+
+$radio-border-color-positive:       $radio-border-color;
+$radio-border-color-positive-hover: $radio-border-color-hover;
+$radio-border-color-positive-focus: lighten(#28a745, 25%);
+
+$radio-box-shadow:              none;
+$radio-box-shadow-hover:        none;
+$radio-box-shadow-focus:        0 0 0 3.2px rgba(#007bff, .25);
+$radio-box-shadow-disabled:     none;
+
+$radio-box-shadow-positive:         $radio-box-shadow;
+$radio-box-shadow-positive-hover:   $radio-box-shadow-hover;
+$radio-box-shadow-positive-focus:   0 0 0 3.2px rgba(#28a745, .25);
+
+$radio-dot-size:            14px;
+
+$radio-dot-color:           #007bff;
+$radio-dot-color-hover:     $radio-dot-color;
+$radio-dot-color-focus:     $radio-dot-color;
+$radio-dot-color-disabled:  #6c757d;
+
+$radio-dot-color-positive:          #28a745;
+$radio-dot-color-positive-hover:    $radio-dot-color-positive;
+$radio-dot-color-positive-focus:    $radio-dot-color-positive;
+
+$radio-dot-border-radius:   50%;
+
+// > Number
+$number-button-margin:      8px;
+
+$number-button-font-size:   16px;
+$number-button-font-weight: bold;
+$number-button-font-family: -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', sans-serif;
+
+$number-button-color:       #007bff;
+$number-button-color-hover: lighten($number-button-color, 15%);
+
+$number-button-color-plus:          #28a745;
+$number-button-color-plus-hover:    lighten($number-button-color-plus, 15%);
+
+$number-button-color-minus:         #dc3545;
+$number-button-color-minus-hover:   lighten($number-button-color-minus, 15%);
+
+// > File
+$file-input-margin:     8px;
+
+$file-input-icon-size:  16px;
+
+$file-input-font-size:      14px;
+$file-input-line-height:    22px;
+$file-input-font-weight:    normal;
+$file-input-font-family:    -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', sans-serif;
+
+$file-input-color:              #212529;
+$file-input-color-placeholder:  #6c757d;
+$file-input-color-disabled:     #6c757d;
+
+$file-button-size:      38px;
+$file-button-margin:    8px;
+
+$file-button-font-size:     16px;
+$file-button-line-height:   24px;
+$file-button-font-weight:   normal;
+$file-button-font-family:   -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', sans-serif;
+
+$file-button-color:             #fff;
+$file-button-color-hover:       #fff;
+$file-button-color-disabled:    #fff;
+
+$file-button-background:            #007bff;
+$file-button-background-hover:      darken($file-button-background, 15%);
+$file-button-background-disabled:   #6c757d;
+
+$file-button-border-radius: 4px;
+$file-button-border-width:  0;
+
+$file-button-border-color:          transparent;
+$file-button-border-color-hover:    transparent;
+$file-button-border-color-disabled: transparent;
+
+$file-button-box-shadow:            none;
+$file-button-box-shadow-hover:      none;
+$file-button-box-shadow-disabled:   none;
+
+// > Select
+$select-container-size:         38px;
+
+$select-container-text-indent:  16px;
+$select-container-font-size:    16px;
+$select-container-line-height:  24px;
+$select-container-font-weight:  normal;
+$select-container-font-family:  -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', sans-serif;
+
+$select-container-color:                #212529;
+$select-container-color-hover:          $select-container-color;
+$select-container-color-focus:          $select-container-color;
+$select-container-color-disabled:       #6c757d;
+$select-container-color-placeholder:    #6c757d;
+
+$select-container-background:           #fff;
+$select-container-background-disabled:  #e9ecef;
+
+$select-container-border-radius:        4px;
+$select-container-border-width:         1px;
+
+$select-container-border-color:             #ced4da;
+$select-container-border-color-hover:       #adb5bd;
+$select-container-border-color-focus:       lighten(#007bff, 25%);
+$select-container-border-color-disabled:    $select-container-border-color;
+
+$select-container-box-shadow:               none;
+$select-container-box-shadow-hover:         none;
+$select-container-box-shadow-focus:         0 0 0 3.2px rgba(#007bff, .25);
+$select-container-box-shadow-disabled:      none;
+
+$select-container-trigger-size:             14px;
+
+$select-container-trigger-color:            $select-container-border-color;
+$select-container-trigger-color-hover:      $select-container-border-color-hover;
+$select-container-trigger-color-focus:      $select-container-border-color-focus;
+$select-container-trigger-color-disabled:   $select-container-border-color-disabled;
+
+$select-dropdown-width-full:                true;
+
+$select-dropdown-border-radius:             4px;
+$select-dropdown-border-width:              1px;
+$select-dropdown-border-color:              #ced4da;
+
+$select-dropdown-background:                #fff;
+
+$select-dropdown-box-shadow:                none;
+
+$select-list-font-size:         14px;
+$select-list-line-height:       22px;
+$select-list-font-weight:       normal;
+$select-list-font-family:       -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', sans-serif;
+
+$select-list-color:                 #212529;
+$select-list-color-hover:           darken(#007bff, 25%);
+$select-list-color-selected:        #007bff;
+$select-list-color-disabled:        #6c757d;
+$select-list-color-placeholder:     #6c757d;
+$select-list-color-multiple:        #007bff;
+$select-list-color-multiple-hover:  darken(#007bff, 25%);
+
+$select-list-padding-x:         8px;
+$select-list-padding-y:         3px;
+
+$select-list-background:            #fff;
+$select-list-background-hover:      #f8f9fa;
+$select-list-background-selected:   #fff;
+$select-list-background-disabled:   #fff;
+
+$select-optgroup-font-size:         $select-list-font-size;
+$select-optgroup-line-height:       $select-list-line-height;
+$select-optgroup-font-weight:       bold;
+
+$select-optgroup-color:             $select-list-color;
+
+$select-optgroup-padding-x:         $select-list-padding-x;
+$select-optgroup-padding-y:         $select-list-padding-y;
+
+$select-optgroup-background:        $select-list-background;
+
+$select-toggle-font-size:           $select-list-font-size;
+$select-toggle-line-height:         $select-list-line-height;
+$select-toggle-font-weight:         bold;
+
+$select-search-font-size:           14px;
+$select-search-line-height:         22px;
+$select-search-font-weight:         normal;
+$select-search-font-family:         -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', sans-serif;
+
+$select-search-color:               #212529;
+$select-search-color-hover:         #212529;
+$select-search-color-focus:         #212529;
+
+$select-notfound-font-size:         14px;
+$select-notfound-line-height:       22px;
+$select-notfound-font-weight:       normal;
+$select-notfound-font-family:       -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', sans-serif;
+
+$select-notfound-color:             #6c757d;
+
+$select-notfound-alignment:         center;

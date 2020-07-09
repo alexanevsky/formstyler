@@ -1,6 +1,6 @@
 {
   "name": "@alexanevsky/formstyler",
-  "version": "3.1.1",
+  "version": "4.0.0",
   "description": "jQuery plugin for HTML forms: inputs and selects (include multiple selects)",
   "main": "dist/formstyler.min.js",
   "directories": {
@@ -39,7 +39,7 @@
   "bugs": {
     "url": "https://github.com/alexanevsky/formstyler/issues"
   },
-  "homepage": "https://github.com/alexanevsky/formstyler#readme",
+  "homepage": "https://github.com/alexanevsky/formstyler",
   "browserslist": [
     "last 2 versions"
   ]
