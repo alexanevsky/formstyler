@@ -34,8 +34,8 @@ var headerString = '/*! <%= pkg.name %> v<%= pkg.version %> (c) <%= pkg.author %
 var dist = './dist';
 
 var src = {
-    js:     './src/js/**/formstyler.js',
-    css:    './src/scss/**/formstyler.scss'
+    js:     './src/js/**/jquery.formstyler.js',
+    css:    './src/scss/**/jquery.formstyler.scss'
 };
 
 // > Tasks
@@ -54,7 +54,7 @@ gulp.task('css', function() {
     return gulp.src(src.css)
         .pipe(sass())
         .pipe(autoprefixer({ cascade: false }))
-        .pipe(concat('formstyler.css'))
+        .pipe(concat('jquery.formstyler.css'))
         .pipe(gulp.dest(dist))
         .pipe(cssnano({
             discardComments: { removeAll: true }

@@ -2,9 +2,12 @@
   "name": "@alexanevsky/formstyler",
   "version": "4.0.0",
   "description": "jQuery plugin for HTML forms: inputs and selects (include multiple selects)",
-  "main": "dist/formstyler.min.js",
+  "main": "dist/jquery.formstyler.min.js",
   "directories": {
     "doc": "docs"
+  },
+  "dependencies": {
+    "jquery": ">=3.0.0"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
