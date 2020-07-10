@@ -20,4 +20,4 @@ $('input, select').formstyler();
 
 ## License
 
-[MIT](https://github.com/Dimox/jQueryFormStyler/blob/master/LICENSE.md)
+[MIT](https://github.com/alexanevsky/formstyler/blob/master/LICENSE.md)
