@@ -18,6 +18,13 @@
  * Number
  * File
  * Select
+ * - Container
+ * - Dropdown
+ * - Small status
+ * - Hover status
+ * - Focus status
+ * - Opened status
+ * - Disabled status
  */
 /*
  * TOC
@@ -823,6 +830,18 @@
       font-weight: normal;
       text-align: center;
       color: #6c757d; }
+  .formstyler-select.formstyler-small .formstyler-select-container {
+    height: 28px; }
+    .formstyler-select.formstyler-small .formstyler-select-container .formstyler-select-value {
+      height: 26px;
+      padding: 1px 0 1px 16px;
+      font-size: 13px; }
+    .formstyler-select.formstyler-small .formstyler-select-container .formstyler-select-trigger {
+      height: 26px; }
+      .formstyler-select.formstyler-small .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-image,
+      .formstyler-select.formstyler-small .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-icon,
+      .formstyler-select.formstyler-small .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-handler {
+        top: 6px; }
   .formstyler-select:hover:not(.formstyler-disabled):not(.formstyler-focused):not(.formstyler-opened) .formstyler-select-container, .formstyler-select.formstyler-hovered:not(.formstyler-disabled):not(.formstyler-focused):not(.formstyler-opened) .formstyler-select-container {
     border-color: #adb5bd;
     -webkit-box-shadow: none;

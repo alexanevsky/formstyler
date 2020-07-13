@@ -19,6 +19,13 @@
  * Number
  * File
  * Select
+ * - Container
+ * - Dropdown
+ * - Small status
+ * - Hover status
+ * - Focus status
+ * - Opened status
+ * - Disabled status
  */
 
 @import 'variables';
@@ -677,6 +684,8 @@
         padding: 0;
         opacity: 0;
     }
+
+    // >> Container
     .formstyler-select-container {
         position: relative;
         width: 100%;
@@ -742,6 +751,8 @@
             }
         }
     }
+
+    // >> Dropdown
     .formstyler-select-dropdown {
         display: none;
         position: absolute;
@@ -1004,6 +1015,30 @@
             color: $select-notfound-color;
         }
     }
+
+    // >> Small status
+    &.formstyler-small {
+        .formstyler-select-container {
+            height: $select-container-size-small;
+
+            .formstyler-select-value {
+                height: $select-container-size-small - $select-container-border-width * 2;
+                padding: floor(($select-container-size-small - $select-container-border-width * 2 - $select-container-line-height)/2) 0 ceil(($select-container-size-small - $select-container-border-width * 2 - $select-container-line-height) / 2) $select-container-text-indent;
+                font-size: $select-container-font-size-small;
+            }
+            .formstyler-select-trigger {
+                height: $select-container-size-small - $select-container-border-width * 2;
+
+                .formstyler-select-trigger-image,
+                .formstyler-select-trigger-icon,
+                .formstyler-select-trigger-handler {
+                    top: floor((($select-container-size-small - $select-container-border-width * 2) - $select-container-trigger-size) / 2);
+                }
+            }
+        }
+    }
+
+    // >> Hover status
     &:hover,
     &.formstyler-hovered {
         &:not(.formstyler-disabled):not(.formstyler-focused):not(.formstyler-opened) {
@@ -1027,6 +1062,8 @@
             }
         }
     }
+
+    // >> Focus status
     &.formstyler-focused,
     &.formstyler-opened {
         .formstyler-select-container {
@@ -1048,6 +1085,8 @@
             }
         }
     }
+
+    // >> Opened status
     &.formstyler-opened {
         .formstyler-select-container {
             .formstyler-select-trigger {
@@ -1059,6 +1098,8 @@
             }
         }
     }
+
+    // >> Disabled status
     &.formstyler-disabled {
         .formstyler-select-container {
             border-color: $select-container-border-color-disabled;

@@ -116,6 +116,7 @@
 
         // Select defaults
         select: {
+            small:              false,
             smartMinHeight:     150,
             smartPosition:      true,
             dropdownOffset:     20,
@@ -253,6 +254,7 @@
             noId:       'formstyler-noid',
             opened:     'formstyler-opened',
             selected:   'formstyler-selected',
+            small:      'formstyler-small',
             styled:     'formstyler-styled'
         }
     }
@@ -1251,6 +1253,11 @@
                 // Hide first empty option
                 if ($options.first().text() === '' && $options.first().val() === '') {
                     $listItems.first().hide();
+                }
+
+                // If small
+                if (opt.select.small && isTrue(opt.select.small)) {
+                    $select.addClass(classes.status.small);
                 }
 
                 // If disabled

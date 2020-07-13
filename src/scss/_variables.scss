@@ -223,12 +223,14 @@ $file-button-box-shadow-disabled:   none;
 
 // > Select
 $select-container-size:         38px;
+$select-container-size-small:   28px;
 
-$select-container-text-indent:  16px;
-$select-container-font-size:    16px;
-$select-container-line-height:  24px;
-$select-container-font-weight:  normal;
-$select-container-font-family:  -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', sans-serif;
+$select-container-text-indent:      16px;
+$select-container-font-size:        16px;
+$select-container-font-size-small:  13px;
+$select-container-line-height:      24px;
+$select-container-font-weight:      normal;
+$select-container-font-family:      -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', sans-serif;
 
 $select-container-color:                #212529;
 $select-container-color-hover:          $select-container-color;
