@@ -1406,6 +1406,7 @@
                             $listItems.not('.'+classes.select.optgroup).addClass(classes.status.selected);
                         } else {
                             $toggle.removeClass(classes.status.selected);
+
                             $options.each(function(i, selector) {
                                 if ($(selector).is(':selected')) {
                                     $listItems.not('.'+classes.select.optgroup).eq(i).addClass(classes.status.selected);
@@ -1416,10 +1417,10 @@
                         }
                     } else {
                         // Listener for changes of simple select
-                        if ($options.filter(':selected').length) {
-                            $value.text($options.filter(':selected').text());
-                        } else {
+                        if (!$options.filter(':selected').length || $options.filter(':selected').text() === '') {
                             $value.text(locale.select.placeholder);
+                        } else {
+                            $value.text($options.filter(':selected').text());
                         }
 
                         if (!$options.filter(':selected').length || $options.filter(':selected').val() === '') {
