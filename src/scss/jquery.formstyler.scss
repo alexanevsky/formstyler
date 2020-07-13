@@ -1,5 +1,5 @@
 /*!
- * jQuery FormStyler v4.0.0
+ * jQuery FormStyler v4.0.1
  * https://github.com/alexanevsky/formstyler
  *
  * Copyright 2020 Alexanevsky (https://lashchevsky.me)
@@ -7,7 +7,7 @@
  *
  * Released under the MIT license.
  *
- * Date: 2020-07-09
+ * Date: 2020-07-13
  */
 
  /*

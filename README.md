@@ -1,4 +1,4 @@
-# jQuery FormStyler <sup>[4.0.0](https://github.com/alexanevsky/formstyler/blob/master/CHANGELOG.md)</sup>
+# jQuery FormStyler <sup>[4.0.1](https://github.com/alexanevsky/formstyler/blob/master/CHANGELOG.md)</sup>
 
 jQuery plugin for HTML forms: inputs and selects (include multiple selects):
 

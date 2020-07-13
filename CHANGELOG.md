@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.1 <sup>2020-07-13</sup>
+- Added small parameter for selectboxes
+- Fixed selection of empty value by space key
+
 ## 4.0.0 <sup>2020-07-09</sup>
 - Code is awesome
 - Stylesheet is exelent
