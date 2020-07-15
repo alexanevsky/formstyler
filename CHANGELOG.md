@@ -1,5 +1,8 @@
 # Changelog
 
+## 4.0.2 <sup>2020-07-15</sup>
+- Fixed refresh of select with new options
+
 ## 4.0.1 <sup>2020-07-13</sup>
 - Added small parameter for selectboxes
 - Fixed selection of empty value by space key

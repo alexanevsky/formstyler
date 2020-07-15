@@ -1,5 +1,5 @@
 /*!
- * jQuery FormStyler v4.0.1
+ * jQuery FormStyler v4.0.2
  * https://github.com/alexanevsky/formstyler
  *
  * Copyright 2020 Alexanevsky (https://lashchevsky.me)
@@ -7,7 +7,7 @@
  *
  * Released under the MIT license.
  *
- * Date: 2020-07-13
+ * Date: 2020-07-15
  */
 /*
  * TOC
@@ -871,10 +871,17 @@
     border-color: #ced4da;
     background-color: #e9ecef;
     -webkit-box-shadow: none;
-    box-shadow: none; }
+    box-shadow: none;
+    cursor: not-allowed; }
     .formstyler-select.formstyler-disabled .formstyler-select-container .formstyler-select-value {
       color: #6c757d; }
     .formstyler-select.formstyler-disabled .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-icon {
       color: #ced4da; }
     .formstyler-select.formstyler-disabled .formstyler-select-container .formstyler-select-trigger .formstyler-select-trigger-handler {
       border-color: #ced4da; }
+
+select {
+  width: 100%;
+  height: 38px !important; }
+  select[data-small] {
+    height: 28px !important; }

@@ -1,5 +1,5 @@
 /*!
- * jQuery FormStyler v4.0.1
+ * jQuery FormStyler v4.0.2
  * https://github.com/alexanevsky/formstyler
  *
  * Copyright 2020 Alexanevsky (https://lashchevsky.me)
@@ -7,7 +7,7 @@
  *
  * Released under the MIT license.
  *
- * Date: 2020-07-13
+ * Date: 2020-07-15
  */
 
  /*
@@ -1105,6 +1105,7 @@
             border-color: $select-container-border-color-disabled;
             background-color: $select-container-background-disabled;
             box-shadow: $select-container-box-shadow-disabled;
+            cursor: not-allowed;
 
             .formstyler-select-value {
                 color: $select-container-color-disabled;
@@ -1118,5 +1119,14 @@
                 }
             }
         }
+    }
+}
+
+select {
+    width: 100%;
+    height: $select-container-size !important;
+
+    &[data-small] {
+        height: $select-container-size-small !important;
     }
 }

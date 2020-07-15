@@ -1,5 +1,5 @@
 /*!
- * jQuery FormStyler v4.0.1
+ * jQuery FormStyler v4.0.2
  * https://github.com/alexanevsky/formstyler
  *
  * Copyright 2020 Alexanevsky (https://lashchevsky.me)
@@ -7,7 +7,7 @@
  *
  * Released under the MIT license.
  *
- * Date: 2020-07-13
+ * Date: 2020-07-15
  */
 
  /*
@@ -483,6 +483,8 @@
             $el.on('refresh', function() {
                 destructor();
                 handler();
+
+                console.log($el);
             });
         },
 
@@ -1516,6 +1518,8 @@
             });
 
             $el.on('refresh', function() {
+                $options = $('option', $el);
+
                 destructor();
                 handler();
             });
